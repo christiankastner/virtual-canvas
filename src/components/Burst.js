@@ -1,6 +1,4 @@
-import React from 'react';
 import mojs from 'mo-js'
-
 
 const burst = new mojs.Burst({
     left: 0, top: 0,
@@ -8,7 +6,7 @@ const burst = new mojs.Burst({
     angle:    45,
     children: {
       shape:        'line',
-      radius:       100,
+      radius:       5,
       scale:        2,
       stroke:       '#FD7932',
       strokeDasharray: '100%',

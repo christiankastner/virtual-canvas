@@ -1,20 +1,27 @@
 import React from 'react';
 import Burst from "./components/Burst"
+import { ActionCableProvider } from 'react-actioncable-provider';
 import './App.css';
+import { API_WS_ROOT, API_ROOT, HEADERS} from './constants';
 
 class App extends React.Component {
 
   handleClick = e => {
-    console.log("I'm here")
-    Burst.tune({x: e.pageX, y: e.pageY})
-      .replay()
+    fetch(`${API_ROOT}/animate_mos`, {
+      method: "POST",
+      HEADERS,
+      body: JSON.stringify({
+        loc_x: e.pageX,
+        loc_y: e.pageY
+      })
+    })
   }
   
   render() {
       return (
-        <div className="App" onClick={this.handleClick}>
-        Hello
-        </div>
+        <ActionCableProvider url={API_WS_ROOT}>
+          <div className="App" onClick={this.handleClick} />
+        </ActionCableProvider>
       );
     }
   }
