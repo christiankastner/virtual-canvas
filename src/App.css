@@ -1,6 +1,9 @@
 .App {
-  background-color: white;
   text-align: center;
+}
+
+.Canvas {
+  background-color: white;
   width: 800px;
   height: 800px;
 }

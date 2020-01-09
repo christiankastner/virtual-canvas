@@ -1,6 +1,7 @@
 import React from 'react';
 import Canvas from "./components/Canvas"
-import { ActionCableProvider, ActionCableConsumer } from 'react-actioncable-provider';
+import { ActionCableProvider} from 'react-actioncable-provider';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 import { API_WS_ROOT, API_ROOT, HEADERS} from './constants';
 import burst from './components/Burst';
@@ -30,13 +31,14 @@ class App extends React.Component {
   render() {
       return (
         <ActionCableProvider url={API_WS_ROOT}>
-          <div className="App" onClick={this.handleClick} >
-            <ActionCableConsumer
-                      channel={{ channel: `PicturesChannel`, id: 1}}
-                      onReceived={this.handleRecievedBurst} 
-                      onDisconnected={() => console.log("Disconnected")}
-                      onConnected={() => console.log("connected!")}/>
-          </div>
+        <Router >
+          <Route exact path="/" render={() => {
+            
+          }} />
+          <Route />
+          
+        </Router>
+              
         </ActionCableProvider>
       );
     }
