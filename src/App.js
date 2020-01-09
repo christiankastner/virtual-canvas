@@ -1,9 +1,10 @@
 import React from 'react';
 import CanvasesIndex from "./CanvasesIndex"
-import { ActionCableProvider} from 'react-actioncable-provider';
+import CanvasShow from './CanvasShow'
+import { ActionCableProvider } from 'react-actioncable-provider';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
-import { API_WS_ROOT, API_ROOT, HEADERS} from './constants';
+import { API_WS_ROOT, API_ROOT, HEADERS } from './constants';
 import burst from './components/Burst';
 
 class App extends React.Component {
@@ -31,12 +32,12 @@ class App extends React.Component {
   render() {
       return (
         <ActionCableProvider url={API_WS_ROOT}>
-        <Router >
-          <Route exact path="/" render={() => <CanvasesIndex />} />
-          <Route />
-          
-        </Router>
-              
+          <Router >
+            <Route exact path="/canvases" render={() => <CanvasesIndex />} />
+            <Route exact path="/canvases/:id" render={routerProps => (
+              <CanvasShow {...routerProps} />
+            )} />
+          </Router>
         </ActionCableProvider>
       );
     }

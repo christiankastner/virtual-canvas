@@ -50,8 +50,7 @@ class CanvasesContainer extends React.Component {
             }
         })
     }
-
-    renderCanvases
+    
     render() {
         return (
             <div >
