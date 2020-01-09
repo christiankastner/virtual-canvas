@@ -9,15 +9,11 @@ class Canvas extends React.Component {
         }
     }
 
-    handleRecievedBurst = response => {
-        console.log(response)
-    }
-
     render() {
         return (
             <div className="Canvas" >
                 <ActionCable 
-                    channel={{channel: 'PicturesChannel'}}
+                    channel={{ channel: 'PicturesChannel', picture: 1 }}
                     onRecieved={this.handleRecieved} />
             </div>
         )

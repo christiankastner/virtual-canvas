@@ -1,8 +1,9 @@
 import React from 'react';
 import Canvas from "./components/Canvas"
-import { ActionCableProvider } from 'react-actioncable-provider';
+import { ActionCableProvider, ActionCableConsumer } from 'react-actioncable-provider';
 import './App.css';
 import { API_WS_ROOT, API_ROOT, HEADERS} from './constants';
+import burst from './components/Burst';
 
 class App extends React.Component {
 
@@ -18,12 +19,23 @@ class App extends React.Component {
       })
     })
   }
+
+  handleRecievedBurst = response => {
+    console.log(response)
+    const {loc_x, loc_y} = response.animate_mo
+    burst.tune({x: parseInt(loc_x), y: parseInt(loc_y)})
+        .replay()
+  }
   
   render() {
       return (
         <ActionCableProvider url={API_WS_ROOT}>
           <div className="App" onClick={this.handleClick} >
-            <Canvas />
+            <ActionCableConsumer
+                      channel={{ channel: `PicturesChannel`, id: 1}}
+                      onReceived={this.handleRecievedBurst} 
+                      onDisconnected={() => console.log("Disconnected")}
+                      onConnected={() => console.log("connected!")}/>
           </div>
         </ActionCableProvider>
       );
