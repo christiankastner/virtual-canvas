@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'semantic-ui-react'
 import { API_ROOT, HEADERS } from '../constants/index'
+import DisplayCanvases from './DisplayCanvases';
 
 class CanvasesContainer extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class CanvasesContainer extends React.Component {
         this.state = {
             canvases: [],
             newCanvas: {
-                name: ""
+                title: ""
             }
         }
     }
@@ -27,8 +28,18 @@ class CanvasesContainer extends React.Component {
         fetch(`${API_ROOT}/pictures`, {
             method: 'Post',
             headers: HEADERS,
-            body: JSON.stringify(this.state.newCanvas)
+            body: JSON.stringify({
+                picture: this.state.newCanvas
+            })
         })
+            .then(resp => resp.json())
+            .then(json => {
+                this.setState(prevState => {
+                    return {
+                        canvases: [...prevState.canvases, json]
+                    }
+                })
+            })
     }
 
     handleOnChange = (event) => {
@@ -40,19 +51,21 @@ class CanvasesContainer extends React.Component {
         })
     }
 
-
-
     renderCanvases
     render() {
         return (
             <div >
                 <Form onChange={this.handleOnChange}>
-                    <Form.Field >
-                        <label>Name</label>
-                        <input value={this.state.newCanvas.title} id="name"/>
-                    </Form.Field>
-                    <Button onClick={this.handleNewCanvas}>New Canvas</Button>
+                    <label>Name</label><br/>
+                    <Form.Group >
+                        <Form.Field >
+                            <input value={this.state.newCanvas.title} id="title"/>
+                        </Form.Field>
+                        <Button onClick={this.handleNewCanvas}>New Canvas</Button>
+                    </Form.Group>
                 </Form>
+                <h3>Canvases</h3>
+                <DisplayCanvases canvases={this.state.canvases} />
             </div>
         )
     }
