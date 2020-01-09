@@ -1,5 +1,5 @@
 import React from 'react';
-import Canvas from "./components/Canvas"
+import CanvasesIndex from "./CanvasesIndex"
 import { ActionCableProvider} from 'react-actioncable-provider';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
@@ -32,9 +32,7 @@ class App extends React.Component {
       return (
         <ActionCableProvider url={API_WS_ROOT}>
         <Router >
-          <Route exact path="/" render={() => {
-            
-          }} />
+          <Route exact path="/" render={() => <CanvasesIndex />} />
           <Route />
           
         </Router>
