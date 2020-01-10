@@ -20,6 +20,40 @@ class App extends React.Component {
       modal: !this.state.modal
     })
   }
+
+  // This takes in a string to specify whether the fetch is to find a user to login or create a user to sign up
+  handleUserFetch = (login) => {
+    return () => {
+      this.fetchUser()
+    }
+  }
+
+  fetchUser = (path, user) => {
+    return fetch(path, {
+      method: "POST",
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+        .then(resp => resp.json())
+  }
+
+  loginCallBack = (json) => {
+    if (json.message !== "Failed Fetch") {
+        this.setState({
+            loggedin: true,
+            modal: false
+        }, () => {
+            localStorage.setItem('id', json.user.id)
+            localStorage.setItem('email', json.user.email)
+            
+        })
+    } else {
+        console.log(json)
+    }
+  }
   
   render() {
       return (
@@ -28,7 +62,7 @@ class App extends React.Component {
           <Router >
             <LoginModal 
               modal={this.state.modal} 
-              handleOnLogin={this.handleOnLogin} 
+              handleOnLogin={this.handleUserFetch()} 
               handleOnSignup={this.handleOnSignup} 
               onClickOut={this.onClickOut}
             />
