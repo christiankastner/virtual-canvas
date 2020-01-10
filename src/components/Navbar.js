@@ -5,6 +5,29 @@ import {NavLink} from 'react-router-dom'
 
 const Navbar = props => {
 
+    const conditionalUserLink = () => {
+        if (props.loggedin) {
+            return (
+                <>
+                    <NavLink exact to="/user" >
+                        <Menu.Item name='profile'>
+                            Profile
+                        </Menu.Item>
+                    </NavLink>
+                    <Menu.Item name="login" onClick={props.handleLogout}>
+                        Log out
+                    </Menu.Item>
+                </>
+            ) 
+        } else {
+            return (
+                <Menu.Item name="login" onClick={props.handleLogin}>
+                    Log in
+                </Menu.Item>
+            )
+        }
+    }
+
     return (
         <Menu >
             <Menu.Menu position="right">
@@ -23,6 +46,7 @@ const Navbar = props => {
                         Canvases
                     </Menu.Item>
                 </NavLink>
+                {conditionalUserLink()}
             </Menu.Menu>
         </Menu>
     )

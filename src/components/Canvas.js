@@ -1,7 +1,8 @@
 import React from 'react';
 import burst from "./Burst"
-import { ActionCableConsumer } from 'react-actioncable-provider';
+import { ActionCableConsumer, ActionCableController } from 'react-actioncable-provider';
 import { API_ROOT, HEADERS } from '../constants/index'
+const actioncable = require("actioncable")
 
 class Canvas extends React.Component {
     constructor(props) {
@@ -13,16 +14,17 @@ class Canvas extends React.Component {
 
     handleClick = e => {
         console.log("I clicked!")
-        fetch(`${API_ROOT}/animate_mos`, {
-          method: "POST",
-          headers: HEADERS,
-          body: JSON.stringify({
-            loc_x: e.pageX,
-            loc_y: e.pageY,
-            user_id: 1,
-            picture_id: this.props.paramsId
-          })
-        })
+        
+        // fetch(`${API_ROOT}/animate_mos`, {
+        //   method: "POST",
+        //   headers: HEADERS,
+        //   body: JSON.stringify({
+        //     loc_x: e.pageX,
+        //     loc_y: e.pageY,
+        //     user_id: 1,
+        //     picture_id: this.props.paramsId
+        //   })
+        // })
     }
 
     handleRecievedBurst = response => {
@@ -35,14 +37,14 @@ class Canvas extends React.Component {
     render() {
         return (
             <div className="canvas" onClick={this.handleClick} >
-            <ActionCableConsumer
+            {/* <ActionCableConsumer
                         channel={{ 
                             channel: `PicturesChannel`, 
                             id: this.props.paramsId
                             }}
                         onReceived={this.handleRecievedBurst} 
                         onDisconnected={() => console.log("Disconnected!")}
-                        onConnected={() => console.log("Connected!")}/>
+                        onConnected={() => console.log("Connected!")}/> */}
             </div>
         )
     }

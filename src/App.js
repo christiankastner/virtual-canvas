@@ -14,7 +14,7 @@ class App extends React.Component {
   render() {
       return (
 
-        <ActionCableProvider url={API_WS_ROOT}>
+        // <ActionCableProvider url={API_WS_ROOT}>
           <Router >
             <Navbar />
             <Route exact path="/" component={Landing}/>
@@ -24,7 +24,6 @@ class App extends React.Component {
               <CanvasShow {...routerProps} />
             )} />
           </Router>
-        </ActionCableProvider>
       );
     }
   }
