@@ -10,15 +10,7 @@ class CanvasShowContainer extends React.Component {
     render() {
         return (
             <div>
-                <ActionCableConsumer
-                        channel={{ 
-                            channel: `PicturesChannel`, 
-                            id: this.props.paramsId
-                            }}
-                        onReceived={this.handleRecievedBurst} 
-                        onDisconnected={() => console.log("Disconnected")}
-                        onConnected={() => console.log("Connected!")}/>
-                <Canvas />
+                <Canvas paramsId={this.props.paramsId} />
             </div>
         )
     }

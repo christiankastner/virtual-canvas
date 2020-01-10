@@ -12,6 +12,7 @@ class Canvas extends React.Component {
     }
 
     handleClick = e => {
+        console.log("I clicked!")
         fetch(`${API_ROOT}/animate_mos`, {
           method: "POST",
           headers: HEADERS,
@@ -19,7 +20,7 @@ class Canvas extends React.Component {
             loc_x: e.pageX,
             loc_y: e.pageY,
             user_id: 1,
-            picture_id: 1
+            picture_id: this.props.paramsId
           })
         })
     }
@@ -34,6 +35,14 @@ class Canvas extends React.Component {
     render() {
         return (
             <div className="canvas" onClick={this.handleClick} >
+            <ActionCableConsumer
+                        channel={{ 
+                            channel: `PicturesChannel`, 
+                            id: this.props.paramsId
+                            }}
+                        onReceived={this.handleRecievedBurst} 
+                        onDisconnected={() => console.log("Disconnected!")}
+                        onConnected={() => console.log("Connected!")}/>
             </div>
         )
     }
