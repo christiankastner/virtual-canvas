@@ -5,6 +5,7 @@ import { ActionCableProvider } from 'react-actioncable-provider';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import './App.css';
 import Landing from './Landing'
+import About from "./About"
 import { API_WS_ROOT } from './constants';
 import Navbar from './components/Navbar';
 
