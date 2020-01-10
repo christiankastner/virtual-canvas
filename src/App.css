@@ -3,9 +3,10 @@
 }
 
 .canvas {
+  text-align: center;
   background-color: white;
-  width: 800px;
-  height: 800px;
+  width: 500px;
+  height: 500px;
 }
 
 .canvas-show {
@@ -13,7 +14,6 @@
   height: 100%;
   width: 100%;
 }
-
 
 .App-logo {
   height: 40vmin;

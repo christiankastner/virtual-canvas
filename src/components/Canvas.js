@@ -24,29 +24,19 @@ class Canvas extends React.Component {
             console.log(data)
             this.handleRecievedBurst(data)
             }
-        }
-        )
-
+        })
     }
 
+    componentWillUnmount() {
+        this.cable.disconnect()
+    }
     handleClick = e => {
         console.log("I clicked!")
         this.canvasChannel.send({
             canvas_id: this.props.paramsId,
             loc_x: e.pageX,
             loc_y: e.pageY
-        })
-        
-        // fetch(`${API_ROOT}/animate_mos`, {
-        //   method: "POST",
-        //   headers: HEADERS,
-        //   body: JSON.stringify({
-        //     loc_x: e.pageX,
-        //     loc_y: e.pageY,
-        //     user_id: 1,
-        //     picture_id: this.props.paramsId
-        //   })
-        // })
+        }, this.props.paramsId)
     }
 
     handleRecievedBurst = response => {
@@ -59,14 +49,7 @@ class Canvas extends React.Component {
     render() {
         return (
             <div className="canvas" onClick={this.handleClick} >
-            {/* <ActionCableConsumer
-                        channel={{ 
-                            channel: `PicturesChannel`, 
-                            id: this.props.paramsId
-                            }}
-                        onReceived={this.handleRecievedBurst} 
-                        onDisconnected={() => console.log("Disconnected!")}
-                        onConnected={() => console.log("Connected!")}/> */}
+
             </div>
         )
     }

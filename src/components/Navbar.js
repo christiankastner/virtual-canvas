@@ -9,14 +9,14 @@ const Navbar = props => {
         if (props.loggedin) {
             return (
                 <>
+                    <Menu.Item name="login" onClick={props.handleLogout}>
+                        Log out
+                    </Menu.Item>
                     <NavLink exact to="/user" >
                         <Menu.Item name='profile'>
                             Profile
                         </Menu.Item>
                     </NavLink>
-                    <Menu.Item name="login" onClick={props.handleLogout}>
-                        Log out
-                    </Menu.Item>
                 </>
             ) 
         } else {
