@@ -21,7 +21,7 @@ const Navbar = props => {
             ) 
         } else {
             return (
-                <Menu.Item name="login" onClick={props.handleLogin}>
+                <Menu.Item name="login" onClick={() => props.toggleModal()}>
                     Log in
                 </Menu.Item>
             )

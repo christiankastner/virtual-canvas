@@ -2,6 +2,7 @@ import React from 'react';
 import CanvasesIndex from "./CanvasesIndex"
 import CanvasShow from './CanvasShow'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { API_ROOT } from './constants/index'
 import LoginModal from './components/LoginModal'
 import './App.css';
 import Landing from './Landing'
@@ -21,10 +22,18 @@ class App extends React.Component {
     })
   }
 
+  handleLogin = () => {
+    this.toggleModal()
+  }
+
+  handleLogout = () => {
+
+  }
+
   // This takes in a string to specify whether the fetch is to find a user to login or create a user to sign up
   handleUserFetch = (login) => {
     return () => {
-      this.fetchUser()
+      this.fetchUser(`${API_ROOT}/users`, )
     }
   }
 
@@ -47,8 +56,7 @@ class App extends React.Component {
             modal: false
         }, () => {
             localStorage.setItem('id', json.user.id)
-            localStorage.setItem('email', json.user.email)
-            
+            localStorage.setItem('email', json.user.email)     
         })
     } else {
         console.log(json)
@@ -62,11 +70,11 @@ class App extends React.Component {
           <Router >
             <LoginModal 
               modal={this.state.modal} 
-              handleOnLogin={this.handleUserFetch()} 
-              handleOnSignup={this.handleOnSignup} 
-              onClickOut={this.onClickOut}
+              // handleOnLogin={this.handleUserFetch()} 
+              // handleOnSignup={this.handleOnSignup} 
+              toggleModal={this.toggleModal}
             />
-            <Navbar loggedin={this.state.loggedin} />
+            <Navbar loggedin={this.state.loggedin} handleLogin={this.handleLogin}/>
             <Route exact path="/" component={Landing}/>
             <Route exact path="/about" component={About} />
             <Route exact path="/canvases" render={() => <CanvasesIndex />} />
