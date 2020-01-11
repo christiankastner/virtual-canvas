@@ -7,6 +7,7 @@ import LoginModal from './components/LoginModal'
 import './App.css';
 import Landing from './Landing'
 import About from "./About"
+import UserShow from './UserShow'
 import Navbar from './components/Navbar';
 
 class App extends React.Component {
@@ -22,18 +23,16 @@ class App extends React.Component {
     })
   }
 
-  handleLogin = () => {
-    this.toggleModal()
-  }
-
   handleLogout = () => {
-
+    this.setState({
+      loggedin: false
+    }, () => localStorage.clear())
   }
 
   // This takes in a string to specify whether the fetch is to find a user to login or create a user to sign up
-  handleUserFetch = (login) => {
-    return () => {
-      this.fetchUser(`${API_ROOT}/users`, )
+  handleUserFetch = (fetch_route) => {
+    return (user) => {
+      this.fetchUser(`${API_ROOT}/${fetch_route}`, user)
     }
   }
 
@@ -47,16 +46,17 @@ class App extends React.Component {
       body: JSON.stringify(user)
     })
         .then(resp => resp.json())
+        .then(this.loginCallBack)
   }
 
   loginCallBack = (json) => {
-    if (json.message !== "Failed Fetch") {
+    if (!json.error) {
         this.setState({
             loggedin: true,
             modal: false
         }, () => {
-            localStorage.setItem('id', json.user.id)
-            localStorage.setItem('email', json.user.email)     
+            localStorage.setItem('id', json.id)
+            localStorage.setItem('email', json.email)     
         })
     } else {
         console.log(json)
@@ -65,18 +65,26 @@ class App extends React.Component {
   
   render() {
       return (
-
-        // <ActionCableProvider url={API_WS_ROOT}>
           <Router >
             <LoginModal 
               modal={this.state.modal} 
-              // handleOnLogin={this.handleUserFetch()} 
-              // handleOnSignup={this.handleOnSignup} 
+              handleOnLogin={this.handleUserFetch("users/login")} 
+              handleOnSignup={this.handleUserFetch("users")} 
               toggleModal={this.toggleModal}
             />
-            <Navbar loggedin={this.state.loggedin} handleLogin={this.handleLogin}/>
+            <Navbar loggedin={this.state.loggedin} 
+              toggleModal={this.toggleModal} 
+              handleLogout={this.handleLogout} 
+            />
             <Route exact path="/" component={Landing}/>
             <Route exact path="/about" component={About} />
+            <Route path="/user" >
+            {this.state.loggedin ? <UserShow 
+                                      userId={localStorage["id"]}
+                                      handleLogout={this.handleLogout}
+                                      />
+              : <Redirect to="/" />}
+            </Route>
             <Route exact path="/canvases" render={() => <CanvasesIndex />} />
             <Route exact path="/canvases/:id" render={routerProps => (
               <CanvasShow {...routerProps} />

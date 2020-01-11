@@ -10,7 +10,7 @@ class UserShow extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`${API_ROOT}/users/`)
+        fetch(`${API_ROOT}/users/${localStorage["id"]}`)
             .then(resp => resp.json())
             .then(json => {
                 this.setState({
@@ -20,11 +20,13 @@ class UserShow extends React.Component {
     }
 
     render() {
+        const {name, email, bookmarks} = this.state.user
         return (
             <div className="user-show" >
                 <h2>
-                    Welcome {}
+                    Welcome {name}
                 </h2>
+                
             </div>
         )
     }
