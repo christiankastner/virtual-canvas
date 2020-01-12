@@ -22,6 +22,8 @@ class UserShow extends React.Component {
 
     render() {
         const {name, email, bookmarks, pictures} = this.state.user
+        console.log(bookmarks)
+        const bookmarkCanvases = bookmarks ? bookmarks.map(bookmark => bookmark.picture) : []
         return (
             <div className="user-show" >
                 <h2>
@@ -31,7 +33,7 @@ class UserShow extends React.Component {
                     Email: {email}
                 </h3>
                 <DisplayCanvases title="Created Canvases" canvases={pictures} />
-                <DisplayCanvases title="Bookmarked Canvases" canvases={bookmarks} />
+                <DisplayCanvases title="Bookmarked Canvases" canvases={bookmarkCanvases} />
             </div>
         )
     }

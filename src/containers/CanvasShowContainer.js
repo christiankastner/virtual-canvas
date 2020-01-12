@@ -1,7 +1,7 @@
 import React from 'react';
 import Canvas from '../components/Canvas';
 import { Button } from 'semantic-ui-react';
-import { API_ROOT } from '../constants/index';
+import { API_ROOT, HEADERS } from '../constants/index';
 
 class CanvasShowContainer extends React.Component {
     constructor(props) {
@@ -10,8 +10,15 @@ class CanvasShowContainer extends React.Component {
 
     handleSaveCanvas = () => {
         console.log("saved!")
-        fetch(`${API_ROOT}/`, {
-            
+        fetch(`${API_ROOT}/users/${localStorage["id"]}/bookmarks`, {
+            method: "POST",
+            headers: HEADERS,
+            body: JSON.stringify({
+                bookmark: {
+                    user_id: localStorage["id"],
+                    picture_id: this.props.paramsId
+                }
+            })
         })
     }
 
@@ -19,7 +26,7 @@ class CanvasShowContainer extends React.Component {
         return (
             <div>
                 <Canvas paramsId={this.props.paramsId} />
-                <Button color="green" onClick={this.handleSaveCanvas}>Save</Button>
+                {localStorage["id"] ? <Button color="green" onClick={this.handleSaveCanvas}>Save</Button> : null}
             </div>
         )
     }
