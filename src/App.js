@@ -2,7 +2,7 @@ import React from 'react';
 import CanvasesIndex from "./CanvasesIndex"
 import CanvasShow from './CanvasShow'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import { API_ROOT } from './constants/index'
+import { API_ROOT, HEADERS } from './constants/index'
 import LoginModal from './components/LoginModal'
 import './App.css';
 import Landing from './Landing'
@@ -39,10 +39,7 @@ class App extends React.Component {
   fetchUser = (path, user) => {
     return fetch(path, {
       method: "POST",
-      headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-      },
+      headers: HEADERS,
       body: JSON.stringify(user)
     })
         .then(resp => resp.json())
@@ -79,11 +76,7 @@ class App extends React.Component {
             <Route exact path="/" component={Landing}/>
             <Route exact path="/about" component={About} />
             <Route path="/user" >
-            {this.state.loggedin ? <UserShow 
-                                      userId={localStorage["id"]}
-                                      handleLogout={this.handleLogout}
-                                      />
-              : <Redirect to="/" />}
+              {this.state.loggedin ? <UserShow /> : <Redirect to="/" />}
             </Route>
             <Route exact path="/canvases" render={() => <CanvasesIndex />} />
             <Route exact path="/canvases/:id" render={routerProps => (

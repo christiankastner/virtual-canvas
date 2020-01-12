@@ -5,7 +5,7 @@ const burst = new mojs.Burst({
     radius:   { 4: 19 },
     angle:    45,
     children: {
-      shape:        'line',
+      shape:        'polygon',
       radius:       5,
       scale:        2,
       stroke:       '#FD7932',

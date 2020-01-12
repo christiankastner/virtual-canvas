@@ -17,6 +17,7 @@ const DisplayCanvases = (props) => {
 
     return (
         <div className="canvas-list">
+        {props.title ? <h3>{props.title}</h3> : null}
             {renderCanvases()}
         </div>
     )

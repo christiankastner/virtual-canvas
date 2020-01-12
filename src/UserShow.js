@@ -1,5 +1,6 @@
 import React from 'react';
-import { API_ROOT, HEADERS} from './constants/index'
+import { API_ROOT, HEADERS } from './constants/index'
+import DisplayCanvases from './containers/DisplayCanvases'
 
 class UserShow extends React.Component {
     constructor(props) {
@@ -20,13 +21,17 @@ class UserShow extends React.Component {
     }
 
     render() {
-        const {name, email, bookmarks} = this.state.user
+        const {name, email, bookmarks, pictures} = this.state.user
         return (
             <div className="user-show" >
                 <h2>
                     Welcome {name}
                 </h2>
-                
+                <h3>
+                    Email: {email}
+                </h3>
+                <DisplayCanvases title="Created Canvases" canvases={pictures} />
+                <DisplayCanvases title="Bookmarked Canvases" canvases={bookmarks} />
             </div>
         )
     }

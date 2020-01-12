@@ -1,6 +1,5 @@
 import React from 'react';
 import burst from "./Burst"
-import { ActionCableConsumer, ActionCableController } from 'react-actioncable-provider';
 import { API_WS_ROOT, API_ROOT, HEADERS } from '../constants/index'
 const actioncable = require("actioncable")
 
