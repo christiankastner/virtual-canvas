@@ -22,6 +22,7 @@ class Canvas extends React.Component {
             disconnected: () => console.log("pictureChannel disconnected"),
             received: data => {
             console.log(data)
+            
             this.handleRecievedBurst(data)
             }
         })
@@ -38,9 +39,6 @@ class Canvas extends React.Component {
             tune : {
                 x: e.pageX,
                 y: e.pageY,
-                children: {
-                    shape: 'circle'
-                }
             }
         }, this.props.paramsId)
     }

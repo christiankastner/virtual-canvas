@@ -11,12 +11,13 @@ const BurstEdit = props => {
         {text: "zigzag"},
         {text: "curve"},
     ]
-
     return (
-        <Form >
-            <label><h2>Burst</h2></label>
-            <Form.Select placeholder={props.tool.shape} options={shapeOptions}/>
-        </Form>
+        <div className="animation-edit" >
+            <Form >
+                <label><h2>Burst</h2></label>
+                <Form.Select placeholder={props.tool.shape} options={shapeOptions}/>
+            </Form>
+        </div>
     )
 }
 
