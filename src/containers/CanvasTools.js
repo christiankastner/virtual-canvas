@@ -1,11 +1,12 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react'
 
-const CanvasTools = props => {
+const CanvasTools = (props) => {
 
     return (
-        <Grid >
-
-        </Grid>
+        <div className="tools">
+            <Button onClick={props.handleClick}>New Burst</Button>
+        </div>
     )
 }
 

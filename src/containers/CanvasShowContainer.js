@@ -3,13 +3,14 @@ import Canvas from '../components/Canvas';
 import { Button } from 'semantic-ui-react';
 import { API_ROOT, HEADERS } from '../constants/index';
 import BurstEdit from '../components/presentational/BurstEdit'
+import CanvasTools from './CanvasTools';
 
 class CanvasShowContainer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            tools: []
-            
+            animations: this.props.animate_mos,
+            activeEdit: null
         }
     }
 
@@ -26,12 +27,24 @@ class CanvasShowContainer extends React.Component {
         })
     }
 
+    handleNewAnimation = () => {
+        console.log("I'm here")
+        fetch(`${API_ROOT}/animate_mos`, {
+            method: "POST",
+            headers: HEADERS,
+            body: JSON.stringify({
+                
+            })
+        })
+    }
+
     render() {
         return (
             <div className="canvas-container">
+                <CanvasTools handleClick={this.handleNewAnimation} />
                 <Canvas paramsId={this.props.paramsId} />
                 {localStorage["id"] ? <Button color="green" onClick={this.handleSaveCanvas}>Save</Button> : null}
-                <BurstEdit />
+                {this.state.activeEdit ? <BurstEdit tool={this.state.activeEdit}/> : null}
             </div>
         )
     }
