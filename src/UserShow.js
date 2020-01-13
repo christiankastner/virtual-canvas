@@ -22,7 +22,6 @@ class UserShow extends React.Component {
 
     render() {
         const {name, email, bookmarks, pictures} = this.state.user
-        console.log(bookmarks)
         const bookmarkCanvases = bookmarks ? bookmarks.map(bookmark => bookmark.picture) : []
         return (
             <div className="user-show" >

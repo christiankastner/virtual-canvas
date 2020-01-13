@@ -24,7 +24,7 @@ class CanvasShowContainer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="canvas-container">
                 <Canvas paramsId={this.props.paramsId} />
                 {localStorage["id"] ? <Button color="green" onClick={this.handleSaveCanvas}>Save</Button> : null}
             </div>

@@ -9,7 +9,8 @@ class CanvasesContainer extends React.Component {
         this.state = {
             canvases: [],
             newCanvas: {
-                title: ""
+                title: "",
+                user_id: localStorage["id"]
             }
         }
     }
@@ -25,21 +26,24 @@ class CanvasesContainer extends React.Component {
     }
 
     handleNewCanvas = () => {
-        fetch(`${API_ROOT}/pictures`, {
-            method: 'Post',
-            headers: HEADERS,
-            body: JSON.stringify({
-                picture: this.state.newCanvas
-            })
-        })
-            .then(resp => resp.json())
-            .then(json => {
-                this.setState(prevState => {
-                    return {
-                        canvases: [...prevState.canvases, json]
-                    }
+        if (localStorage["id"]) {
+            fetch(`${API_ROOT}/pictures`, {
+                method: 'POST',
+                headers: HEADERS,
+                body: JSON.stringify({
+                    picture: this.state.newCanvas,
                 })
             })
+                .then(resp => resp.json())
+                .then(json => {
+                    console.log(json)
+                    this.setState(prevState => {
+                        return {
+                            canvases: [...prevState.canvases, json]
+                        }
+                    })
+                })
+        }
     }
 
     handleOnChange = (event) => {
@@ -60,7 +64,7 @@ class CanvasesContainer extends React.Component {
                         <Form.Field >
                             <input value={this.state.newCanvas.title} id="title"/>
                         </Form.Field>
-                        <Button onClick={this.handleNewCanvas}>New Canvas</Button>
+                        <Button onClick={() => this.handleNewCanvas()}>New Canvas</Button>
                     </Form.Group>
                 </Form>
                 <h3>Canvases</h3>

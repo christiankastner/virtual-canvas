@@ -2,18 +2,26 @@ import mojs from 'mo-js'
 
 const burst = new mojs.Burst({
     left: 0, top: 0,
-    radius:   { 4: 19 },
-    angle:    45,
+    radius:   { 0: 100 },
+    count: 5,
     children: {
-      shape:        'polygon',
-      radius:       5,
-      scale:        2,
-      stroke:       '#FD7932',
-      strokeDasharray: '100%',
-      strokeDashoffset: { '-100%' : '100%' },
-      duration:     2000,
-       easing:       'quad.out',
-    }
+          shape:      'polygon',
+          fill:       { 'cyan' : 'yellow' },
+          radius:     20,
+          angle:      { 360: 0 },
+          duration:   2000
+        }
 });
 
+// const burst = new mojs.Burst({
+//   radius:   { 0: 100 },
+//   count:    5,
+//   children: {
+//     shape:      'polygon',
+//     fill:       { 'cyan' : 'yellow' },
+//     radius:     20,
+//     angle:      { 360: 0 },
+//     duration:   2000
+//   }
+// });
 export default burst

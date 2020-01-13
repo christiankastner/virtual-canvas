@@ -2,9 +2,14 @@
   text-align: center;
 }
 
+.canvas-container {
+
+  text-align: center;
+}
+
 .canvas {
   text-align: center;
-  background-color: white;
+  background-color: #222;
   width: 500px;
   height: 500px;
 }
