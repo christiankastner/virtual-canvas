@@ -2,10 +2,10 @@ import mojs from 'mo-js'
 
 const burst = new mojs.Burst({
     left: 0, top: 0,
-    radius:   { 0: 100 },
+    radius:   { 50: 100 },
     count: 5,
     children: {
-          shape:      'polygon',
+          shape:      'circle',
           fill:       { 'cyan' : 'yellow' },
           radius:     20,
           angle:      { 360: 0 },

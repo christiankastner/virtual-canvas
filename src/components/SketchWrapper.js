@@ -14,16 +14,16 @@ class SketchWrapper extends React.Component {
   };
 
   draw = p5 => {
-    p5.background(0,4);
-	var scl = p5.height/2;
-	var time = p5.frameCount * 0.1;
+  //   p5.background(0,4);
+	// var scl = p5.height/2;
+	// var time = p5.frameCount * 0.1;
 
-	p5.beginShape();
-	for(var i = 0; i < p5.width; i++){
-		var y = p5.noise(i * 0.01, time*0.1) * scl*2 - scl;
-		p5.vertex(i, p5.height * 1/2 + y);	
-	}
-    p5.endShape();
+	// p5.beginShape();
+	// for(var i = 0; i < p5.width; i++){
+	// 	var y = p5.noise(i * 0.01, time*0.1) * scl*2 - scl;
+	// 	p5.vertex(i, p5.height * 1/2 + y);	
+	// }
+  //   p5.endShape();
   };
 
   render() {

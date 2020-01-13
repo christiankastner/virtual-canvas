@@ -39,7 +39,7 @@ class Canvas extends React.Component {
                 x: e.pageX,
                 y: e.pageY,
                 children: {
-                    shape: 'circle',
+                    shape: 'circle'
                 }
             }
         }, this.props.paramsId)

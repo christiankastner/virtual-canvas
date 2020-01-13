@@ -15,6 +15,7 @@ class CanvasShow extends React.Component {
         fetch(`${API_ROOT}/pictures/${this.props.match.params.id}`)
             .then(resp => resp.json())
             .then(json => {
+                console.log(json)
                 this.setState({
                     canvas: json
                 })
@@ -25,7 +26,7 @@ class CanvasShow extends React.Component {
         return (
             <div className="canvas-show">
                 <h2>{this.state.canvas.title}</h2>
-                <CanvasShowContainer paramsId={this.props.match.params.id} />
+                <CanvasShowContainer paramsId={this.props.match.params.id} canvas={this.state.canvas} />
             </div>
         )
     }
