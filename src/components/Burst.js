@@ -5,7 +5,6 @@ const burst = new mojs.Burst({
     radius:   { 50: 100 },
     count: 5,
     children: {
-          shape:      'circle',
           fill:       { 'cyan' : 'yellow' },
           radius:     20,
           angle:      { 360: 0 },

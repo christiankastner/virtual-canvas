@@ -5,7 +5,7 @@ import { Card } from 'semantic-ui-react';
 const AnimationCard = props => {
     return (
         <div className="tool-card" onClick={() => props.selectAnimation(props.animation)}>
-            <Card key={props.animation.id}>
+            <Card>
                 <Card.Content >
                     <Card.Description >
                         Burst

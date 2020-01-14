@@ -10,11 +10,11 @@ class SketchWrapper extends React.Component {
   setup = (p5, canvasParentRef) => {
     p5.createCanvas(600, 600).parent(canvasParentRef);
     p5.noFill();
-    p5.stroke(222);
+    p5.stroke(255);
   };
 
   draw = p5 => {
-  //   p5.background(0,4);
+    p5.background(222);
 	// var scl = p5.height/2;
 	// var time = p5.frameCount * 0.1;
 

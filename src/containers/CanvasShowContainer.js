@@ -1,6 +1,6 @@
 import React from 'react';
 import Canvas from '../components/Canvas';
-import { Button } from 'semantic-ui-react';
+import { Button, Table } from 'semantic-ui-react';
 import { API_ROOT, HEADERS } from '../constants/index';
 import { connect } from 'react-redux'
 import BurstEdit from '../components/presentational/BurstEdit'
@@ -25,11 +25,20 @@ class CanvasShowContainer extends React.Component {
         return (
             <div className="canvas-container">
                 <Canvas paramsId={this.props.paramsId} />
-                <div>
-                    {localStorage["id"] ? <Button color="green" onClick={this.handleSaveCanvas}>Save</Button> : null}
-                    {localStorage["id"] ? <CanvasTools handleClick={this.props.handleNewAnimation} /> : null }
-                </div>
-                {this.props.selectedAnimation ? <BurstEdit tool={this.state.activeEdit}/> : null}
+                {localStorage["id"] ? <Button color="green" onClick={this.handleSaveCanvas}>Save</Button> : null}
+                <Table >
+                    <Table.Row>
+                        <Table.HeaderCell>My Animations</Table.HeaderCell>
+                    </Table.Row>
+                    <Table.Row>
+                        <Table.Cell>
+                            {localStorage["id"] ? <CanvasTools handleClick={this.props.handleNewAnimation} /> : null }
+                        </Table.Cell>
+                        <Table.Cell>
+                            <BurstEdit />
+                        </Table.Cell>
+                    </Table.Row>
+                </Table>
             </div>
         )
     }

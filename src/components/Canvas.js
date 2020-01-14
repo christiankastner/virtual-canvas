@@ -1,5 +1,6 @@
 import React from 'react';
-import burst from "./Burst"
+import mojs from 'mo-js';
+import { connect } from 'react-redux'
 import { API_WS_ROOT, API_ROOT, HEADERS } from '../constants/index'
 import SketchWrapper from './SketchWrapper';
 const actioncable = require("actioncable")
@@ -12,12 +13,17 @@ class Canvas extends React.Component {
             channel: `PicturesChannel`, 
             id: this.props.paramsId
         },{
-            connected: () => console.log("pictureChannel connected"),
+            connected: () => {
+                console.log("pictureChannel connected")
+                // this.timeline = new mojs.Timeline({
+                //     repeat: 999
+                // })
+            },
             disconnected: () => console.log("pictureChannel disconnected"),
             received: data => {
-            console.log(data)
-            
-            this.handleRecievedBurst(data)
+                console.log(data)
+                
+                this.handleRecievedBurst(data)
             }
         })
     }
@@ -27,7 +33,6 @@ class Canvas extends React.Component {
     }
 
     handleClick = e => {
-        console.log("I clicked!")
         this.canvasChannel.send({
             canvas_id: this.props.paramsId,
             tune : {
@@ -38,7 +43,7 @@ class Canvas extends React.Component {
     }
 
     handleRecievedBurst = response => {
-        burst.tune(response.tune).replay()
+        // burst.tune(response.tune).replay()
     }
 
     render() {
@@ -50,4 +55,21 @@ class Canvas extends React.Component {
     }
 }
 
-export default Canvas
+const mapStateToProps = state => {
+    return {
+        canvas_animations: state.canvasAnimations.map(animation => new mojs.Burst({
+            radius:   { 0: 100 },
+            count: 5,
+            children: {
+                shape: animation.shape,
+                fill:       { 'cyan' : 'yellow' },
+                radius:     20,
+                angle:      { 360: 0 },
+                duration:   2000
+              }
+        }))
+    }
+}
+
+export default connect(mapStateToProps)(Canvas)
+
