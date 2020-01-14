@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 const BurstEdit = props => {
@@ -8,11 +8,16 @@ const BurstEdit = props => {
 
     const handleChange = (data) => {
         console.log(data.id, data.value)
-        setBurst()
+        setBurst({
+            ...burst, 
+            [data.id]: data.value
+        })
     }
 
     const handleSubmit = () => {
-
+        fetch(`${API_ROOT}/animate_mos/${props.selectAnimation.id}`, {
+            method: 
+        })
     }
 
     const shapeOptions = [
