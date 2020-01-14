@@ -1,52 +1,66 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { API_ROOT, HEADERS } from '../../constants/index'
 
-const BurstEdit = props => {
-    
-    const [burst, setBurst] = useState({})
+class BurstEdit extends React.Component {
+    state = {
+        burst: this.props.selectAnimation
+    }
 
-    const handleChange = (data) => {
-        console.log(data.id, data.value)
-        setBurst({
-            ...burst, 
-            [data.id]: data.value
+    handleChange = (data) => {
+        this.setState({
+            burst: {
+                ...this.state.burst, 
+                [data.id]: data.value
+            }
         })
     }
 
-    const handleSubmit = () => {
-        fetch(`${API_ROOT}/animate_mos/${props.selectAnimation.id}`, {
-            method: 
-        })
+    handleSubmit = () => {
+        fetch(`${API_ROOT}/animate_mos/${this.props.selectAnimation.id}`, {
+            method: "PATCH",
+            headers: HEADERS,
+            body: JSON.stringify({
+                animate_mo: {
+                    ...this.state.burst
+                }
+            })}
+        )
+            .then(resp => resp.json())
+            .then(json => {
+                console.log(json)
+            })
     }
 
-    const shapeOptions = [
-        {text: "Circle", value: "circle"},
-        {text: "Rectangle", value: "rect"},
-        {text: "Cross", value: "cross"},
-        {text: "Polygon", value: "polygon"},
-        {text: "Zigzag", value: "zigzag"},
-        {text: "Curve", value: "curve"},
-    ]
-
-    const conditionalFormRender = () => {
-        if (props.selectAnimation != null) {
+    conditionalFormRender = () => {
+        const shapeOptions = [
+            {text: "Circle", value: "circle"},
+            {text: "Rectangle", value: "rect"},
+            {text: "Cross", value: "cross"},
+            {text: "Polygon", value: "polygon"},
+            {text: "Zigzag", value: "zigzag"},
+            {text: "Curve", value: "curve"},
+        ]
+        if (this.props.selectAnimation != null) {
             return (
                 <Form onChange >
-                    <label><h2>Burst {props.selectAnimation.id}</h2></label>
-                    <Form.Dropdown id="shape" onChange={(e,data) => handleChange(data)} placeholder={props.selectAnimation.shape} options={shapeOptions} />
-                    <Button onClick={handleSubmit}>Save Burst</Button>
+                    <label><h2>Burst {this.props.selectAnimation.id}</h2></label>
+                    <Form.Dropdown id="shape" onChange={(e,data) => this.handleChange(data)} placeholder={this.props.selectAnimation.shape} options={shapeOptions} />
+                    <Button onClick={this.handleSubmit}>Save Burst</Button>
                 </Form>
             )
         } else {
             return <h3>Nothing Selected</h3>
         }
     }
-    return (
-        <div className="animation-edit" >
-            {conditionalFormRender()}
-        </div>
-    )
+    render() {
+        return (
+            <div className="animation-edit" >
+                {this.conditionalFormRender()}
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {
