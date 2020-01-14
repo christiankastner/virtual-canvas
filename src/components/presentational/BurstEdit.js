@@ -29,7 +29,7 @@ class BurstEdit extends React.Component {
         )
             .then(resp => resp.json())
             .then(json => {
-                console.log(json)
+                this.props.dispatch({type: "HTTP_EDIT_ANIMATION", animation: json})
             })
     }
 

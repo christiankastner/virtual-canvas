@@ -20,6 +20,15 @@ export default function canvasReducer(state = initialState, action) {
                 ...state,
                 selectAnimation: action.animation
             }
+        case "HTTP_EDIT_ANIMATION":
+            return {
+                ...state,
+                myAnimations: [
+                    ...state.myAnimations.filter(animation => animation.id !== action.animation.id), 
+                    action.animation
+                ],
+                selectAnimation: action.animation
+            }
         default: return state
     }
 }
