@@ -1,11 +1,17 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
 
-const ToolCard = props => {
+const AnimationCard = props => {
     return (
         <div className="tool-card">
-            
+            <Card key={props.id}>
+                <Card.Content >
+                    <Card.Header >
+                        Burst
+                    </Card.Header>
+                </Card.Content>
+            </Card>
         </div>
     )
 }
-export default ToolCard
+export default AnimationCard

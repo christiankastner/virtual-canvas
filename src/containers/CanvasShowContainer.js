@@ -23,9 +23,7 @@ class CanvasShowContainer extends React.Component {
     render() {
         return (
             <div className="canvas-container">
-                {localStorage["id"] ? <CanvasTools 
-                                            handleClick={this.props.handleNewAnimation} 
-                                            myAnimations={this.props.myAnimations}/> : null }
+                {localStorage["id"] ? <CanvasTools handleClick={this.props.handleNewAnimation} /> : null }
                 <Canvas paramsId={this.props.paramsId} />
                 {localStorage["id"] ? <Button color="green" onClick={this.handleSaveCanvas}>Save</Button> : null}
                 {this.props.selectedAnimation ? <BurstEdit tool={this.state.activeEdit}/> : null}

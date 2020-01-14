@@ -28,15 +28,22 @@ class CanvasShow extends React.Component {
     }
 
     handleNewAnimation = () => {
-        console.log("I'm here")
         fetch(`${API_ROOT}/animate_mos`, {
             method: "POST",
             headers: HEADERS,
             body: JSON.stringify({
-                user_id: localStorage["id"],
-                picture_id: this.props.paramsId
+                animate_mo: {
+                    user_id: localStorage["id"],
+                    picture_id: this.props.paramsId
+                }
             })
         })
+            .then(resp => resp.json())
+            .then(json => {
+                if (!json.error) {
+                    this.props.dispatch({type: "HTTP_NEW_ANIMATION", })
+                }
+            })
     }
 
     render() {
@@ -46,8 +53,7 @@ class CanvasShow extends React.Component {
                 <CanvasShowContainer 
                     paramsId={this.props.match.params.id} 
                     handleNewAnimation={this.handleNewAnimation}
-                    canvas={this.state.canvas} 
-                    myAnimations={this.state.myAnimations}/>
+                    canvas={this.state.canvas} />
             </div>
         )
     }
