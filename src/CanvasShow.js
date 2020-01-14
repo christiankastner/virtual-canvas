@@ -1,10 +1,7 @@
 import React from 'react';
 import CanvasShowContainer from './containers/CanvasShowContainer'
 import { API_ROOT, HEADERS } from './constants/index'
-import { createStore } from 'redux-react'
-import canvasReducer from './reducers/canvasReducer'
-
-const store = createStore()
+import { connect } from 'react-redux'
 
 class CanvasShow extends React.Component {
     constructor(props) {
@@ -22,6 +19,7 @@ class CanvasShow extends React.Component {
             .then(resp => resp.json())
             .then(json => {
                 console.log(json)
+                this.props.dispatch({type: "LOAD_CANVAS", canvas: json})
                 this.setState({
                     canvas: json,
                     myAnimations: json.animate_mos.filter(animation => animation.user_id == localStorage["id"])
@@ -55,4 +53,4 @@ class CanvasShow extends React.Component {
     }
 }
 
-export default CanvasShow
+export default connect()(CanvasShow)
