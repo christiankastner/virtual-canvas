@@ -1,6 +1,10 @@
 import React from 'react';
 import CanvasShowContainer from './containers/CanvasShowContainer'
 import { API_ROOT, HEADERS } from './constants/index'
+import { createStore } from 'redux-react'
+import canvasReducer from './reducers/canvasReducer'
+
+const store = createStore()
 
 class CanvasShow extends React.Component {
     constructor(props) {

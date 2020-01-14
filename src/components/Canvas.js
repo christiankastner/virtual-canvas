@@ -5,12 +5,6 @@ import SketchWrapper from './SketchWrapper';
 const actioncable = require("actioncable")
 
 class Canvas extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            bursts: [],
-        }
-    }
 
     componentDidMount() {
         this.cable = actioncable.createConsumer(API_WS_ROOT)
