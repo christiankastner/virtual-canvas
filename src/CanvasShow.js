@@ -28,13 +28,14 @@ class CanvasShow extends React.Component {
     }
 
     handleNewAnimation = () => {
+        console.log(this.props.match.params.id)
         fetch(`${API_ROOT}/animate_mos`, {
             method: "POST",
             headers: HEADERS,
             body: JSON.stringify({
                 animate_mo: {
                     user_id: localStorage["id"],
-                    picture_id: this.props.paramsId
+                    picture_id: this.props.match.params.id,
                 }
             })
         })
