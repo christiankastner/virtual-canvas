@@ -2,6 +2,7 @@ import React from 'react';
 import Canvas from '../components/Canvas';
 import { Button } from 'semantic-ui-react';
 import { API_ROOT, HEADERS } from '../constants/index';
+import { connect } from 'react-redux'
 import BurstEdit from '../components/presentational/BurstEdit'
 import CanvasTools from './CanvasTools';
 
@@ -14,7 +15,7 @@ class CanvasShowContainer extends React.Component {
             body: JSON.stringify({
                 bookmark: {
                     user_id: localStorage["id"],
-                    picture_id: this.props.paramsId
+                    picture_id: this.props.canvas.id
                 }
             })
         })
@@ -23,13 +24,21 @@ class CanvasShowContainer extends React.Component {
     render() {
         return (
             <div className="canvas-container">
-                {localStorage["id"] ? <CanvasTools handleClick={this.props.handleNewAnimation} /> : null }
                 <Canvas paramsId={this.props.paramsId} />
-                {localStorage["id"] ? <Button color="green" onClick={this.handleSaveCanvas}>Save</Button> : null}
+                <div>
+                    {localStorage["id"] ? <Button color="green" onClick={this.handleSaveCanvas}>Save</Button> : null}
+                    {localStorage["id"] ? <CanvasTools handleClick={this.props.handleNewAnimation} /> : null }
+                </div>
                 {this.props.selectedAnimation ? <BurstEdit tool={this.state.activeEdit}/> : null}
             </div>
         )
     }
 }
 
-export default CanvasShowContainer
+const mapStateToProps = (state) => {
+    return {
+        canvas: state.canvas
+    }
+}
+
+export default connect(mapStateToProps)(CanvasShowContainer)

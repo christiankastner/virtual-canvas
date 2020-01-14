@@ -53,8 +53,7 @@ class CanvasShow extends React.Component {
                 <h2>{this.state.canvas.title}</h2>
                 <CanvasShowContainer 
                     paramsId={this.props.match.params.id} 
-                    handleNewAnimation={this.handleNewAnimation}
-                    canvas={this.state.canvas} />
+                    handleNewAnimation={this.handleNewAnimation} />
             </div>
         )
     }

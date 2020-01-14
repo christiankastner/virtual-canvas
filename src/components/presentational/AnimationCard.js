@@ -1,17 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Card } from 'semantic-ui-react';
 
 const AnimationCard = props => {
     return (
-        <div className="tool-card">
-            <Card key={props.id}>
+        <div className="tool-card" onClick={() => props.selectAnimation(props.animation)}>
+            <Card key={props.animation.id}>
                 <Card.Content >
-                    <Card.Header >
+                    <Card.Description >
                         Burst
-                    </Card.Header>
+                    </Card.Description>
                 </Card.Content>
             </Card>
         </div>
     )
 }
-export default AnimationCard
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        selectAnimation: (animation) => {dispatch({type: "SELECT_ANIMATION", animation: animation})}
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AnimationCard)

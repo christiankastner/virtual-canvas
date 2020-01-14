@@ -1,4 +1,4 @@
-const initialState = {canvas: {}, myAnimations: null}
+const initialState = {canvas: {}, myAnimations: null, selectAnimation: null}
 
 export default function canvasReducer(state = initialState, action) {
     
@@ -14,6 +14,11 @@ export default function canvasReducer(state = initialState, action) {
             return {
                 ...state,
                 myAnimations: [...state.myAnimations, action.animation]
+            }
+        case "SELECT_ANIMATION":
+            return {
+                ...state,
+                selectAnimation: action.animation
             }
         default: return state
 
