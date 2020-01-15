@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'semantic-ui-react'
+import React from 'react';
+import { Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { API_ROOT, HEADERS } from '../../constants/index'
+import Slider from '@material-ui/core/Slider'
+import Button from '@material-ui/core/Button'
 
 class BurstEdit extends React.Component {
     state = {
         burst: this.props.selectAnimation
     }
 
-    handleChange = (data) => {
+    handleSliderChange = (sliderId) => {
+        return (data, newValue) => {
+            this.setState({
+                burst: {
+                    ...this.state.burst,
+                    [sliderId]: newValue
+                }
+            })
+        }
+    }
+
+    handleSelectChange = (data) => {
         this.setState({
             burst: {
                 ...this.state.burst, 
@@ -42,11 +55,14 @@ class BurstEdit extends React.Component {
             {text: "Zigzag", value: "zigzag"},
             {text: "Curve", value: "curve"},
         ]
-        if (this.props.selectAnimation != null) {
+        if (this.props.selectAnimation !== null) {
             return (
-                <Form onChange >
+                <Form onChange={this.handleChange} >
                     <label><h2>Burst {this.props.selectAnimation.id}</h2></label>
-                    <Form.Dropdown id="shape" onChange={(e,data) => this.handleChange(data)} placeholder={this.props.selectAnimation.shape} options={shapeOptions} />
+                    <Form.Dropdown id="shape" onChange={(e,data) => this.handleSelectChange(data)} placeholder={this.props.selectAnimation.shape} options={shapeOptions} />
+                    <Slider 
+                        onChange={this.handleSliderChange("radius")} 
+                        aria-labelledby="range-slider" />
                     <Button onClick={this.handleSubmit}>Save Burst</Button>
                 </Form>
             )
