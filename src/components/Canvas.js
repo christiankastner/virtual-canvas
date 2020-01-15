@@ -13,7 +13,6 @@ class Canvas extends React.Component {
         this.myRef = React.createRef();
     }
 
-
     componentDidMount() {
         this.cable = actioncable.createConsumer(API_WS_ROOT)
         this.canvasChannel = this.cable.subscriptions.create({
@@ -26,7 +25,7 @@ class Canvas extends React.Component {
             },
             disconnected: () => console.log("pictureChannel disconnected"),
             received: data => {
-                console.log(data)
+                this.props.dispatch(data)
             }
         })
     }

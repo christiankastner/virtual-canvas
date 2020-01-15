@@ -15,11 +15,6 @@ export default function canvasReducer(state = initialState, action) {
                 ...state,
                 myAnimations: [...state.myAnimations, action.animation]
             }
-        case "SELECT_ANIMATION":
-            return {
-                ...state,
-                selectAnimation: action.animation
-            }
         case "HTTP_EDIT_ANIMATION":
             return {
                 ...state,
@@ -27,13 +22,33 @@ export default function canvasReducer(state = initialState, action) {
                     ...state.myAnimations.filter(animation => animation.id !== action.animation.id), 
                     action.animation
                 ],
+                selectAnimation: action.animation,
+            }
+        case "CHANNEL_POST":
+            return {
+                ...state,
+                canvasAnimations: [...state.canvasAnimations, action.animation]
+            }
+        case "CHANNEL_PATCH":
+            console.log("I made it")
+            return {
+                ...state,
+                canvasAnimations: [
+                    ...state.canvasAnimations.filter(animation => animation.id !== action.animation.id), 
+                    action.animation
+                ]
+            }
+        case "SELECT_ANIMATION":
+            return {
+                ...state,
                 selectAnimation: action.animation
             }
         case "REMOVE_CANVAS":
             return {
                 canvas: {},
                 myAnimations: [],
-                canvasAnimations: []
+                canvasAnimations: [],
+                selectAnimation: {}
             }
         default: return state
     }
