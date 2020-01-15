@@ -32,7 +32,7 @@ class CanvasShowContainer extends React.Component {
                     </Table.Row>
                     <Table.Row>
                         <Table.Cell>
-                            {localStorage["id"] ? <CanvasTools handleClick={this.props.handleNewAnimation} /> : null }
+                            <CanvasTools />
                         </Table.Cell>
                         <Table.Cell>
                             <BurstEdit />

@@ -1,82 +1,100 @@
-import React from 'react';
-import { Form } from 'semantic-ui-react'
+import React, { useState } from 'react';
 import { connect } from 'react-redux'
+
 import { API_ROOT, HEADERS } from '../../constants/index'
-import Slider from '@material-ui/core/Slider'
-import Button from '@material-ui/core/Button'
 
-class BurstEdit extends React.Component {
-    state = {
-        burst: this.props.selectAnimation
-    }
+import { Slider, Button, InputLabel, FormControl, MenuItem, Select, TextField } from '@material-ui/core';
 
-    handleSliderChange = (sliderId) => {
+
+const BurstEdit = props => {
+  
+    const [burst, setBurst] = useState({...props.selectAnimation})
+
+    const handleSliderChange = (sliderId) => {
         return (data, newValue) => {
-            this.setState({
-                burst: {
-                    ...this.state.burst,
+            setBurst({
+                    ...burst,
                     [sliderId]: newValue
                 }
-            })
+            )
         }
     }
 
-    handleSelectChange = (data) => {
-        this.setState({
-            burst: {
-                ...this.state.burst, 
-                [data.id]: data.value
-            }
-        })
+    const handleSelectChange = (event) => {
+        const { name, value } = event.target
+        console.log(event)
+        setBurst({
+                ...burst, 
+                [name]: value
+            })
     }
 
-    handleSubmit = () => {
+    const handleInputChange = (event) => {
+        console.log(event)
+    }
+
+    const handleSubmit = () => {
         fetch(`${API_ROOT}/animate_mos/${this.props.selectAnimation.id}`, {
             method: "PATCH",
             headers: HEADERS,
             body: JSON.stringify({
                 animate_mo: {
-                    ...this.state.burst
+                    ...burst
                 }
             })}
         )
             .then(resp => resp.json())
             .then(json => {
-                this.props.dispatch({type: "HTTP_EDIT_ANIMATION", animation: json})
+                props.dispatch({type: "HTTP_EDIT_ANIMATION", animation: json})
             })
     }
 
-    conditionalFormRender = () => {
-        const shapeOptions = [
-            {text: "Circle", value: "circle"},
-            {text: "Rectangle", value: "rect"},
-            {text: "Cross", value: "cross"},
-            {text: "Polygon", value: "polygon"},
-            {text: "Zigzag", value: "zigzag"},
-            {text: "Curve", value: "curve"},
-        ]
-        if (this.props.selectAnimation !== null) {
+    const conditionalFormRender = () => {
+        if (props.selectAnimation !== null) {
             return (
-                <Form onChange={this.handleChange} >
-                    <label><h2>Burst {this.props.selectAnimation.id}</h2></label>
-                    <Form.Dropdown id="shape" onChange={(e,data) => this.handleSelectChange(data)} placeholder={this.props.selectAnimation.shape} options={shapeOptions} />
+                <div>
+                    <h3>Burst</h3>
+                    <FormControl>
+                    <InputLabel >Shape</InputLabel>
+                    <Select 
+                        labelId="shape-select"
+                        id="shape"
+                        name="shape"
+                        value={burst.shape} 
+                        onChange={handleSelectChange}>
+                        <MenuItem value="circle" >Circle</MenuItem>
+                        <MenuItem value="rect" >Rectangle</MenuItem>
+                        <MenuItem value="cross" >Cross</MenuItem>
+                        <MenuItem value="polygon" >Polygon</MenuItem>
+                        <MenuItem value="zigzag" >Zigzag</MenuItem>
+                        <MenuItem value="curve" >Circle</MenuItem>
+                    </Select>
+                    </FormControl>
+
+                    <FormControl>
+                    <InputLabel >Color</InputLabel>
+                        <TextField 
+                            id="color" 
+                            label="Color" 
+                            onChange={handleInputChange} />
+                    </FormControl>
                     <Slider 
-                        onChange={this.handleSliderChange("radius")} 
+                        onChange={handleSliderChange("radius")} 
                         aria-labelledby="range-slider" />
-                    <Button onClick={this.handleSubmit}>Save Burst</Button>
-                </Form>
+                    <Button onClick={handleSubmit}>Save Burst</Button>
+            </div>
+                
             )
         } else {
             return <h3>Nothing Selected</h3>
         }
     }
-    render() {
-        return (
-            <div className="animation-edit" >
-                {this.conditionalFormRender()}
-            </div>
-        )
-    }
+    
+    return (
+        <>
+            {conditionalFormRender()}
+        </>
+    )
 }
 
 const mapStateToProps = (state) => {

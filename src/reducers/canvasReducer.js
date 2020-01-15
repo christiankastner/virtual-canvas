@@ -16,10 +16,11 @@ export default function canvasReducer(state = initialState, action) {
                 myAnimations: [...state.myAnimations, action.animation]
             }
         case "HTTP_EDIT_ANIMATION":
+            const newAnimations = state.myAnimations.filter(animation => animation.id !== action.animation.id)
             return {
                 ...state,
                 myAnimations: [
-                    ...state.myAnimations.filter(animation => animation.id !== action.animation.id), 
+                    ...newAnimations, 
                     action.animation
                 ],
                 selectAnimation: action.animation,
@@ -30,10 +31,11 @@ export default function canvasReducer(state = initialState, action) {
                 canvasAnimations: [...state.canvasAnimations, action.animation]
             }
         case "CHANNEL_PATCH":
+            const newArray = state.canvasAnimations.filter(animation => animation.id !== action.animation.id)
             return {
                 ...state,
                 canvasAnimations: [
-                    ...state.canvasAnimations.filter(animation => animation.id !== action.animation.id), 
+                    ...newArray, 
                     action.animation
                 ]
             }

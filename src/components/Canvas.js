@@ -112,7 +112,7 @@ const mapStateToProps = state => {
                     radius: {0: 100},
                     children: {
                         shape: animation.shape,
-                        fill:       { 'cyan' : 'yellow' },
+                        fill:       { 'red' : 'yellow' },
                         radius:     20,
                         angle:      { 360: 0 },
                         duration:   3000
