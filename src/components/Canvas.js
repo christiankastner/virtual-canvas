@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import mojs from 'mo-js';
 import burst from './Burst'
 import { connect } from 'react-redux'
@@ -7,6 +8,10 @@ import SketchWrapper from './SketchWrapper';
 const actioncable = require("actioncable")
 
 class Canvas extends React.Component {
+    constructor(props) {
+        super(props);
+        this.myRef = React.createRef();
+    }
 
 
     componentDidMount() {
@@ -22,14 +27,13 @@ class Canvas extends React.Component {
             disconnected: () => console.log("pictureChannel disconnected"),
             received: data => {
                 console.log(data)
-                
-                
             }
         })
     }
 
     componentWillUnmount() {
         this.cable.disconnect()
+        this.stopBursts()
     }
 
     handleClick = e => {
@@ -43,9 +47,15 @@ class Canvas extends React.Component {
     }
 
     playBursts = () => {
+        console.log(this.myRef.current)
         for (let i = 0; i < this.props.bursts.length; i++) {
             this.props.bursts[i].play()
         }
+    }
+
+    stopBursts = () => {
+        // ReactDOM.unmountComponentAtNode(this.myRef.current)
+        this.props.dispatch({type: "REMOVE_CANVAS"})
     }
 
     handleRecievedBurst = response => {
@@ -55,7 +65,7 @@ class Canvas extends React.Component {
     render() {
         this.playBursts()
         return (
-            <div id="canvas-container" onClick={this.handleClick}>
+            <div id="canvas-container" onClick={this.handleClick} ref={this.myRef}>
                 <SketchWrapper />
             </div>
         )
@@ -65,6 +75,7 @@ class Canvas extends React.Component {
 const mapStateToProps = state => {
     return {
         bursts: state.canvasAnimations.map(animation => new mojs.Burst({
+            parent: document.getElementById("canvas-container"),
             origin:  '50% 50%',
             radius:  { 0: Math.floor(Math.random()*100) },
             count:   5,

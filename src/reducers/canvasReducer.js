@@ -29,6 +29,12 @@ export default function canvasReducer(state = initialState, action) {
                 ],
                 selectAnimation: action.animation
             }
+        case "REMOVE_CANVAS":
+            return {
+                canvas: {},
+                myAnimations: [],
+                canvasAnimations: []
+            }
         default: return state
     }
 }
