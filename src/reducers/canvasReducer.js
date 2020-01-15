@@ -30,7 +30,6 @@ export default function canvasReducer(state = initialState, action) {
                 canvasAnimations: [...state.canvasAnimations, action.animation]
             }
         case "CHANNEL_PATCH":
-            console.log("I made it")
             return {
                 ...state,
                 canvasAnimations: [
