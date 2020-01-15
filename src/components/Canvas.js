@@ -1,10 +1,8 @@
 import React from 'react';
-import BurstPlayer from './BurstPlayer'
+import Sketch from './p5'
 import mojs from 'mo-js';
-import burst from './Burst'
 import { connect } from 'react-redux'
 import { API_WS_ROOT } from '../constants/index'
-import SketchWrapper from './SketchWrapper';
 const actioncable = require("actioncable")
 
 class Canvas extends React.Component {
@@ -20,7 +18,7 @@ class Canvas extends React.Component {
             id: this.props.paramsId
         },{
             connected: () => {
-                
+                console.log("Connected!")
             },
             disconnected: () => console.log("pictureChannel disconnected"),
             received: data => {
@@ -28,9 +26,8 @@ class Canvas extends React.Component {
                     this.props.dispatch(data)
                 } else {
                     this.handleRecievedBurst(data)
-                }
-            }
-        })
+                } 
+        }})
     }
 
     componentWillUnmount() {
@@ -39,13 +36,18 @@ class Canvas extends React.Component {
     }
 
     handleClick = e => {
-        this.canvasChannel.send({
-            canvas_id: this.props.paramsId,
-            tune : {
-                x: e.pageX,
-                y: e.pageY,
-            }
-        }, this.props.paramsId)
+        if (!!this.props.selectAnimation) {
+            this.canvasChannel.send({
+                canvas_id: this.props.paramsId,
+                animation: {
+                    id: this.props.selectAnimation.id,
+                    tune : {
+                        x: e.pageX,
+                        y: e.pageY,
+                    }
+                }
+            }, this.props.paramsId)
+        }
     }
 
     stopBursts = () => {
@@ -54,14 +56,45 @@ class Canvas extends React.Component {
     }
 
     handleRecievedBurst = response => {
-       this.props.bursts[0].tune(response.tune).replay()
+        const { id, tune } = response.animation
+        console.log(this.props.bursts.find(animation => animation.id === id).burst)
+        this.props.bursts.find(animation => animation.id === id).burst.tune(tune).replay()
     }
+
+    setup = (p5, canvasParentRef) => {
+        p5.createCanvas(600, 600).parent(canvasParentRef);
+        p5.noFill();
+        p5.stroke(255);
+    };
+
+    mouseDragged = p5 => {
+        this.canvasChannel.send({
+          canvas_id: this.props.paramsId,
+          draw: {
+            x: p5.mouseX,
+            y: p5.mouseY
+          }
+        })
+      }
+
+    draw = p5 => {
+        p5.background(222);
+        // var scl = p5.height/2;
+        // var time = p5.frameCount * 0.1;
+    
+        // p5.beginShape();
+        // for(var i = 0; i < p5.width; i++){
+        // 	var y = p5.noise(i * 0.01, time*0.1) * scl*2 - scl;
+        // 	p5.vertex(i, p5.height * 1/2 + y);	
+        // }
+      //   p5.endShape();
+      };
 
     render() {
         return (
-            <div id="canvas-container" onClick={this.handleClick} ref={this.myRef}>
+            <div id="canvas-container" onClick={this.handleClick}ref={this.myRef}>
                 {/* <BurstPlayer /> */}
-                <SketchWrapper />
+                <Sketch setup={this.setup} draw={this.draw} />
             </div>
         )
     }
@@ -69,18 +102,24 @@ class Canvas extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        bursts: state.canvasAnimations.map(animation => new mojs.Burst({
-            left: 0, top: 0,
-            radius:  { 0: 1 },
-            count:   5,
-            children: {
-                shape: animation.shape,
-                fill:       { 'cyan' : 'yellow' },
-                radius:     20,
-                angle:      { 360: 0 },
-                duration:   3000
+        selectAnimation: state.selectAnimation,
+        bursts: state.canvasAnimations.map(animation => {
+            return {
+                id: animation.id,
+                burst: new mojs.Burst({
+                    left: 0, top: 0,
+                    count:   5,
+                    radius: {0: 100},
+                    children: {
+                        shape: animation.shape,
+                        fill:       { 'cyan' : 'yellow' },
+                        radius:     20,
+                        angle:      { 360: 0 },
+                        duration:   3000
+                    }
+                })
             }
-        }))
+        })
     }
 }
 
