@@ -1,11 +1,13 @@
 import React from 'react';
 import mojs from 'mo-js';
+import burst from './Burst'
 import { connect } from 'react-redux'
-import { API_WS_ROOT, API_ROOT, HEADERS } from '../constants/index'
+import { API_WS_ROOT } from '../constants/index'
 import SketchWrapper from './SketchWrapper';
 const actioncable = require("actioncable")
 
 class Canvas extends React.Component {
+
 
     componentDidMount() {
         this.cable = actioncable.createConsumer(API_WS_ROOT)
@@ -15,15 +17,13 @@ class Canvas extends React.Component {
         },{
             connected: () => {
                 console.log("pictureChannel connected")
-                // this.timeline = new mojs.Timeline({
-                //     repeat: 999
-                // })
+                this.playBursts()
             },
             disconnected: () => console.log("pictureChannel disconnected"),
             received: data => {
                 console.log(data)
                 
-                this.handleRecievedBurst(data)
+                
             }
         })
     }
@@ -42,11 +42,18 @@ class Canvas extends React.Component {
         }, this.props.paramsId)
     }
 
+    playBursts = () => {
+        for (let i = 0; i < this.props.bursts.length; i++) {
+            this.props.bursts[i].play()
+        }
+    }
+
     handleRecievedBurst = response => {
-        // burst.tune(response.tune).replay()
+        this.playBursts()
     }
 
     render() {
+        this.playBursts()
         return (
             <div id="canvas-container" onClick={this.handleClick}>
                 <SketchWrapper />
@@ -57,16 +64,18 @@ class Canvas extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        canvas_animations: state.canvasAnimations.map(animation => new mojs.Burst({
-            radius:   { 0: 100 },
-            count: 5,
+        bursts: state.canvasAnimations.map(animation => new mojs.Burst({
+            origin:  '50% 50%',
+            radius:  { 0: Math.floor(Math.random()*100) },
+            count:   5,
+            timeline: {repeat: 999},
             children: {
                 shape: animation.shape,
                 fill:       { 'cyan' : 'yellow' },
                 radius:     20,
                 angle:      { 360: 0 },
                 duration:   2000
-              }
+            }
         }))
     }
 }
