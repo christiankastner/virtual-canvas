@@ -17,7 +17,6 @@ export default function canvasReducer(state = initialState, action) {
             }
         case "HTTP_EDIT_ANIMATION":
             const newAnimations = state.myAnimations.filter(animation => animation.id !== action.animation.id)
-            console.log(action.animation)
             return {
                 ...state,
                 myAnimations: [
@@ -29,10 +28,9 @@ export default function canvasReducer(state = initialState, action) {
         case "CHANNEL_POST":
             return {
                 ...state,
-                canvasAnimations: [...state.canvasAnimations, action.animation]
+                canvasAnimations: [...state.canvasAnimations, action.animation.animate_mo]
             }
         case "CHANNEL_PATCH":
-            console.log(action.animation.animate_mo)
             const newArray = state.canvasAnimations.filter(animation => animation.id !== action.animation.animate_mo.id)
             return {
                 ...state,

@@ -19,7 +19,6 @@ class CanvasShow extends React.Component {
     }
 
     handleNewAnimation = () => {
-        console.log(this.props.match.params.id)
         fetch(`${API_ROOT}/animate_mos`, {
             method: "POST",
             headers: HEADERS,
