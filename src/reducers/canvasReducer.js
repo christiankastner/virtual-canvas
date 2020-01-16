@@ -1,4 +1,4 @@
-const initialState = {canvas: {}, canvasAnimations: [], myAnimations: null, selectAnimation: null}
+const initialState = {user_id: '', canvas: {}, canvasAnimations: [], myAnimations: [], selectAnimation: null}
 
 export default function canvasReducer(state = initialState, action) {
     
@@ -17,6 +17,7 @@ export default function canvasReducer(state = initialState, action) {
             }
         case "HTTP_EDIT_ANIMATION":
             const newAnimations = state.myAnimations.filter(animation => animation.id !== action.animation.id)
+            console.log(action.animation)
             return {
                 ...state,
                 myAnimations: [

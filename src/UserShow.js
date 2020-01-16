@@ -14,6 +14,7 @@ class UserShow extends React.Component {
         fetch(`${API_ROOT}/users/${localStorage["id"]}`)
             .then(resp => resp.json())
             .then(json => {
+                console.log(json)
                 this.setState({
                     user: json
                 })

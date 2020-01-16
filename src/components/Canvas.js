@@ -1,5 +1,6 @@
 import React from 'react';
 import Sketch from './p5'
+import Burst from './Burst'
 import mojs from 'mo-js';
 import { connect } from 'react-redux'
 import { API_WS_ROOT } from '../constants/index'
@@ -36,7 +37,7 @@ class Canvas extends React.Component {
     }
 
     handleClick = e => {
-        if (!!this.props.selectAnimation) {
+        // if (!!this.props.selectAnimation) {
             this.canvasChannel.send({
                 canvas_id: this.props.paramsId,
                 animation: {
@@ -46,8 +47,8 @@ class Canvas extends React.Component {
                         y: e.pageY,
                     }
                 }
-            }, this.props.paramsId)
-        }
+            })
+        // }
     }
 
     stopBursts = () => {
@@ -57,7 +58,7 @@ class Canvas extends React.Component {
 
     handleRecievedBurst = response => {
         const { id, tune } = response.animation
-        console.log(this.props.bursts.find(animation => animation.id === id).burst)
+    
         this.props.bursts.find(animation => animation.id === id).burst.tune(tune).replay()
     }
 
@@ -108,7 +109,7 @@ const mapStateToProps = state => {
                 id: animation.id,
                 burst: new mojs.Burst({
                     left: 0, top: 0,
-                    count:   5,
+                    count:   animation.count,
                     radius: {0: 100},
                     children: {
                         shape: animation.shape,

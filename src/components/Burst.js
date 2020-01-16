@@ -1,16 +1,17 @@
 import mojs from 'mo-js'
 
 const burst = new mojs.Burst({
-  origin:       '50% 50%',
-  radius:   { 0: 100 },
+  left: 0, top: 0,
+  radius:   { 100: 0 },
+  angle: {0:360},
   count: 5,
   timeline: {repeat: 999},
   children: {
         shape: 'polygon',
-        fill:       { 'cyan' : 'yellow' },
+        fill:       { 'cyan' : 'red' },
         radius:     20,
         angle:      { 360: 0 },
-        duration:   2000
+        duration:   4000
       }
 });
 

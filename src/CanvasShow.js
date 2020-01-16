@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 class CanvasShow extends React.Component {
 
     componentDidMount() {
-        console.log(this.props.match.params.id)
         fetch(`${API_ROOT}/pictures/${this.props.match.params.id}`)
             .then(resp => resp.json())
             .then(json => {
