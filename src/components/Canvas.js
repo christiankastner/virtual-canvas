@@ -110,13 +110,15 @@ const mapStateToProps = state => {
                 burst: new mojs.Burst({
                     left: 0, top: 0,
                     count:   animation.count,
+                    angle: {0: animation.angle},
                     radius: {0: 100},
+                    radius: {[animation.radius_1]: animation.radius_2},
                     children: {
                         shape: animation.shape,
-                        fill:       { 'red' : 'yellow' },
+                        fill:    animation.color,
                         radius:     20,
-                        angle:      { 360: 0 },
-                        duration:   3000
+                        strokeWidth: animation.stroke_width,
+                        duration:   animation.duration || 2000
                     }
                 })
             }

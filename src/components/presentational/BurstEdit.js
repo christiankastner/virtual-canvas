@@ -64,7 +64,7 @@ const BurstEdit = props => {
                                 <MenuItem value="cross" >Cross</MenuItem>
                                 <MenuItem value="polygon" >Polygon</MenuItem>
                                 <MenuItem value="zigzag" >Zigzag</MenuItem>
-                                <MenuItem value="curve" >Circle</MenuItem>
+                                <MenuItem value="curve" >Curve</MenuItem>
                             </Select>
                         </FormControl>
                         <form>
