@@ -32,12 +32,13 @@ export default function canvasReducer(state = initialState, action) {
                 canvasAnimations: [...state.canvasAnimations, action.animation]
             }
         case "CHANNEL_PATCH":
-            const newArray = state.canvasAnimations.filter(animation => animation.id !== action.animation.id)
+            console.log(action.animation.animate_mo)
+            const newArray = state.canvasAnimations.filter(animation => animation.id !== action.animation.animate_mo.id)
             return {
                 ...state,
                 canvasAnimations: [
                     ...newArray, 
-                    action.animation
+                    action.animation.animate_mo
                 ]
             }
         case "SELECT_ANIMATION":

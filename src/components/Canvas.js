@@ -37,7 +37,7 @@ class Canvas extends React.Component {
     }
 
     handleClick = e => {
-        // if (!!this.props.selectAnimation) {
+        if (!!this.props.selectAnimation) {
             this.canvasChannel.send({
                 canvas_id: this.props.paramsId,
                 animation: {
@@ -48,7 +48,7 @@ class Canvas extends React.Component {
                     }
                 }
             })
-        // }
+        }
     }
 
     stopBursts = () => {
