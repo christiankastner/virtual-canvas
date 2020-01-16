@@ -42,12 +42,13 @@ class Canvas extends React.Component {
             },{
                 connected: () => {
                     console.log("Connected!")
-                    p.newDrawing()
                 },
                 disconnected: () => console.log("pictureChannel disconnected"),
                 received: data => {
                     if (!!data.type) {
                         this.props.dispatch(data)
+                    } else if (!!data.draw) {
+                        p.newDrawing(data.draw.x, data.draw.y)
                     } else {
                         this.handleRecievedBurst(data)
                     } 
@@ -55,10 +56,10 @@ class Canvas extends React.Component {
 
         };
 
-        p.newDrawing = () => {
+        p.newDrawing = (x,y) => {
             p.noStroke()
             p.fill(244)
-            p.rect(200,200,50,50);
+            p.rect(x, y,50,50);
         }
       
         p.uploaded = file => {
