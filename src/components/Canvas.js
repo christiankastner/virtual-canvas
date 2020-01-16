@@ -17,30 +17,11 @@ class Canvas extends React.Component {
     componentDidMount() {
         this.myP5 = new p5 (this.sketch, this.myRef.current)
         this.cable = actioncable.createConsumer(API_WS_ROOT)
-        this.canvasChannel = this.cable.subscriptions.create({
-            channel: `PicturesChannel`, 
-            id: this.props.paramsId
-        },{
-            connected: () => {
-                console.log("Connected!")
-            },
-            disconnected: () => console.log("pictureChannel disconnected"),
-            received: data => {
-                if (!!data.type) {
-                    this.props.dispatch(data)
-                } else {
-                    this.handleRecievedBurst(data)
-                } 
-        }})
     }
 
     sketch = (p) => {
         let x = 100; 
         let y = 100;
-        
-        p.preload = () => {
-          this.song = p.loadSound(folds);
-        }
       
         p.setup = () => {
           p.createCanvas(600, 600);
@@ -54,13 +35,45 @@ class Canvas extends React.Component {
           this.toggleBtn.addClass("toggle-btn");
       
           this.toggleBtn.mousePressed(p.toggleAudio);
-      
-          this.song.loop()
+
+          this.canvasChannel = this.cable.subscriptions.create({
+                channel: `PicturesChannel`, 
+                id: this.props.paramsId
+            },{
+                connected: () => {
+                    console.log("Connected!")
+                    p.newDrawing()
+                },
+                disconnected: () => console.log("pictureChannel disconnected"),
+                received: data => {
+                    if (!!data.type) {
+                        this.props.dispatch(data)
+                    } else {
+                        this.handleRecievedBurst(data)
+                    } 
+            }})
+
         };
+
+        p.newDrawing = () => {
+            p.noStroke()
+            p.fill(244)
+            p.rect(200,200,50,50);
+        }
       
         p.uploaded = file => {
           this.uploadLoading = true;
           this.uploadedAudio = p.loadSound(file.data, p.uploadedAudioPlay);
+        }
+
+        p.mouseDragged = () => {
+            this.canvasChannel.send({
+                canvas_id: this.props.paramsId,
+                draw: {
+                    x: p.mouseX,
+                    y: p.mouseY
+                }
+            })
         }
       
         p.uploadedAudioPlay = (file) => {
@@ -74,7 +87,6 @@ class Canvas extends React.Component {
           this.song.play() 
         }
       
-      
       p.toggleAudio = () => {
         if (this.song.isPlaying()) {
           this.song.pause();
@@ -84,15 +96,15 @@ class Canvas extends React.Component {
       }
       
         p.draw = function() {
-          p.background(255);
-          p.fill(255);
-          p.rect(x,y,50,50);
+            p.noStroke()
+            p.fill(255);
+            p.rect(x,y,50,50);
         };
       }
 
     componentWillUnmount() {
         this.cable.disconnect()
-        this.stopBursts()
+        this.props.dispatch({type: "REMOVE_CANVAS"})
     }
 
     handleClick = e => {
@@ -108,11 +120,6 @@ class Canvas extends React.Component {
                 }
             })
         }
-    }
-
-    stopBursts = () => {
-        // ReactDOM.unmountComponentAtNode(this.myRef.current)
-        this.props.dispatch({type: "REMOVE_CANVAS"})
     }
 
     handleRecievedBurst = response => {
