@@ -4,14 +4,6 @@ import { API_ROOT, HEADERS } from './constants/index'
 import { connect } from 'react-redux'
 
 class CanvasShow extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            canvas: {},
-            myAnimations: [],
-            selectedAnimation: null
-        }
-    }
 
     componentDidMount() {
         console.log(this.props.match.params.id)
@@ -50,7 +42,7 @@ class CanvasShow extends React.Component {
     render() {
         return (
             <div className="canvas-show">
-                <h2>{this.state.canvas.title}</h2>
+                <h2>{this.props.canvas.title}</h2>
                 <CanvasShowContainer 
                     paramsId={this.props.match.params.id} 
                     handleNewAnimation={this.handleNewAnimation} />
@@ -59,4 +51,10 @@ class CanvasShow extends React.Component {
     }
 }
 
-export default connect()(CanvasShow)
+const mapStateToProps = (state) => {
+    return {
+        canvas: state.canvas
+    }
+}
+
+export default connect(mapStateToProps)(CanvasShow)

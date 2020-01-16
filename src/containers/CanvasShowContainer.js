@@ -32,7 +32,7 @@ class CanvasShowContainer extends React.Component {
                     </Table.Row>
                     <Table.Row>
                         <Table.Cell>
-                            <CanvasTools />
+                            <CanvasTools handleNewAnimation={this.props.handleNewAnimation}/>
                         </Table.Cell>
                         <Table.Cell>
                             <BurstEdit />

@@ -9,11 +9,12 @@ const CanvasTools = (props) => {
 
     return (
         <div className="tools">
-            <Button onClick={props.handleClick}>New Burst</Button>
+            <Button onClick={props.handleNewAnimation}>New Burst</Button>
             {renderMyAnimations()}
         </div>
     )
 }
+
 
 const mapStateToProps = state => {
     return {

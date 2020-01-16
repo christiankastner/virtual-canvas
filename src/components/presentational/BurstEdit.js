@@ -5,10 +5,12 @@ import { API_ROOT, HEADERS } from '../../constants/index'
 
 import { Slider, Button, InputLabel, FormControl, MenuItem, Select, TextField } from '@material-ui/core';
 
-
 const BurstEdit = props => {
   
-    const [burst, setBurst] = useState({...props.selectAnimation})
+    const [burst, setBurst] = useState({
+        color: "blue",
+        shape: "circle"
+    })
 
     const handleSliderChange = (sliderId) => {
         return (data, newValue) => {
@@ -20,17 +22,13 @@ const BurstEdit = props => {
         }
     }
 
-    const handleSelectChange = (event) => {
+    const handleInputChange = (event) => {
         const { name, value } = event.target
         console.log(event)
         setBurst({
                 ...burst, 
                 [name]: value
             })
-    }
-
-    const handleInputChange = (event) => {
-        console.log(event)
     }
 
     const handleSubmit = () => {
@@ -61,7 +59,7 @@ const BurstEdit = props => {
                         id="shape"
                         name="shape"
                         value={burst.shape} 
-                        onChange={handleSelectChange}>
+                        onChange={handleInputChange}>
                         <MenuItem value="circle" >Circle</MenuItem>
                         <MenuItem value="rect" >Rectangle</MenuItem>
                         <MenuItem value="cross" >Cross</MenuItem>
@@ -75,6 +73,7 @@ const BurstEdit = props => {
                     <InputLabel >Color</InputLabel>
                         <TextField 
                             id="color" 
+                            name="color"
                             label="Color" 
                             onChange={handleInputChange} />
                     </FormControl>
