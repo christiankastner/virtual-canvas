@@ -181,7 +181,6 @@ const mapStateToProps = state => {
                     left: 0, top: 0,
                     count:   animation.count,
                     angle: {0: animation.angle},
-                    radius: {0: 100},
                     radius: {[animation.radius_1]: animation.radius_2},
                     children: {
                         shape: animation.shape,
