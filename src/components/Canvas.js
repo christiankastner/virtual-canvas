@@ -22,6 +22,10 @@ class Canvas extends React.Component {
     sketch = (p) => {
         let x = 100; 
         let y = 100;
+
+        p.preload = () => {
+            this.song = p.loadSound(folds)
+        }
       
         p.setup = () => {
           p.createCanvas(600, 600);
@@ -59,7 +63,7 @@ class Canvas extends React.Component {
         p.newDrawing = (x,y) => {
             p.noStroke()
             p.fill(244)
-            p.rect(x, y,50,50);
+            p.ellipse(x, y, 5,5);
         }
       
         p.uploaded = file => {
