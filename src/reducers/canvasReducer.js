@@ -1,4 +1,12 @@
-const initialState = {user_id: '', canvas: {}, canvasAnimations: [], myAnimations: [], selectAnimation: ''}
+const initialState = {
+    user_id: '', 
+    canvas: {}, 
+    canvasBursts: [], 
+    myBursts: [], 
+    canvasShapes: [], 
+    myShapes: []
+    selected: ''
+}
 
 export default function canvasReducer(state = initialState, action) {
     
@@ -7,30 +15,31 @@ export default function canvasReducer(state = initialState, action) {
             return {
                 ...state,
                 canvas: action.canvas,
-                canvasAnimations: action.canvas.animate_mos,
-                myAnimations: action.canvas.animate_mos.filter(animation => animation.user_id == localStorage["id"])
+                canvasBursts: action.canvas.animate_mos,
+                canvasShapes: action.canvas.p5_shapes,
+                myBursts: action.canvas.animate_mos.filter(animation => animation.user_id == localStorage["id"]),
+                myShapes: action.canvas.p5_shapes.filter(animation => animation.user_id == localStorage["id"])
             }
-        case "HTTP_NEW_ANIMATION":
+        case "HTTP_NEW_Burst":
             return {
                 ...state,
-                myAnimations: [...state.myAnimations, action.animation]
+                myBursts: [...state.myBursts, action.animation]
             }
-        case "HTTP_EDIT_ANIMATION":
-            const newAnimations = state.myAnimations.filter(animation => animation.id !== action.animation.id)
+        case "HTTP_EDIT_Burst":
+            const newAnimations = state.myBursts.filter(animation => animation.id !== action.animation.id)
             return {
                 ...state,
-                myAnimations: [
+                myBursts: [
                     ...newAnimations, 
                     action.animation
-                ],
-                selectAnimation: action.animation,
+                ]
             }
-        case "CHANNEL_POST":
+        case "CHANNEL_POST_BURST":
             return {
                 ...state,
-                canvasAnimations: [...state.canvasAnimations, action.animation.animate_mo]
+                canvasBursts: [...state.canvasBursts, action.animation.animate_mo]
             }
-        case "CHANNEL_PATCH":
+        case "CHANNEL_PATCH_BURST":
             const newArray = state.canvasAnimations.filter(animation => animation.id !== action.animation.animate_mo.id)
             return {
                 ...state,
@@ -42,14 +51,14 @@ export default function canvasReducer(state = initialState, action) {
         case "SELECT_ANIMATION":
             return {
                 ...state,
-                selectAnimation: action.animation
+                selected: action.animation
             }
         case "REMOVE_CANVAS":
             return {
                 canvas: {},
                 myAnimations: [],
                 canvasAnimations: [],
-                selectAnimation: ''
+                selected: ''
             }
         default: return state
     }

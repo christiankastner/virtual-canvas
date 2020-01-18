@@ -59,41 +59,37 @@ const BurstEdit = props => {
                             </Select>
                         </FormControl>
                         <form>
-                                <TextField 
-                                    name="color"
-                                    label="Color"
-                                    onChange={handleInputChange} />
-                                <TextField 
-                                    name="radius_1"
-                                    label="Radius 1"
-                                    onChange={handleInputChange} />
-                                <TextField 
-                                    name="radius_2"
-                                    label="Radius 2"
-                                    onChange={handleInputChange} />
-                                <TextField 
-                                    name="count"
-                                    label="Count"
-                                    onChange={handleInputChange} />
-                                <TextField 
-                                    name="duration"
-                                    label="Duration"
-                                    onChange={handleInputChange} />
-                                <TextField 
-                                    name="angle"
-                                    label="Angle"
-                                    onChange={handleInputChange} />
-                                <TextField 
-                                    name="stroke_width"
-                                    label="Stroke Width"
-                                    onChange={handleInputChange} />
+                            <TextField 
+                                name="color"
+                                label="Color"
+                                onChange={handleInputChange} />
+                            <TextField 
+                                name="radius_1"
+                                label="Radius 1"
+                                onChange={handleInputChange} />
+                            <TextField 
+                                name="radius_2"
+                                label="Radius 2"
+                                onChange={handleInputChange} />
+                            <TextField 
+                                name="count"
+                                label="Count"
+                                onChange={handleInputChange} />
+                            <TextField 
+                                name="duration"
+                                label="Duration"
+                                onChange={handleInputChange} />
+                            <TextField 
+                                name="angle"
+                                label="Angle"
+                                onChange={handleInputChange} />
+                            <TextField 
+                                name="stroke_width"
+                                label="Stroke Width"
+                                onChange={handleInputChange} />
                         </form>
                     </div>
-                    {/* <Slider 
-                        onChange={handleSliderChange("radius")} 
-                        aria-labelledby="range-slider" /> */}
             </div>
-                
             )
         } 
     }

@@ -1,12 +1,26 @@
 import React from 'react';
-import BurstEdit from '../components/presentational/BurstEdit'
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import { API_ROOT, HEADERS } from '../constants/index'
+import DrawEdit from '../components/presentational/DrawEdit'
+import BurstEdit from '../components/presentational/BurstEdit'
+import ShapeEdit from '../components/presentational/ShapeEdit'
 
 const CanvasTools = (props) => {
 
-    const renderMyAnimations = () => props.myAnimations ? props.myAnimations.map(animation => <BurstEdit animation={animation} />) : null
+    const renderMyAnimations = () => {
+        switch (props.selected) {
+            case "shapes":
+                return props.myShapes ? props.myShapes.map(shape => <ShapeEdit shape={shape} />) : null;
+            case "bursts":
+                return props.myBursts ? props.myBursts.map(animation => <BurstEdit animation={animation} />) : null;
+            case "draw":
+                return <DrawEdit />
+            default:
+                return ""
+        }
+    }
+    
 
     const handleNewAnimation = () => {
         fetch(`${API_ROOT}/animate_mos`, {
@@ -39,7 +53,9 @@ const CanvasTools = (props) => {
 const mapStateToProps = state => {
     return {
         canvas_id: state.canvas.id,
-        myAnimations: state.myAnimations
+        myBursts: state.myBursts,
+        myShapes: state.myShapes,
+        selected: state.selected
     }
 }
 
