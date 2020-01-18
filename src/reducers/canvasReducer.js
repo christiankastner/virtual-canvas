@@ -4,7 +4,7 @@ const initialState = {
     canvasBursts: [], 
     myBursts: [], 
     canvasShapes: [], 
-    myShapes: []
+    myShapes: [],
     selected: ''
 }
 
@@ -20,17 +20,17 @@ export default function canvasReducer(state = initialState, action) {
                 myBursts: action.canvas.animate_mos.filter(animation => animation.user_id == localStorage["id"]),
                 myShapes: action.canvas.p5_shapes.filter(animation => animation.user_id == localStorage["id"])
             }
-        case "HTTP_NEW_Burst":
+        case "HTTP_NEW_BURST":
             return {
                 ...state,
                 myBursts: [...state.myBursts, action.animation]
             }
         case "HTTP_EDIT_Burst":
-            const newAnimations = state.myBursts.filter(animation => animation.id !== action.animation.id)
+            const newBursts = state.myBursts.filter(animation => animation.id !== action.animation.id)
             return {
                 ...state,
                 myBursts: [
-                    ...newAnimations, 
+                    ...newBursts, 
                     action.animation
                 ]
             }
@@ -40,11 +40,11 @@ export default function canvasReducer(state = initialState, action) {
                 canvasBursts: [...state.canvasBursts, action.animation.animate_mo]
             }
         case "CHANNEL_PATCH_BURST":
-            const newArray = state.canvasAnimations.filter(animation => animation.id !== action.animation.animate_mo.id)
+            const unalteredBursts = state.canvasAnimations.filter(animation => animation.id !== action.animation.animate_mo.id)
             return {
                 ...state,
                 canvasAnimations: [
-                    ...newArray, 
+                    ...unalteredBursts, 
                     action.animation.animate_mo
                 ]
             }

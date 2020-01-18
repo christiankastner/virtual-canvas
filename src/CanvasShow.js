@@ -12,10 +12,6 @@ class CanvasShow extends React.Component {
             .then(json => {
                 console.log(json)
                 this.props.dispatch({type: "LOAD_CANVAS", canvas: json})
-                this.setState({
-                    canvas: json,
-                    myAnimations: json.animate_mos.filter(animation => animation.user_id == localStorage["id"])
-                })
             })
     }
 

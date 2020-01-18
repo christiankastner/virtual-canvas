@@ -9,6 +9,5 @@ const AnimationCard = props => {
     )
 }
 
-// onClick={() => props.dispatch({type: "SELECT_ANIMATION", animation: props.animation})}
 
 export default connect()(AnimationCard)

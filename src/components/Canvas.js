@@ -144,7 +144,7 @@ class Canvas extends React.Component {
 const mapStateToProps = state => {
     return {
         selectAnimation: state.selectAnimation,
-        bursts: state.canvasAnimations.map(animation => {
+        bursts: state.canvasBursts > 0 ? state.canvasBursts.map(animation => {
             return {
                 id: animation.id,
                 burst: new mojs.Burst({
@@ -161,7 +161,7 @@ const mapStateToProps = state => {
                     }
                 })
             }
-        })
+        }) : null
     }
 }
 

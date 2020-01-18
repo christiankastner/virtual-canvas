@@ -11,19 +11,28 @@ const CanvasTools = (props) => {
     const renderMyAnimations = () => {
         switch (props.selected) {
             case "shapes":
-                return props.myShapes ? props.myShapes.map(shape => <ShapeEdit shape={shape} />) : null;
+                return (
+                    <div className="tools">
+                        <Button onClick={handleNewAnimation('animate_mos')}>New Burst</Button>
+                        {props.myShapes ? props.myShapes.map(shape => <ShapeEdit shape={shape} />) : null}
+                    </div>
+                )
             case "bursts":
-                return props.myBursts ? props.myBursts.map(animation => <BurstEdit animation={animation} />) : null;
+                return (
+                    <div className="tools">
+                        newButton = <Button onClick={handleNewAnimation('p5_shapes')}>New Shape</Button>
+                        {props.myShapes ? props.myShapes.map(animation => <ShapeEdit animation={animation} />) : null}
+                    </div>
+                )
             case "draw":
                 return <DrawEdit />
             default:
-                return ""
+                return <></>
         }
     }
     
-
-    const handleNewAnimation = () => {
-        fetch(`${API_ROOT}/animate_mos`, {
+    const handleNewAnimation = (modelName) => {
+        fetch(`${API_ROOT}/${modelName}`, {
             method: "POST",
             headers: HEADERS,
             body: JSON.stringify({
@@ -35,15 +44,13 @@ const CanvasTools = (props) => {
         })
             .then(resp => resp.json())
             .then(json => {
-                if (!json.error) {
-                    props.dispatch({type: "HTTP_NEW_ANIMATION", animation: json})
-                }
+                props.dispatch({type: "HTTP_NEW_BURST", animation: json})
             })
     }
 
     return (
         <div className="tools">
-            <Button onClick={handleNewAnimation}>New Burst</Button>
+            {newButton}
             {renderMyAnimations()}
         </div>
     )
