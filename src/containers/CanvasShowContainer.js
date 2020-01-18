@@ -2,7 +2,6 @@ import React from 'react';
 import Canvas from '../components/Canvas';
 import { API_ROOT, HEADERS } from '../constants/index';
 import { connect } from 'react-redux'
-import BurstEdit from '../components/presentational/BurstEdit'
 import CanvasTools from './CanvasTools';
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Button from '@material-ui/core/Button'
@@ -34,12 +33,10 @@ class CanvasShowContainer extends React.Component {
                     </Button>
                     <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "paint"})}>
                         Paint
-                    </Button>
+                    </Button> 
                 </ButtonGroup>
                 <Canvas paramsId={this.props.paramsId} />
-                {localStorage["id"] ? <Button onClick={this.handleSaveCanvas}>Save</Button> : null}
-                    <CanvasTools />
-                    <BurstEdit />
+                <CanvasTools />
             </div>
         )
     }

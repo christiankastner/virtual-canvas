@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Card } from 'semantic-ui-react';
 
 const AnimationCard = props => {
     return (

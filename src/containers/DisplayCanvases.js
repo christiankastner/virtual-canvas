@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const DisplayCanvases = (props) => {
     const renderCanvases = () => {
-        if (props.canvases.length > 0) {
+        if (props.canvases && props.canvases.length > 0) {
             return props.canvases.map(canvas => {
                 return (
                     <div key={canvas.id}>

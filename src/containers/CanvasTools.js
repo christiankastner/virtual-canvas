@@ -1,12 +1,12 @@
 import React from 'react';
-import AnimationCard from '../components/presentational/AnimationCard'
+import BurstEdit from '../components/presentational/BurstEdit'
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import { API_ROOT, HEADERS } from '../constants/index'
 
 const CanvasTools = (props) => {
 
-    const renderMyAnimations = () => props.myAnimations ? props.myAnimations.map(animation => <AnimationCard animation={animation} />) : null
+    const renderMyAnimations = () => props.myAnimations ? props.myAnimations.map(animation => <BurstEdit animation={animation} />) : null
 
     const handleNewAnimation = () => {
         fetch(`${API_ROOT}/animate_mos`, {

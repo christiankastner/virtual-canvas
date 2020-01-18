@@ -20,7 +20,7 @@ const BurstEdit = props => {
     }
 
     const handleSubmit = () => {
-        fetch(`${API_ROOT}/animate_mos/${props.selectAnimation.id}`, {
+        fetch(`${API_ROOT}/animate_mos/${props.burst.id}`, {
             method: "PATCH",
             headers: HEADERS,
             body: JSON.stringify({
@@ -35,12 +35,12 @@ const BurstEdit = props => {
                 props.dispatch({type: "HTTP_EDIT_ANIMATION", animation: json})
             })
     }
-    
+
     const conditionalFormRender = () => {
         if (props.selectAnimation !== null) {
             return (
                 <div>
-                    <h3>Edit Burst</h3>
+                    <h3>Burst</h3>
                     <Button onClick={handleSubmit}>Save Burst</Button>
                     <div>
                         <FormControl>
