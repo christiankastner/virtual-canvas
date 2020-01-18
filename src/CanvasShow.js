@@ -18,32 +18,31 @@ class CanvasShow extends React.Component {
             })
     }
 
-    handleNewAnimation = () => {
-        fetch(`${API_ROOT}/animate_mos`, {
-            method: "POST",
-            headers: HEADERS,
-            body: JSON.stringify({
-                animate_mo: {
-                    user_id: localStorage["id"],
-                    picture_id: this.props.match.params.id,
-                }
-            })
-        })
-            .then(resp => resp.json())
-            .then(json => {
-                if (!json.error) {
-                    this.props.dispatch({type: "HTTP_NEW_ANIMATION", })
-                }
-            })
-    }
+    // handleNewAnimation = () => {
+    //     fetch(`${API_ROOT}/animate_mos`, {
+    //         method: "POST",
+    //         headers: HEADERS,
+    //         body: JSON.stringify({
+    //             animate_mo: {
+    //                 user_id: localStorage["id"],
+    //                 picture_id: this.props.match.params.id,
+    //             }
+    //         })
+    //     })
+    //         .then(resp => resp.json())
+    //         .then(json => {
+    //             if (!json.error) {
+    //                 this.props.dispatch({type: "HTTP_NEW_ANIMATION", })
+    //             }
+    //         })
+    // }
 
     render() {
         return (
             <div className="canvas-show">
                 <h2>{this.props.canvas.title}</h2>
                 <CanvasShowContainer 
-                    paramsId={this.props.match.params.id} 
-                    handleNewAnimation={this.handleNewAnimation} />
+                    paramsId={this.props.match.params.id} />
             </div>
         )
     }

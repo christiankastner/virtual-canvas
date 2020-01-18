@@ -4,16 +4,12 @@ import { Card } from 'semantic-ui-react';
 
 const AnimationCard = props => {
     return (
-        <div className="tool-card" onClick={() => props.dispatch({type: "SELECT_ANIMATION", animation: props.animation})}>
-            <Card>
-                <Card.Content >
-                    <Card.Description >
-                        Burst
-                    </Card.Description>
-                </Card.Content>
-            </Card>
+        <div className="tool-card" >
+            Burst
         </div>
     )
 }
+
+// onClick={() => props.dispatch({type: "SELECT_ANIMATION", animation: props.animation})}
 
 export default connect()(AnimationCard)

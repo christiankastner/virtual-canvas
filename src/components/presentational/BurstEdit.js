@@ -9,15 +9,6 @@ const BurstEdit = props => {
   
     const [burst, setBurst] = useState({})
 
-    // const handleSliderChange = (sliderId) => {
-    //     return (data, newValue) => {
-    //         setBurst({
-    //                 ...burst,
-    //                 [sliderId]: newValue
-    //             }
-    //         )
-    //     }
-    // }
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
@@ -44,7 +35,7 @@ const BurstEdit = props => {
                 props.dispatch({type: "HTTP_EDIT_ANIMATION", animation: json})
             })
     }
-
+    
     const conditionalFormRender = () => {
         if (props.selectAnimation !== null) {
             return (
@@ -114,10 +105,6 @@ const BurstEdit = props => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        selectAnimation: state.selectAnimation
-    }
-}
 
-export default connect(mapStateToProps)(BurstEdit)
+
+export default connect()(BurstEdit)

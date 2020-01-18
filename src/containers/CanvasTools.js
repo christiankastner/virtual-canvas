@@ -1,7 +1,7 @@
 import React from 'react';
 import AnimationCard from '../components/presentational/AnimationCard'
 import { connect } from 'react-redux'
-import { Button } from 'semantic-ui-react'
+import Button from '@material-ui/core/Button'
 import { API_ROOT, HEADERS } from '../constants/index'
 
 const CanvasTools = (props) => {

@@ -1,4 +1,4 @@
-const initialState = {user_id: '', canvas: {}, canvasAnimations: [], myAnimations: [], selectAnimation: null}
+const initialState = {user_id: '', canvas: {}, canvasAnimations: [], myAnimations: [], selectAnimation: ''}
 
 export default function canvasReducer(state = initialState, action) {
     
@@ -49,7 +49,7 @@ export default function canvasReducer(state = initialState, action) {
                 canvas: {},
                 myAnimations: [],
                 canvasAnimations: [],
-                selectAnimation: {}
+                selectAnimation: ''
             }
         default: return state
     }

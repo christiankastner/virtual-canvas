@@ -1,10 +1,11 @@
 import React from 'react';
 import Canvas from '../components/Canvas';
-import { Button, Table } from 'semantic-ui-react';
 import { API_ROOT, HEADERS } from '../constants/index';
 import { connect } from 'react-redux'
 import BurstEdit from '../components/presentational/BurstEdit'
 import CanvasTools from './CanvasTools';
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Button from '@material-ui/core/Button'
 
 class CanvasShowContainer extends React.Component {
 
@@ -24,21 +25,21 @@ class CanvasShowContainer extends React.Component {
     render() {
         return (
             <div className="canvas-container">
+                <ButtonGroup >
+                    <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "shapes"})}>
+                        Shapes
+                    </Button>
+                    <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "bursts"})}>
+                        Bursts
+                    </Button>
+                    <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "paint"})}>
+                        Paint
+                    </Button>
+                </ButtonGroup>
                 <Canvas paramsId={this.props.paramsId} />
-                {localStorage["id"] ? <Button color="green" onClick={this.handleSaveCanvas}>Save</Button> : null}
-                <Table >
-                    <Table.Row>
-                        <Table.HeaderCell>My Animations</Table.HeaderCell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>
-                            <CanvasTools handleNewAnimation={this.props.handleNewAnimation}/>
-                        </Table.Cell>
-                        <Table.Cell>
-                            <BurstEdit />
-                        </Table.Cell>
-                    </Table.Row>
-                </Table>
+                {localStorage["id"] ? <Button onClick={this.handleSaveCanvas}>Save</Button> : null}
+                    <CanvasTools />
+                    <BurstEdit />
             </div>
         )
     }
