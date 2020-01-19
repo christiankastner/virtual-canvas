@@ -4,6 +4,7 @@ class P5ReactAdapter {
     static readFrequencyShapes(array, frequency, frequencyMapping, p5) {
         for (let i = 0; i < array.length; i++) {
             if (array[i].frequency === frequency) {
+                    // console.log(frequency)
                     P5ReactAdapter.readJsonShape(array[i], frequencyMapping, p5)
             }
         }
@@ -21,6 +22,13 @@ class P5ReactAdapter {
             p.stroke(json.stroke)
         } else {
             p.noStroke()
+        }
+
+        //This will allow the shape to rotate around its own axis
+        if ('rotate' in json) {
+            p.rotate(json.rotate)
+        } else {
+
         }
 
         const {width, height, amount, spin, orbit, type} = json.shape
@@ -41,6 +49,7 @@ class P5ReactAdapter {
                 }
                 break;
             case "ellipse":
+
                 for (let i = 0; i < amount; i++) {
                     p.push()
                         p.rotate((360/amount)*i)
@@ -54,24 +63,10 @@ class P5ReactAdapter {
                 }
                 break;
             case "triangle":
-                p.push()
-                    p.rotate((360/amount)*i)
-                    p.push()
-                        p.translate(frequencyMapping,frequencyMapping)
-                        p.rotate(spin * p.frameCount)
-                        p.triangle(0, 0, height, width)
-                    p.pop()
-                p.pop()
+                p.triangle()
                 break;
             case "line":
-                p.push()
-                    p.rotate((360/amount)*i)
-                    p.push()
-                        p.translate(frequencyMapping,frequencyMapping)
-                        p.rotate(spin * p.frameCount)
-                        p.line(0, 0, height, width)
-                    p.pop()
-                p.pop()
+
                 break;
             default:
         }

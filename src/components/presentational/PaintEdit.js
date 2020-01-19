@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const DrawEdit = props => {
+const PaintEdit = props => {
 
     return (
         <div>
@@ -10,4 +10,4 @@ const DrawEdit = props => {
     )
 }
 
-export default DrawEdit
+export default PaintEdit

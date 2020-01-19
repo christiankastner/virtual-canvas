@@ -1,5 +1,5 @@
 import React from 'react';
-import { API_ROOT, HEADERS } from './constants/index'
+import { API_ROOT } from './constants/index'
 import DisplayCanvases from './containers/DisplayCanvases'
 
 class UserShow extends React.Component {

@@ -38,7 +38,6 @@ const BurstEdit = props => {
         })
             .then(resp => resp.json())
             .then(json => {
-                console.log(json)
                 props.dispatch(json)
             })
     }

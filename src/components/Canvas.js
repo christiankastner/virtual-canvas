@@ -28,6 +28,7 @@ class Canvas extends React.Component {
       
         p.setup = () => {
           p.createCanvas(600, 600);
+          p.background(200)
       
           this.toggleBtn = p.createButton("Play / Pause")
       
@@ -50,12 +51,11 @@ class Canvas extends React.Component {
                 received: data => {
                     if ('type' in data) {
                         this.props.dispatch(data)
+                    } else if ('draw' in data) {
+                        p.newDrawing(data.draw.x, data.draw.y)
+                    } else {
+                        this.handleRecievedBurst(data)
                     } 
-                    // else if ('draw' in data) {
-                    //     p.newDrawing(data.draw.x, data.draw.y)
-                    // } else {
-                    //     this.handleRecievedBurst(data)
-                    // } 
             }})
 
         };
