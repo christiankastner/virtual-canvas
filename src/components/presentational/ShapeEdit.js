@@ -24,6 +24,16 @@ const ShapeEdit = props => {
             })
     }
 
+    const handleDelete = () => {
+        fetch(`${API_ROOT}/p5_shapes/${props.shape.id}`, {
+            method: "DELETE",
+            headers: HEADERS
+        })
+            .then(resp => resp.json())
+            .then(json => {
+            })
+    }
+
     const handleInputChange = (event) => {
         const { name, value } = event.target
         setShape({
@@ -35,6 +45,7 @@ const ShapeEdit = props => {
         <div>
             <h3>Shape</h3>
             <Button onClick={handleSubmit}>Save Shape</Button>
+            <Button onClick={handleDelete}>Delete Shape</Button>
             <div>
                 <FormControl>
                     <Select 

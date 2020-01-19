@@ -27,8 +27,18 @@ const BurstEdit = props => {
         )
             .then(resp => resp.json())
             .then(json => {
-                console.log(json)
                 props.dispatch({type: "HTTP_EDIT_BURST", animation: json})
+            })
+    }
+
+    const handleDelete = () => {
+        fetch(`${API_ROOT}/animate_mos/${props.burst.id}`, {
+            method: "DELETE",
+            headers: HEADERS
+        })
+            .then(resp => resp.json())
+            .then(json => {
+                console.log("DELETED")
             })
     }
     
@@ -36,6 +46,7 @@ const BurstEdit = props => {
         <div>
             <h3>Burst</h3>
             <Button onClick={handleSubmit}>Save Burst</Button>
+            <Button onClick={handleDelete}>Delete Burst</Button>
             <div>
                 <FormControl>
                     <Select 
