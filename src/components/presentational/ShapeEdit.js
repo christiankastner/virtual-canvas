@@ -1,58 +1,90 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { API_ROOT, HEADERS } from '../../constants/index';
+import { Slider, Button, InputLabel, FormControl, MenuItem, Select, TextField } from '@material-ui/core';
 
 const ShapeEdit = props => {
 
-    [shape, setShape] = useState({...props.shape})
+    const [shape, setShape] = useState({...props.shape})
 
+    const handleSubmit = () => {
+        fetch(`${API_ROOT}/p5_shapes/${props.shape.id}`, {
+            method: "PATCH",
+            headers: HEADERS,
+            body: JSON.stringify({
+                p5_shape: {
+                    ...shape
+                }
+            })}
+        )
+            .then(resp => resp.json())
+            .then(json => {
+                console.log(json)
+                props.dispatch({type: "HTTP_EDIT_SHAPE", animation: json})
+            })
+    }
 
+    const handleInputChange = (event) => {
+        const { name, value } = event.target
+        setShape({
+                ...shape, 
+                [name]: value
+            })
+    }
     return (
         <div>
-            <h3>Burst</h3>
+            <h3>Shape</h3>
             <Button onClick={handleSubmit}>Save Shape</Button>
             <div>
                 <FormControl>
                     <Select 
+                        labelId="frequency-select"
+                        id="frequency"
+                        name="frequency"
+                        value={shape.frequency} 
+                        onChange={handleInputChange}>
+                        <MenuItem value="treble" >Treble</MenuItem>
+                        <MenuItem value="mid" >Mid</MenuItem>
+                        <MenuItem value="bass" >Bass</MenuItem>
+                    </Select>
+                </FormControl>
+                <FormControl>
+                    <Select 
                         labelId="shape-select"
                         id="shape"
-                        name="shape"
-                        value={burst.shape} 
+                        name="type"
+                        value={shape.type} 
                         onChange={handleInputChange}>
-                        <MenuItem value="circle" >Circle</MenuItem>
                         <MenuItem value="rect" >Rectangle</MenuItem>
-                        <MenuItem value="cross" >Cross</MenuItem>
-                        <MenuItem value="polygon" >Polygon</MenuItem>
-                        <MenuItem value="zigzag" >Zigzag</MenuItem>
-                        <MenuItem value="curve" >Curve</MenuItem>
+                        <MenuItem value="ellipse" >Ellipse</MenuItem>
+                        <MenuItem value="triangle" >Triangle</MenuItem>
+                        <MenuItem value="line" >Line</MenuItem>
                     </Select>
                 </FormControl>
                 <form>
                     <TextField 
-                        name="color"
-                        label="Color"
+                        name="fill"
+                        label="Fill"
                         onChange={handleInputChange} />
                     <TextField 
-                        name="radius_1"
-                        label="Radius 1"
+                        name="stroke"
+                        label="Stroke"
                         onChange={handleInputChange} />
                     <TextField 
-                        name="radius_2"
-                        label="Radius 2"
+                        name="width"
+                        label="Width"
                         onChange={handleInputChange} />
                     <TextField 
-                        name="count"
-                        label="Count"
+                        name="amount"
+                        label="Amount"
                         onChange={handleInputChange} />
                     <TextField 
-                        name="duration"
-                        label="Duration"
+                        name="orbit"
+                        label="Orbit"
                         onChange={handleInputChange} />
                     <TextField 
-                        name="angle"
-                        label="Angle"
-                        onChange={handleInputChange} />
-                    <TextField 
-                        name="stroke_width"
-                        label="Stroke Width"
+                        name="spin"
+                        label="Spin"
                         onChange={handleInputChange} />
                 </form>
             </div>
@@ -60,4 +92,4 @@ const ShapeEdit = props => {
     )
 }
 
-export default ShapeEdit
+export default connect()(ShapeEdit)

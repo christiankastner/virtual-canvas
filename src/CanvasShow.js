@@ -10,7 +10,6 @@ class CanvasShow extends React.Component {
         fetch(`${API_ROOT}/pictures/${this.props.match.params.id}`)
             .then(resp => resp.json())
             .then(json => {
-                console.log(json)
                 this.props.dispatch({type: "LOAD_CANVAS", canvas: json})
             })
     }
@@ -27,25 +26,6 @@ class CanvasShow extends React.Component {
             })
         })
     }
-
-    // handleNewAnimation = () => {
-    //     fetch(`${API_ROOT}/animate_mos`, {
-    //         method: "POST",
-    //         headers: HEADERS,
-    //         body: JSON.stringify({
-    //             animate_mo: {
-    //                 user_id: localStorage["id"],
-    //                 picture_id: this.props.match.params.id,
-    //             }
-    //         })
-    //     })
-    //         .then(resp => resp.json())
-    //         .then(json => {
-    //             if (!json.error) {
-    //                 this.props.dispatch({type: "HTTP_NEW_ANIMATION", })
-    //             }
-    //         })
-    // }
 
     render() {
         return (

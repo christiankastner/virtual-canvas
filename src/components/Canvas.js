@@ -50,11 +50,12 @@ class Canvas extends React.Component {
                 received: data => {
                     if ('type' in data) {
                         this.props.dispatch(data)
-                    } else if ('draw' in data) {
-                        p.newDrawing(data.draw.x, data.draw.y)
-                    } else {
-                        this.handleRecievedBurst(data)
                     } 
+                    // else if ('draw' in data) {
+                    //     p.newDrawing(data.draw.x, data.draw.y)
+                    // } else {
+                    //     this.handleRecievedBurst(data)
+                    // } 
             }})
 
         };

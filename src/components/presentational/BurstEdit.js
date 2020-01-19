@@ -9,7 +9,6 @@ const BurstEdit = props => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
-        console.log(event)
         setBurst({
                 ...burst, 
                 [name]: value
