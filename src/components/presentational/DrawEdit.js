@@ -5,7 +5,7 @@ const DrawEdit = props => {
 
     return (
         <div>
-
+            Render this yo
         </div>
     )
 }

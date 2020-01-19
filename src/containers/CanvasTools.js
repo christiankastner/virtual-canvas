@@ -13,15 +13,15 @@ const CanvasTools = (props) => {
             case "shapes":
                 return (
                     <div className="tools">
-                        <Button onClick={handleNewAnimation('animate_mos')}>New Burst</Button>
+                        <Button onClick={() => handleNewAnimation('p5_shape')}>Create New Shape</Button>
                         {props.myShapes ? props.myShapes.map(shape => <ShapeEdit shape={shape} />) : null}
                     </div>
                 )
             case "bursts":
                 return (
                     <div className="tools">
-                        newButton = <Button onClick={handleNewAnimation('p5_shapes')}>New Shape</Button>
-                        {props.myShapes ? props.myShapes.map(animation => <ShapeEdit animation={animation} />) : null}
+                        <Button onClick={() => handleNewAnimation('animate_mo')} >Create New Burst</Button>
+                        {props.myBursts ? props.myBursts.map(animation => <BurstEdit animation={animation} />) : null}
                     </div>
                 )
             case "draw":
@@ -32,11 +32,11 @@ const CanvasTools = (props) => {
     }
     
     const handleNewAnimation = (modelName) => {
-        fetch(`${API_ROOT}/${modelName}`, {
+        fetch(`${API_ROOT}/${modelName}s`, {
             method: "POST",
             headers: HEADERS,
             body: JSON.stringify({
-                animate_mo: {
+                [`${modelName}`]: {
                     user_id: localStorage["id"],
                     picture_id: props.canvas_id,
                 }
@@ -44,15 +44,19 @@ const CanvasTools = (props) => {
         })
             .then(resp => resp.json())
             .then(json => {
-                props.dispatch({type: "HTTP_NEW_BURST", animation: json})
+                if (modelName == 'animate_mo') {
+                    props.dispatch({type: "HTTP_NEW_BURST", animation: json})
+                } else {
+                    console.log(json)
+                    props.dispatch({type: "HTTP_NEW_SHAPE", animation: json})
+                }
             })
     }
 
     return (
-        <div className="tools">
-            {newButton}
+        <>
             {renderMyAnimations()}
-        </div>
+        </>
     )
 }
 

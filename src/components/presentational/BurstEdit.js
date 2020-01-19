@@ -32,7 +32,7 @@ const BurstEdit = props => {
             .then(resp => resp.json())
             .then(json => {
                 console.log(json)
-                props.dispatch({type: "HTTP_EDIT_ANIMATION", animation: json})
+                props.dispatch({type: "HTTP_EDIT_BURST", animation: json})
             })
     }
 
