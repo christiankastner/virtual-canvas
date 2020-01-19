@@ -35,13 +35,20 @@ export default function canvasReducer(state = initialState, action) {
                 ]
             }
         case "HTTP_NEW_SHAPE":
-            console.log(action.animation)
             return {
                 ...state,
                 myShapes: [...state.myShapes, action.animation]
             }
+        case "HTTP_EDIT_SHAPE":
+            const newShapes = state.myShapes.filter(animation => animation.id !== action.animation.id)
+            return {
+                ...state,
+                myShapes: [
+                    ...newShapes,
+                    action.animation
+                ]
+            }
         case "CHANNEL_POST_BURST":
-            console.log(action.animation)
             return {
                 ...state,
                 canvasBursts: [...state.canvasBursts, action.animation]
@@ -51,9 +58,17 @@ export default function canvasReducer(state = initialState, action) {
                 ...state,
                 canvasShapes: [...state.canvasShapes, action.animation.p5_shape]
             }
-            
+        case "CHANNEL_PATCH_SHAPE":
+            const unalteredShapes = state.canvasShapes.filter(animation => animation.id !== action.animation.p5_shape.id)
+            return {
+                ...state,
+                canvasShapes: [
+                    ...unalteredShapes,
+                    action.animation.p5_shape
+                ]
+            }
         case "CHANNEL_PATCH_BURST":
-            const unalteredBursts = state.canvasAnimations.filter(animation => animation.id !== action.animation.animate_mo.id)
+            const unalteredBursts = state.canvasBursts.filter(animation => animation.id !== action.animation.animate_mo.id)
             return {
                 ...state,
                 canvasAnimations: [

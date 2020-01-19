@@ -47,7 +47,6 @@ const CanvasTools = (props) => {
                 if (modelName == 'animate_mo') {
                     props.dispatch({type: "HTTP_NEW_BURST", animation: json})
                 } else {
-                    console.log(json)
                     props.dispatch({type: "HTTP_NEW_SHAPE", animation: json})
                 }
             })
