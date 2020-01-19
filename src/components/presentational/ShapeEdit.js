@@ -19,7 +19,6 @@ const ShapeEdit = props => {
         )
             .then(resp => resp.json())
             .then(json => {
-                console.log(json)
                 props.dispatch({type: "HTTP_EDIT_SHAPE", animation: json})
             })
     }
@@ -31,6 +30,8 @@ const ShapeEdit = props => {
         })
             .then(resp => resp.json())
             .then(json => {
+                console.log(json)
+                props.dispatch(json)
             })
     }
 
@@ -63,8 +64,8 @@ const ShapeEdit = props => {
                     <Select 
                         labelId="shape-select"
                         id="shape"
-                        name="type"
-                        value={shape.type} 
+                        name="shape"
+                        value={shape.shape} 
                         onChange={handleInputChange}>
                         <MenuItem value="rect" >Rectangle</MenuItem>
                         <MenuItem value="ellipse" >Ellipse</MenuItem>

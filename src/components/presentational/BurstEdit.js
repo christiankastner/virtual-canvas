@@ -16,7 +16,7 @@ const BurstEdit = props => {
     }
 
     const handleSubmit = () => {
-        fetch(`${API_ROOT}/animate_mos/${props.burst.id}`, {
+        fetch(`${API_ROOT}/animate_mos/${props.animation.id}`, {
             method: "PATCH",
             headers: HEADERS,
             body: JSON.stringify({
@@ -32,13 +32,14 @@ const BurstEdit = props => {
     }
 
     const handleDelete = () => {
-        fetch(`${API_ROOT}/animate_mos/${props.burst.id}`, {
+        fetch(`${API_ROOT}/animate_mos/${props.animation.id}`, {
             method: "DELETE",
             headers: HEADERS
         })
             .then(resp => resp.json())
             .then(json => {
-                console.log("DELETED")
+                console.log(json)
+                props.dispatch(json)
             })
     }
     

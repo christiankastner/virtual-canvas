@@ -34,6 +34,11 @@ export default function canvasReducer(state = initialState, action) {
                     action.animation
                 ]
             }
+        case "HTTP_DELETE_BURST":
+            return {
+                ...state,
+                myBursts: state.myBursts.filter(animation => animation.id !== action.animation_id)
+            }
         case "HTTP_NEW_SHAPE":
             return {
                 ...state,
@@ -48,10 +53,10 @@ export default function canvasReducer(state = initialState, action) {
                     action.animation
                 ]
             }
-        case "CHANNEL_POST_BURST":
+        case "HTTP_DELETE_SHAPE":
             return {
                 ...state,
-                canvasBursts: [...state.canvasBursts, action.animation]
+                myShapes: [...state.myShapes.filter(animation => animation.id !== action.animation_id)]
             }
         case "CHANNEL_POST_SHAPE":
             return {
@@ -67,14 +72,29 @@ export default function canvasReducer(state = initialState, action) {
                     action.animation.p5_shape
                 ]
             }
+        case "CHANNEL_DELETE_SHAPE":
+            return {
+                ...state,
+                canvasShapes: [...state.canvasShapes.filter(animation => animation.id !== action.animation_id)]
+            }
+        case "CHANNEL_POST_BURST":
+            return {
+                ...state,
+                canvasBursts: [...state.canvasBursts, action.animation]
+            }
         case "CHANNEL_PATCH_BURST":
             const unalteredBursts = state.canvasBursts.filter(animation => animation.id !== action.animation.animate_mo.id)
             return {
                 ...state,
-                canvasAnimations: [
+                canvasBursts: [
                     ...unalteredBursts, 
                     action.animation.animate_mo
                 ]
+            }
+        case "CHANNEL_DELETE_BURST":
+            return {
+                ...state,
+                canvasBursts: [...state.canvasBursts.filter(animation => animation.id !== action.animation_id)]
             }
         case "SELECT_ANIMATION":
             return {
