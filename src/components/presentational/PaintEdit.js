@@ -5,7 +5,7 @@ const PaintEdit = props => {
 
     return (
         <div>
-            Render this yo
+            
         </div>
     )
 }

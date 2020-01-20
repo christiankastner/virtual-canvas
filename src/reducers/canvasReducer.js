@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export default function canvasReducer(state = initialState, action) {
-    
+
     switch(action.type) {
         case "LOAD_CANVAS": 
             return {
@@ -26,12 +26,14 @@ export default function canvasReducer(state = initialState, action) {
                 myBursts: [...state.myBursts, action.animation]
             }
         case "HTTP_EDIT_BURST":
-            const newBursts = state.myBursts.filter(animation => animation.id !== action.animation.id)
+            // const newBursts = state.myBursts.filter(animation => animation.id !== action.animation.id)
+            const idBurst = state.myBursts.indexOf(animation => animation.id === action.animation.id)
             return {
                 ...state,
                 myBursts: [
-                    ...newBursts, 
-                    action.animation
+                    ...state.myBursts.slice(0, idBurst), 
+                    action.animation,
+                    ...state.myBursts.slice(idBurst + 1)
                 ]
             }
         case "HTTP_DELETE_BURST":
@@ -45,12 +47,14 @@ export default function canvasReducer(state = initialState, action) {
                 myShapes: [...state.myShapes, action.animation]
             }
         case "HTTP_EDIT_SHAPE":
-            const newShapes = state.myShapes.filter(animation => animation.id !== action.animation.id)
+            // const newShapes = state.myShapes.filter(animation => animation.id !== action.animation.id)
+            const idShape = state.myShapes.indexOf(animation => animation.id === action.animation.id)
             return {
                 ...state,
                 myShapes: [
-                    ...newShapes,
-                    action.animation
+                    ...state.myShapes.slice(0, idShape),
+                    action.animation,
+                    ...state.myShapes.slice(idShape + 1)
                 ]
             }
         case "HTTP_DELETE_SHAPE":
@@ -64,12 +68,14 @@ export default function canvasReducer(state = initialState, action) {
                 canvasShapes: [...state.canvasShapes, action.animation.p5_shape]
             }
         case "CHANNEL_PATCH_SHAPE":
-            const unalteredShapes = state.canvasShapes.filter(animation => animation.id !== action.animation.p5_shape.id)
+            const idPShape = state.canvasShapes.indexOf(animation => animation.id === action.animation.p5_shape.id)
+            console.log(idPShape)
             return {
                 ...state,
                 canvasShapes: [
-                    ...unalteredShapes,
-                    action.animation.p5_shape
+                    ...state.canvasShapes.slice(0, idPShape),
+                    action.animation.p5_shape,
+                    ...state.canvasShapes.slice(idPShape + 1)
                 ]
             }
         case "CHANNEL_DELETE_SHAPE":
@@ -84,11 +90,13 @@ export default function canvasReducer(state = initialState, action) {
             }
         case "CHANNEL_PATCH_BURST":
             const unalteredBursts = state.canvasBursts.filter(animation => animation.id !== action.animation.animate_mo.id)
+            idBurst = state.canvasBursts.indexOf(animation => animation.id === action.animation.animate_mo.id)
             return {
                 ...state,
                 canvasBursts: [
-                    ...unalteredBursts, 
-                    action.animation.animate_mo
+                    ...state.canvasBursts.slice(0, idBurst), 
+                    action.animation.animate_mo,
+                    ...state.canvasBursts.slice(idBurst + 1)
                 ]
             }
         case "CHANNEL_DELETE_BURST":

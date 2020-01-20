@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import { API_ROOT, HEADERS } from '../constants/index'
-import DrawEdit from '../components/presentational/PaintEdit'
+import PaintEdit from '../components/presentational/PaintEdit'
 import BurstEdit from '../components/presentational/BurstEdit'
 import ShapeEdit from '../components/presentational/ShapeEdit'
 
@@ -24,8 +24,8 @@ const CanvasTools = (props) => {
                         {props.myBursts ? props.myBursts.map(animation => <BurstEdit animation={animation} />) : null}
                     </div>
                 )
-            case "draw":
-                return <DrawEdit />
+            case "paint":
+                return <PaintEdit />
             default:
                 return <></>
         }
