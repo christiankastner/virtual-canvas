@@ -6,9 +6,6 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Button from '@material-ui/core/Button'
 
 const CanvasShowContainer = props => {
-
-    const admin = props.canvas.user || ""
-
     return (
         <div className="canvas-container">
             <ButtonGroup >

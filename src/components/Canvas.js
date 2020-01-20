@@ -106,7 +106,7 @@ class Canvas extends React.Component {
       
         p.draw = () => {
     
-            p.background(20);
+            p.background(`rgb(${this.props.canvas.background})`);
 
             p.translate(p.width / 2, p.height / 2);
 
@@ -118,9 +118,7 @@ class Canvas extends React.Component {
             var mid = fft.getEnergy("mid");
 
             var mapMid = p.map(mid, 0, 255, -100, 200);
-
             var mapTreble = p.map(treble, 0, 255, 200, 350);
-
             var mapBass = p.map(bass, 0, 255, 50, 200);
 
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "treble", mapTreble, p)
@@ -152,6 +150,7 @@ class Canvas extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        canvas: state.canvas,
         selected: state.selected,
         shapes: state.canvasShapes,
         bursts: state.canvasBursts > 0 ? state.canvasBursts.map(animation => {
