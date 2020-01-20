@@ -47,6 +47,7 @@ const ShapeEdit = props => {
             <Button onClick={handleSubmit}>Save Shape</Button>
             <Button onClick={handleDelete}>Delete Shape</Button>
             <div>
+                <form>
                 <FormControl>
                     <Select 
                         labelId="frequency-select"
@@ -72,7 +73,6 @@ const ShapeEdit = props => {
                         <MenuItem value="line" >Line</MenuItem>
                     </Select>
                 </FormControl>
-                <form>
                     <TextField 
                         name="fill"
                         label="Fill"
