@@ -26,15 +26,16 @@ export default function canvasReducer(state = initialState, action) {
                 myBursts: [...state.myBursts, action.animation]
             }
         case "HTTP_EDIT_BURST":
-            // const newBursts = state.myBursts.filter(animation => animation.id !== action.animation.id)
-            const idBurst = state.myBursts.indexOf(animation => animation.id === action.animation.id)
+            const myBursts = state.myBursts.map(animation => {
+                if (animation.id === action.animation.id) {
+                    return action.animation
+                } else {
+                    return animation
+                }       
+            })
             return {
                 ...state,
-                myBursts: [
-                    ...state.myBursts.slice(0, idBurst), 
-                    action.animation,
-                    ...state.myBursts.slice(idBurst + 1)
-                ]
+                myBursts: [...myBursts]
             }
         case "HTTP_DELETE_BURST":
             return {
@@ -47,15 +48,15 @@ export default function canvasReducer(state = initialState, action) {
                 myShapes: [...state.myShapes, action.animation]
             }
         case "HTTP_EDIT_SHAPE":
-            // const newShapes = state.myShapes.filter(animation => animation.id !== action.animation.id)
-            const idShape = state.myShapes.indexOf(animation => animation.id === action.animation.id)
+            const myShapes = state.myShapes.map(animation => {
+                if (animation.id === action.animation.id) {
+                    return action.animation
+                } else {
+                    return animation
+                }})
             return {
                 ...state,
-                myShapes: [
-                    ...state.myShapes.slice(0, idShape),
-                    action.animation,
-                    ...state.myShapes.slice(idShape + 1)
-                ]
+                myShapes: [...myShapes]
             }
         case "HTTP_DELETE_SHAPE":
             return {
@@ -68,15 +69,16 @@ export default function canvasReducer(state = initialState, action) {
                 canvasShapes: [...state.canvasShapes, action.animation.p5_shape]
             }
         case "CHANNEL_PATCH_SHAPE":
-            const idPShape = state.canvasShapes.indexOf(animation => animation.id === action.animation.p5_shape.id)
-            console.log(idPShape)
+            const canvasShapes = state.canvasShapes.map(animation => {
+                if (animation.id === action.animation.p5_shape.id) {
+                    return action.animation.p5_shape
+                } else {
+                    return animation
+                }
+            })
             return {
                 ...state,
-                canvasShapes: [
-                    ...state.canvasShapes.slice(0, idPShape),
-                    action.animation.p5_shape,
-                    ...state.canvasShapes.slice(idPShape + 1)
-                ]
+                canvasShapes: [...canvasShapes]
             }
         case "CHANNEL_DELETE_SHAPE":
             return {
@@ -86,18 +88,20 @@ export default function canvasReducer(state = initialState, action) {
         case "CHANNEL_POST_BURST":
             return {
                 ...state,
-                canvasBursts: [...state.canvasBursts, action.animation]
+                canvasBursts: [...state.canvasBursts, action.animation.animate_mo]
             }
         case "CHANNEL_PATCH_BURST":
-            const unalteredBursts = state.canvasBursts.filter(animation => animation.id !== action.animation.animate_mo.id)
-            idBurst = state.canvasBursts.indexOf(animation => animation.id === action.animation.animate_mo.id)
+            // const unalteredBursts = state.canvasBursts.filter(animation => animation.id !== action.animation.animate_mo.id)
+            const canvasBursts = state.canvasBursts.map(animation => {
+                if (animation.id === action.animation.animate_mo.id) {
+                    return action.animation.animate_mo
+                } else {
+                    return animation
+                }
+            })
             return {
                 ...state,
-                canvasBursts: [
-                    ...state.canvasBursts.slice(0, idBurst), 
-                    action.animation.animate_mo,
-                    ...state.canvasBursts.slice(idBurst + 1)
-                ]
+                canvasBursts: [...canvasBursts]
             }
         case "CHANNEL_DELETE_BURST":
             return {

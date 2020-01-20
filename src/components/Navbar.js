@@ -1,5 +1,5 @@
 import React from 'react';
-import {Menu} from 'semantic-ui-react'
+
 import {NavLink} from 'react-router-dom'
 
 const Navbar = props => {
@@ -8,46 +8,50 @@ const Navbar = props => {
         if (props.loggedin) {
             return (
                 <>
-                    <Menu.Item name="login" onClick={props.handleLogout}>
-                        Log out
-                    </Menu.Item>
-                    <NavLink exact to="/user" >
-                        <Menu.Item name='profile'>
+                    <li>
+                        <button onClick={props.handleLogout}>
+                            Log out
+                        </button>
+                    </li>
+                    <li>
+                        <NavLink exact to="/user" >  
                             Profile
-                        </Menu.Item>
-                    </NavLink>
+                        </NavLink>
+                    </li>
                 </>
             ) 
         } else {
             return (
-                <Menu.Item name="login" onClick={() => props.toggleModal()}>
+                <button onClick={() => props.toggleModal()}>
                     Log in
-                </Menu.Item>
+                </button>
             )
         }
     }
 
     return (
-        <Menu >
-            <Menu.Menu position="right">
-                <NavLink exact to="/" >
-                    <Menu.Item name='home'>
-                        Home
-                    </Menu.Item>
-                </NavLink>
-                <NavLink exact to="/about" >
-                    <Menu.Item name='about'>
-                        About
-                    </Menu.Item>
-                </NavLink>
-                <NavLink exact to="/canvases" >
-                    <Menu.Item name='canvases'>
-                        Canvases
-                    </Menu.Item>
-                </NavLink>
-                {conditionalUserLink()}
-            </Menu.Menu>
-        </Menu>
+        <header >
+            <nav className="navbar">
+                <ul className="nav-links">
+                    <li>
+                        <NavLink exact to="/" >
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink exact to="/about" >
+                            About
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink exact to="/canvases" >
+                            Canvases
+                        </NavLink>
+                    </li>
+                    {conditionalUserLink()}
+                </ul>
+            </nav>
+        </header>
     )
 }
 
