@@ -5,12 +5,23 @@ const initialState = {
     myBursts: [], 
     canvasShapes: [], 
     myShapes: [],
-    selected: ''
+    selected: '',
+    admin: ''
 }
 
 export default function canvasReducer(state = initialState, action) {
 
     switch(action.type) {
+        // case "LOGIN":
+        //     return {
+        //         ...state,
+        //         user_id: action.user_id
+        //     }
+        // case "LOGOUT":
+        //     return {
+        //         ...state,
+
+        //     }
         case "LOAD_CANVAS": 
             return {
                 ...state,
@@ -18,7 +29,8 @@ export default function canvasReducer(state = initialState, action) {
                 canvasBursts: action.canvas.animate_mos,
                 canvasShapes: action.canvas.p5_shapes,
                 myBursts: action.canvas.animate_mos.filter(animation => animation.user_id == localStorage["id"]),
-                myShapes: action.canvas.p5_shapes.filter(animation => animation.user_id == localStorage["id"])
+                myShapes: action.canvas.p5_shapes.filter(animation => animation.user_id == localStorage["id"]),
+                admin: action.canvas.user.id
             }
         case "HTTP_NEW_BURST":
             return {
@@ -118,7 +130,8 @@ export default function canvasReducer(state = initialState, action) {
                 canvas: {},
                 myAnimations: [],
                 canvasAnimations: [],
-                selected: ''
+                selected: '',
+                admin: ''
             }
         default: return state
     }

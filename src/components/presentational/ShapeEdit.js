@@ -81,9 +81,10 @@ const ShapeEdit = props => {
                         name="stroke"
                         label="Stroke"
                         onChange={handleInputChange} />
-                    <TextField 
+                    <Slider 
                         name="width"
                         label="Width"
+                        valueLabelDisplay='auto'
                         onChange={handleInputChange} />
                     <TextField 
                         name="amount"

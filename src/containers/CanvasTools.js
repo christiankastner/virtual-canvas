@@ -5,6 +5,7 @@ import { API_ROOT, HEADERS } from '../constants/index'
 import PaintEdit from '../components/presentational/PaintEdit'
 import BurstEdit from '../components/presentational/BurstEdit'
 import ShapeEdit from '../components/presentational/ShapeEdit'
+import CanvasSettings from '../components/presentational/CanvasSettings'
 
 const CanvasTools = (props) => {
 
@@ -26,6 +27,8 @@ const CanvasTools = (props) => {
                 )
             case "paint":
                 return <PaintEdit />
+            case "settings":
+                return <CanvasSettings />
             default:
                 return <></>
         }

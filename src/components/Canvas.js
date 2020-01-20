@@ -138,7 +138,6 @@ class Canvas extends React.Component {
 
     handleRecievedBurst = response => {
         const { id, tune } = response.animation
-    
         this.props.bursts.find(animation => animation.id === id).burst.tune(tune).replay()
     }
 
