@@ -54,9 +54,29 @@ class P5ReactAdapter {
                 }
                 break;
             case "triangle":
-                // p.triangle()
+                for (let i = 0; i < amount; i++) {
+                    p.push()
+                        p.rotate((360/amount)*i)
+                        p.push()
+                            const center = 2 * height/3
+                            p.translate(frequencyMapping, frequencyMapping)
+                            p.rotate(spin * p.frameCount)
+                            p.triangle(0, -center, width, height, -width, height)
+                        p.pop()
+                    p.pop()
+                }
                 break;
             case "line":
+                for (let i = 0; i < amount; i++) {
+                    p.push()
+                        p.rotate((360/amount)*i)
+                        p.push()
+                            p.translate(frequencyMapping, frequencyMapping)
+                            p.rotate(spin * p.frameCount)
+                            p.line(0, 0, width, height)
+                        p.pop()
+                    p.pop()
+                }
                 break;
             default:
         }

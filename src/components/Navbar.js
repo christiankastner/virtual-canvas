@@ -48,6 +48,9 @@ const Navbar = props => {
                             Canvases
                         </NavLink>
                     </li>
+                    <li>
+                        |
+                    </li>
                     {conditionalUserLink()}
                 </ul>
             </nav>
