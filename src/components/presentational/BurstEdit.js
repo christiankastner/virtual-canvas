@@ -71,7 +71,7 @@ const BurstEdit = props => {
                         id="color"
                         name="color"
                         value={burst.color} 
-                        onChange={(e,v) => handleInputChange("shape", e.target.value)}>
+                        onChange={(e,v) => handleInputChange("color", e.target.value)}>
                         <MenuItem value="red" >Red</MenuItem>
                         <MenuItem value="yellow" >Yellow</MenuItem>
                         <MenuItem value="pink" >Pink</MenuItem>
@@ -141,6 +141,7 @@ const BurstEdit = props => {
                         orientation="vertical"
                         value={burst["stroke_width"]}
                         label="Stroke Width"
+                        max={10}
                         valueLabelDisplay='auto'
                         onChange={(e,v) => handleInputChange("stroke_width", v)} />
                 </div>

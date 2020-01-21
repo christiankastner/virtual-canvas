@@ -50,8 +50,8 @@ class Canvas extends React.Component {
                 received: data => {
                     if ('type' in data) {
                         this.props.dispatch(data)
-                    } else if ('draw' in data) {
-                        p.newDrawing(data.draw.x, data.draw.y)
+                    // } else if ('draw' in data) {
+                    //     p.newDrawing(data.draw.x, data.draw.y)
                     } else {
                         this.handleRecievedBurst(data)
                     } 
@@ -74,12 +74,27 @@ class Canvas extends React.Component {
         }
 
         p.mouseDragged = () => {
-            if (this.props.selected === "paint") {
+            // if (this.props.selected === "paint") {
+            //     this.canvasChannel.send({
+            //         canvas_id: this.props.paramsId,
+            //         draw: {
+            //             x: p.mouseX,
+            //             y: p.mouseY
+            //         }
+            //     })
+            // }
+        }
+
+        p.mouseClicked = () => {
+            if (this.props.selected === "bursts") {
                 this.canvasChannel.send({
                     canvas_id: this.props.paramsId,
-                    draw: {
-                        x: p.mouseX,
-                        y: p.mouseY
+                    burst: {
+                        user_id: localStorage["id"],
+                        tune : {
+                            x: p.mouseX,
+                            y: p.mouseY
+                        }
                     }
                 })
             }
@@ -135,8 +150,15 @@ class Canvas extends React.Component {
     }
 
     handleRecievedBurst = response => {
-        const { id, tune } = response.animation
-        this.props.bursts.find(animation => animation.id === id).burst.tune(tune).replay()
+        const {user_id, tune} = response.burst
+        const { bursts } = this.props
+        console.log(user_id, tune)
+        for (let i = 0; i < bursts.length; i++) {
+            if (bursts[i].user_id == user_id) {
+                bursts[i].burst.tune(tune).replay()
+            }
+        }
+        // this.props.bursts.find(animation => animation.id === id).burst.tune(tune).replay()
     }
 
     render() {
@@ -153,12 +175,12 @@ const mapStateToProps = state => {
         canvas: state.canvas,
         selected: state.selected,
         shapes: state.canvasShapes,
-        bursts: state.canvasBursts > 0 ? state.canvasBursts.map(animation => {
+        bursts: state.canvasBursts.map(animation => {
             return {
-                id: animation.id,
+                user_id: animation.user_id,
                 burst: new mojs.Burst({
                     left: 0, top: 0,
-                    count:   animation.count,
+                    count: animation.count,
                     angle: {0: animation.angle},
                     radius: {[animation.radius_1]: animation.radius_2},
                     children: {
@@ -166,11 +188,11 @@ const mapStateToProps = state => {
                         fill:    animation.color,
                         radius:     20,
                         strokeWidth: animation.stroke_width,
-                        duration:   animation.duration || 2000
+                        duration:   animation.duration
                     }
                 })
             }
-        }) : []
+        })
     }
 }
 
