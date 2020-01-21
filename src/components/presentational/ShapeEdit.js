@@ -4,6 +4,33 @@ import { API_ROOT, HEADERS } from '../../constants/index';
 import { Slider, Button, FormControl, MenuItem, Select, Typography, Divider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles'
 
+const RedSlider = withStyles({
+    root: {
+        color: 'red'
+    },
+    thumb: {
+        color: 'red'
+    }
+})(Slider);
+
+const GreenSlider = withStyles({
+    root: {
+        color: 'green'
+    },
+    thumb: {
+        color: 'green'
+    }
+})(Slider)
+
+const BlueSlider = withStyles({
+    root: {
+        color: 'blue'
+    },
+    thumb: {
+        color: 'blue'
+    }
+})(Slider)
+
 const ShapeEdit = props => {
 
     const [shape, setShape] = useState({
@@ -95,20 +122,23 @@ const ShapeEdit = props => {
                         <Typography id="slider" gutterBottom>
                             Fill Color
                         </Typography>
-                    <Slider 
+                    <RedSlider 
                         value={shape.fill[0]}
                         min={0}
                         max={255}
+                        valueLabelDisplay='auto'
                         onChange={(e,v) => handleColorChange(0, "fill", v)} />
-                    <Slider 
+                    <GreenSlider 
                         value={shape.fill[1]}
                         min={0}
                         max={255}
+                        valueLabelDisplay='auto'
                         onChange={(e,v) => handleColorChange(1, "fill", v)} />
-                    <Slider 
+                    <BlueSlider 
                         value={shape.fill[2]}
                         min={0}
                         max={255}
+                        valueLabelDisplay='auto'
                         onChange={(e,v) => handleColorChange(2, "fill", v)} />
           
             </div>
@@ -157,6 +187,7 @@ const ShapeEdit = props => {
                         <Slider
                             name="orbit"
                             label="Orbit"
+                            min={-100}
                             onChange={handleInputChange}
                             orientation="vertical"
                             value={shape.orbit}
@@ -168,6 +199,7 @@ const ShapeEdit = props => {
                         <Slider
                             name="spin"
                             label="Spin"
+                            min={-100}
                             onChange={handleInputChange} 
                             orientation="vertical"
                             value={shape.spin}
@@ -179,23 +211,26 @@ const ShapeEdit = props => {
                     <Typography id="slider" gutterBottom>
                             Stroke Color
                         </Typography>
-                    <Slider 
+                    <RedSlider 
                         name="stroke"
+                        valueLabelDisplay="auto"
                         value={shape.stroke[0]}
                         min={0}
                         max={255}
                         aria-label="Stroke"
                         onChange={(e,v) => handleColorChange(0, "stroke", v)} />
-                    <Slider 
+                    <GreenSlider 
                         name="stroke"
                         label="Stroke"
+                        valueLabelDisplay="auto"
                         value={shape.stroke[1]}
                         min={0}
                         max={255}
                         onChange={(e,v) => handleColorChange(1, "stroke", v)} />
-                    <Slider 
+                    <BlueSlider 
                         name="stroke"
                         label="Stroke"
+                        valueLabelDisplay="auto"
                         value={shape.stroke[2]}
                         min={0}
                         max={255}
