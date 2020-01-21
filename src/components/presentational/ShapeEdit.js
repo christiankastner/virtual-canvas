@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { API_ROOT, HEADERS } from '../../constants/index';
-import { Slider, Button, FormControl, MenuItem, Select, Typography, Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Slider, Button, FormControl, MenuItem, Select, Typography, Divider } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-      height: 100,
-    },
-    margin: {
-      height: theme.spacing(3),
-    },
- }));
 
 const ShapeEdit = props => {
 
@@ -45,18 +36,16 @@ const ShapeEdit = props => {
     }
 
     const handleInputChange = (name, value) => {
-        // const { name, value } = event.target
         setShape({
                 ...shape, 
                 [name]: value
             })
     }
 
-    const classes = useStyles();
-
     return (
+        <>
         <div className="tool" >
-
+            <div className="toolbox1">
             <h3>Shape</h3>
             <Button onClick={handleSubmit}>Save Shape</Button>
             <Button onClick={handleDelete}>Delete Shape</Button>
@@ -85,20 +74,26 @@ const ShapeEdit = props => {
                         <MenuItem value="line" >Line</MenuItem>
                     </Select>
                 </FormControl>
-                <div className={classes.root}>
+            </div>
+            <div className="toolbox2">
+                        <Typography id="slider" gutterBottom>
+                            Fill Color
+                        </Typography>
                     <Slider 
                         name="fill"
                         label="Fill"
                         onChange={(e,v) => handleInputChange("width", v)} />
-                </div>
-                <div className={classes.margin}>
                     <Slider 
-                        name="stroke"
-                        label="Stroke"
-                        onChange={handleInputChange} />
-                </div>
-           
-                    <div className={classes.root}>
+                        name="fill"
+                        label="Fill"
+                        onChange={(e,v) => handleInputChange("width", v)} />
+                    <Slider 
+                        name="fill"
+                        label="Fill"
+                        onChange={(e,v) => handleInputChange("width", v)} />
+          
+            </div>
+            <div className="toolbox4">
                         <Typography id="vertical-slider" gutterBottom>
                             Width
                         </Typography>
@@ -109,8 +104,6 @@ const ShapeEdit = props => {
                             value={shape.width}
                             valueLabelDisplay='auto'
                             onChange={(e,v) => handleInputChange("width", v)} />
-                    </div>
-                    <div className={classes.margin}>
                         <Typography id="vertical-slider" gutterBottom>
                             Amount
                         </Typography>
@@ -123,10 +116,8 @@ const ShapeEdit = props => {
                             valueLabelDisplay='auto'
                             onChange={(e,v) => handleInputChange("amount", v)}
                             />
-                    </div>
-                    <div className={classes.margin}>
                         <Typography id="vertical-slider" gutterBottom>
-                            Orgit Speed
+                            Orbit
                         </Typography>
                         <Slider
                             name="orbit"
@@ -136,10 +127,8 @@ const ShapeEdit = props => {
                             value={shape.orbit}
                             valueLabelDisplay='auto'
                             onChange={(e,v) => handleInputChange("orbit", v)} />
-                    </div>
-                    <div className={classes.margin}>
                         <Typography id="vertical-slider" gutterBottom>
-                            Spin Speed
+                            Spin
                         </Typography>
                         <Slider
                             name="spin"
@@ -150,8 +139,28 @@ const ShapeEdit = props => {
                             valueLabelDisplay='auto'
                             onChange={(e,v) => handleInputChange("spin", v)}
                             />
-                    </div>
+            </div>
+            <div className="toolbox3">
+                    <Typography id="slider" gutterBottom>
+                            Stroke Color
+                        </Typography>
+                    <Slider 
+                        name="stroke"
+                        label="Stroke"
+                        onChange={handleInputChange} />
+                    <Slider 
+                        name="stroke"
+                        label="Stroke"
+                        onChange={handleInputChange} />
+                    <Slider 
+                        name="stroke"
+                        label="Stroke"
+                        onChange={handleInputChange} />
+            </div>  
+            
         </div>
+        <Divider />
+        </>
     )
 }
 

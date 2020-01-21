@@ -26,7 +26,6 @@ const CanvasSettings = props => {
                 Background Color
             </Typography>
             <Slider 
-                orientation="vertical" 
                 valueLabelDisplay='on' 
                 value={background[0]}
                 min={0}
@@ -34,7 +33,6 @@ const CanvasSettings = props => {
                 lable="Red" 
                 onChange={(e,v) => handleChange(0, v)} />
             <Slider 
-                orientation="vertical" 
                 valueLabelDisplay='on' 
                 value={background[1]}
                 min={0}
@@ -42,7 +40,6 @@ const CanvasSettings = props => {
                 label="Blue" 
                 onChange={(e,v) => handleChange(1, v)} />
             <Slider 
-                orientation="vertical" 
                 valueLabelDisplay='on' 
                 value={background[2]}
                 min={0}
