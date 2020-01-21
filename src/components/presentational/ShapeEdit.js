@@ -55,8 +55,8 @@ const ShapeEdit = props => {
     const classes = useStyles();
 
     return (
-        <Grid container spacing={1}>
-            <Grid item xs >
+        <div className="tool" >
+
             <h3>Shape</h3>
             <Button onClick={handleSubmit}>Save Shape</Button>
             <Button onClick={handleDelete}>Delete Shape</Button>
@@ -85,8 +85,6 @@ const ShapeEdit = props => {
                         <MenuItem value="line" >Line</MenuItem>
                     </Select>
                 </FormControl>
-            </Grid>
-            <Grid item xs={3}>
                 <div className={classes.root}>
                     <Slider 
                         name="fill"
@@ -99,7 +97,7 @@ const ShapeEdit = props => {
                         label="Stroke"
                         onChange={handleInputChange} />
                 </div>
-            <Grid item xs={3} >
+           
                     <div className={classes.root}>
                         <Typography id="vertical-slider" gutterBottom>
                             Width
@@ -153,9 +151,7 @@ const ShapeEdit = props => {
                             onChange={(e,v) => handleInputChange("spin", v)}
                             />
                     </div>
-            </Grid>
-            </Grid>
-        </Grid>
+        </div>
     )
 }
 

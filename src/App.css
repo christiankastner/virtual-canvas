@@ -73,23 +73,25 @@ h1 {
   text-align: center;
 }
 
-.canvas-container {
-  text-align: center;
-}
-
-.canvas {
-  text-align: center;
-  background-color: #222;
-  width: 500px;
-  height: 500px;
-}
-
 .canvas-show {
   /* background-color: black; */
   height: 100%;
   width: 100%;
+  padding: 30px;
 }
 
-.color-slider {
-  width: 300px;
+.canvas-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-height: 625px;
+} 
+
+.canvas {
+  width: 600px;
+  text-align: center;
+}
+
+.tools-container {
+  height: 625px;
+  overflow: scroll;
 }

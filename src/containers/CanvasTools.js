@@ -13,14 +13,14 @@ const CanvasTools = (props) => {
         switch (props.selected) {
             case "shapes":
                 return (
-                    <div className="tools">
+                    <div className="tools-container">
                         <Button onClick={() => handleNewAnimation('p5_shape')}>Create New Shape</Button>
                         {props.myShapes ? props.myShapes.map(shape => <ShapeEdit shape={shape} />) : null}
                     </div>
                 )
             case "bursts":
                 return (
-                    <div className="tools">
+                    <div className="tools-container">
                         <Button onClick={() => handleNewAnimation('animate_mo')} >Create New Burst</Button>
                         {props.myBursts ? props.myBursts.map(animation => <BurstEdit animation={animation} />) : null}
                     </div>

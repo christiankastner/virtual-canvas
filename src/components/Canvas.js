@@ -141,7 +141,7 @@ class Canvas extends React.Component {
 
     render() {
         return (
-            <div id="canvas-container" onClick={this.handleClick} ref={this.myRef}>
+            <div id="canvas" className="canvas" onClick={this.handleClick} ref={this.myRef}>
                 
             </div>
         )
