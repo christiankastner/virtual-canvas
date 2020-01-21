@@ -97,12 +97,18 @@ const ShapeEdit = props => {
                         </Typography>
                     <Slider 
                         value={shape.fill[0]}
+                        min={0}
+                        max={255}
                         onChange={(e,v) => handleColorChange(0, "fill", v)} />
                     <Slider 
                         value={shape.fill[1]}
+                        min={0}
+                        max={255}
                         onChange={(e,v) => handleColorChange(1, "fill", v)} />
                     <Slider 
                         value={shape.fill[2]}
+                        min={0}
+                        max={255}
                         onChange={(e,v) => handleColorChange(2, "fill", v)} />
           
             </div>
@@ -175,15 +181,24 @@ const ShapeEdit = props => {
                         </Typography>
                     <Slider 
                         name="stroke"
+                        value={shape.stroke[0]}
+                        min={0}
+                        max={255}
                         aria-label="Stroke"
                         onChange={(e,v) => handleColorChange(0, "stroke", v)} />
                     <Slider 
                         name="stroke"
                         label="Stroke"
+                        value={shape.stroke[1]}
+                        min={0}
+                        max={255}
                         onChange={(e,v) => handleColorChange(1, "stroke", v)} />
                     <Slider 
                         name="stroke"
                         label="Stroke"
+                        value={shape.stroke[2]}
+                        min={0}
+                        max={255}
                         onChange={(e,v) => handleColorChange(2, "stroke", v)} />
             </div>  
             

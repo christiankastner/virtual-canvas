@@ -12,12 +12,11 @@ class P5ReactAdapter {
     static readJsonShape(json, frequencyMapping, p) {
         p.push()
 
-        p.fill(`rgb(1,33,23)`)
-        console.log(json.stroke)
+        p.fill(`rgb(${json.fill})`)
         p.stroke(`rgb(${json.stroke})`)
 
         const {width, height, amount, spin, orbit, shape} = json
-        p.rotate(orbit * p.frameCount)
+        p.rotate(orbit * p.frameCount/10)
         switch (shape) {
             case "rect":
                 //This will allow the shape to rotate around its own axis
@@ -26,7 +25,7 @@ class P5ReactAdapter {
                         p.rotate((360/amount)*i)
                         p.push()
                             p.translate(frequencyMapping,frequencyMapping)
-                            p.rotate(spin * p.frameCount)
+                            p.rotate(spin * p.frameCount/10)
                             p.rectMode(p.CENTER)
                             p.rect(0, 0, width, height)
                         p.pop()

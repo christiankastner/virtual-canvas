@@ -33,7 +33,6 @@ export default function canvasReducer(state = initialState, action) {
                 admin: action.canvas.user.id
             }
         case "PATCH_CANVAS":
-            console.log(action.canvas)
             return {
                 ...state,
                 canvas: action.canvas.picture
