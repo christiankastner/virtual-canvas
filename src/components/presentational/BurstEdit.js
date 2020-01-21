@@ -45,7 +45,7 @@ const BurstEdit = props => {
     return (
         <>
         <div className="tool-burst">
-            <div classNamE="burst1">
+            <div className="burst1">
             <h3>Burst</h3>
             <Button onClick={handleSubmit}>Save Burst</Button>
             <Button onClick={handleDelete}>Delete Burst</Button>
@@ -59,7 +59,6 @@ const BurstEdit = props => {
                         onChange={(e,v) => handleInputChange("shape", e.target.value)}>
                         <MenuItem value="circle" >Circle</MenuItem>
                         <MenuItem value="rect" >Rectangle</MenuItem>
-                        <MenuItem value="cross" >Cross</MenuItem>
                         <MenuItem value="polygon" >Polygon</MenuItem>
                         <MenuItem value="zigzag" >Zigzag</MenuItem>
                         <MenuItem value="curve" >Curve</MenuItem>

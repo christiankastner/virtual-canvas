@@ -46,7 +46,14 @@ header {
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.3s ease 0s;
+}
+
+.toggle-btn {
+  padding: 8px 25px;
+  margin: 10px;
+  background-color: rgba(234,0,217,1);
+  border: none;
+  border-radius: 50px;
 }
 
 body, html {
@@ -66,10 +73,10 @@ h1 {
 
 .banner-img {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('dance-floor.jpg');
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 1000px;
+  height: 700px;
 }
 
 .banner-text {
@@ -78,7 +85,19 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  z-index: 5;
+  width: 45%;
+  padding: 40px 0;
+  border-top-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  background-color: rgba(0,0,0,0.3);
+  color: #fff;
+  border: 10px inset #fff;
+}
+
+.about-container {
+  text-align: center;
+  padding: 20px;
 }
 
 .canvas-show {
@@ -112,7 +131,9 @@ h1 {
 }
 
 .tool-burst {
-  display: flex;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  padding: 10px;
 }
 
 .burst1, .burst2 {

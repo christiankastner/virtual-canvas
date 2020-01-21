@@ -32,7 +32,7 @@ class CanvasShow extends React.Component {
             <div className="canvas-show">
 
                 <h2>{this.props.canvas.title}</h2>
-                {localStorage["id"] ? <Button onClick={this.handleSaveCanvas}>Bookmark Canvas</Button> : null}
+                {localStorage["id"] && !this.props.admin ? <Button onClick={this.handleSaveCanvas}>Bookmark Canvas</Button> : null}
                 <CanvasShowContainer 
                     paramsId={this.props.match.params.id} />
             </div>
@@ -42,7 +42,8 @@ class CanvasShow extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        canvas: state.canvas
+        canvas: state.canvas,
+        admin: state.admin
     }
 }
 

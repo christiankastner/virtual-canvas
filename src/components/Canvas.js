@@ -87,16 +87,18 @@ class Canvas extends React.Component {
 
         p.mouseClicked = () => {
             if (this.props.selected === "bursts") {
-                this.canvasChannel.send({
-                    canvas_id: this.props.paramsId,
-                    burst: {
-                        user_id: localStorage["id"],
-                        tune : {
-                            x: p.mouseX,
-                            y: p.mouseY
+                if (p.mouseX * p.mouseY > 0 && p.mouseX < 600 && p.mouseY < 600) {
+                    this.canvasChannel.send({
+                        canvas_id: this.props.paramsId,
+                        burst: {
+                            user_id: localStorage["id"],
+                            tune : {
+                                x: p.winMouseX,
+                                y: p.winMouseY
+                            }
                         }
-                    }
-                })
+                    })
+                }
             }
         }
       
@@ -139,8 +141,6 @@ class Canvas extends React.Component {
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "treble", mapTreble, p)
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "mid", mapMid, p)
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "bass", mapBass, p)
-
-
         };
     }
 
@@ -179,6 +179,7 @@ const mapStateToProps = state => {
             return {
                 user_id: animation.user_id,
                 burst: new mojs.Burst({
+                    parent: document.getElementById("canvas"),
                     left: 0, top: 0,
                     count: animation.count,
                     angle: {0: animation.angle},
@@ -188,7 +189,7 @@ const mapStateToProps = state => {
                         fill:    animation.color,
                         radius:     20,
                         strokeWidth: animation.stroke_width,
-                        duration:   animation.duration
+                        duration:   animation.duration*100
                     }
                 })
             }

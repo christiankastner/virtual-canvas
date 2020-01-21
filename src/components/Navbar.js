@@ -9,9 +9,11 @@ const Navbar = props => {
             return (
                 <>
                     <li>
-                        <button onClick={props.handleLogout}>
-                            Log out
-                        </button>
+                        <NavLink exact to="/" >
+                            <button onClick={props.handleLogout}>
+                                Log out
+                            </button>
+                        </NavLink>
                     </li>
                     <li>
                         <NavLink exact to="/user" >  

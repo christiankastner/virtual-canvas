@@ -70,24 +70,25 @@ const CanvasSettings = props => {
             <Typography id="vertical-slider" gutterBottom>
                 Background Color
             </Typography>
-            <div className="red-slider">
-                <RedSlider 
-                    value={background[0]}
-                    min={0}
-                    max={255}
-                    lable="Red" 
-                    onChange={(e,v) => handleChange(0, v)} />
-            </div>
+            <RedSlider 
+                value={background[0]}
+                min={0}
+                max={255}
+                lable="Red" 
+                valueLabelDisplay='auto'
+                onChange={(e,v) => handleChange(0, v)} />
             <BlueSlider 
                 value={background[1]}
                 min={0}
                 max={255}
+                valueLabelDisplay='auto'valueLabelDisplay='auto'
                 label="Blue" 
                 onChange={(e,v) => handleChange(1, v)} />
             <GreenSlider 
                 value={background[2]}
                 min={0}
                 max={255}
+                valueLabelDisplay='auto'
                 label="Green" 
                 onChange={(e,v) => handleChange(2, v)} />
         </div>

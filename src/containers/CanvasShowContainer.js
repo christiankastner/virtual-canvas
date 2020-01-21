@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button'
 const CanvasShowContainer = props => {
     return (
         <>
-            <ButtonGroup >
+            { localStorage["id"] ? <ButtonGroup >
                 <Button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "shapes"})}>
                     Shapes
                 </Button>
@@ -21,7 +21,7 @@ const CanvasShowContainer = props => {
                 {localStorage["id"] == props.admin ? <Button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "settings"})}>
                     Settings
                 </Button> : ""}
-            </ButtonGroup>
+            </ButtonGroup> : "" }
             <div id="canvas-container" className="canvas-container">
                 <Canvas paramsId={props.paramsId} />
                 <CanvasTools />
