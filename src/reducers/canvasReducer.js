@@ -32,6 +32,12 @@ export default function canvasReducer(state = initialState, action) {
                 myShapes: action.canvas.p5_shapes.filter(animation => animation.user_id == localStorage["id"]),
                 admin: action.canvas.user.id
             }
+        case "PATCH_CANVAS":
+            console.log(action.canvas)
+            return {
+                ...state,
+                canvas: action.canvas.picture
+            }
         case "HTTP_NEW_BURST":
             return {
                 ...state,

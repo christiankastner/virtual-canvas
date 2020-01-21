@@ -53,7 +53,6 @@ class App extends React.Component {
             loggedin: true,
             modal: false
         }, () => {
-
             localStorage.setItem('id', json.id)
             localStorage.setItem('email', json.email)     
         })

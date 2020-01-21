@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider'
 import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import { HEADERS, API_ROOT } from '../../constants';
 
 const CanvasSettings = props => {
     const [background, setBackground] = useState([...props.canvas.background.split(',').map(num => parseInt(num))])
@@ -18,10 +20,27 @@ const CanvasSettings = props => {
         margin: {
           height: theme.spacing(3),
         },
-     }));
+    }));
+
+    const handleSaveCanvas = () => {
+        fetch(`${API_ROOT}/pictures/${props.canvas.id}`, {
+            method: "PATCH",
+            headers: HEADERS,
+            body: JSON.stringify({
+                picture: {
+                    background: background.join(',')
+                }
+            })
+        })
+            .then(resp => resp.json())
+            .then(json => {
+                console.log(json)
+            })
+    }
 
     return (
         <div className={useStyles().root}>
+            <Button onClick={handleSaveCanvas}>Save Canvas</Button>
             <Typography id="vertical-slider" gutterBottom>
                 Background Color
             </Typography>
