@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { API_ROOT, HEADERS } from '../../constants/index';
 import { Slider, Button, FormControl, MenuItem, Select, Typography, Divider } from '@material-ui/core';
-
+import { withStyles } from '@material-ui/core/styles'
 
 const ShapeEdit = props => {
 
-    const [shape, setShape] = useState({...props.shape})
+    const [shape, setShape] = useState({
+        ...props.shape,
+        fill: [...props.shape.fill.split(',').map(num => parseInt(num))],
+        stroke: [...props.shape.stroke.split(',').map(num => parseInt(num))]
+    })
 
     const handleSubmit = () => {
         fetch(`${API_ROOT}/p5_shapes/${props.shape.id}`, {
@@ -14,7 +18,9 @@ const ShapeEdit = props => {
             headers: HEADERS,
             body: JSON.stringify({
                 p5_shape: {
-                    ...shape
+                    ...shape,
+                    stroke: shape.stroke.join(','),
+                    fill: shape.fill.join(',')
                 }
             })}
         )
@@ -36,10 +42,18 @@ const ShapeEdit = props => {
     }
 
     const handleInputChange = (name, value) => {
+        console.log(name,value)
         setShape({
                 ...shape, 
                 [name]: value
             })
+    }
+
+    const handleColorChange = (id, name, value) => {
+        setShape({
+            ...shape,
+            [name]: [...shape[name].slice(0,id), value, ...shape[name].slice(id + 1)]
+        })
     }
 
     return (
@@ -54,8 +68,9 @@ const ShapeEdit = props => {
                         labelId="frequency-select"
                         id="frequency"
                         name="frequency"
+                        defaultValue={""}
                         value={shape.frequency} 
-                        onChange={handleInputChange}>
+                        onChange={(e,v) => handleInputChange("frequency", e.target.value)}>
                         <MenuItem value="treble" >Treble</MenuItem>
                         <MenuItem value="mid" >Mid</MenuItem>
                         <MenuItem value="bass" >Bass</MenuItem>
@@ -66,8 +81,9 @@ const ShapeEdit = props => {
                         labelId="shape-select"
                         id="shape"
                         name="shape"
+                        defaultValue={""}
                         value={shape.shape} 
-                        onChange={handleInputChange}>
+                        onChange={(e,v) => handleInputChange("shape", e.target.value)}>
                         <MenuItem value="rect" >Rectangle</MenuItem>
                         <MenuItem value="ellipse" >Ellipse</MenuItem>
                         <MenuItem value="triangle" >Triangle</MenuItem>
@@ -80,17 +96,14 @@ const ShapeEdit = props => {
                             Fill Color
                         </Typography>
                     <Slider 
-                        name="fill"
-                        label="Fill"
-                        onChange={(e,v) => handleInputChange("width", v)} />
+                        value={shape.fill[0]}
+                        onChange={(e,v) => handleColorChange(0, "fill", v)} />
                     <Slider 
-                        name="fill"
-                        label="Fill"
-                        onChange={(e,v) => handleInputChange("width", v)} />
+                        value={shape.fill[1]}
+                        onChange={(e,v) => handleColorChange(1, "fill", v)} />
                     <Slider 
-                        name="fill"
-                        label="Fill"
-                        onChange={(e,v) => handleInputChange("width", v)} />
+                        value={shape.fill[2]}
+                        onChange={(e,v) => handleColorChange(2, "fill", v)} />
           
             </div>
             <div className="toolbox4">
@@ -100,16 +113,32 @@ const ShapeEdit = props => {
                         <Slider 
                             name="width"
                             label="Width"
+                            min={0}
+                            max={50}
                             orientation="vertical"
                             value={shape.width}
                             valueLabelDisplay='auto'
                             onChange={(e,v) => handleInputChange("width", v)} />
+                        <Typography id="vertical-slider" gutterBottom>
+                            Height
+                        </Typography>
+                        <Slider 
+                            name="height"
+                            label="height"
+                            min={0}
+                            max={50}
+                            orientation="vertical"
+                            value={shape.height}
+                            valueLabelDisplay='auto'
+                            onChange={(e,v) => handleInputChange("height", v)} />
                         <Typography id="vertical-slider" gutterBottom>
                             Amount
                         </Typography>
                         <Slider 
                             name="amount"
                             label="Amount"
+                            min={0}
+                            max={20}
                             onChange={handleInputChange} 
                             orientation="vertical"
                             value={shape.amount}
@@ -146,16 +175,16 @@ const ShapeEdit = props => {
                         </Typography>
                     <Slider 
                         name="stroke"
-                        label="Stroke"
-                        onChange={handleInputChange} />
+                        aria-label="Stroke"
+                        onChange={(e,v) => handleColorChange(0, "stroke", v)} />
                     <Slider 
                         name="stroke"
                         label="Stroke"
-                        onChange={handleInputChange} />
+                        onChange={(e,v) => handleColorChange(1, "stroke", v)} />
                     <Slider 
                         name="stroke"
                         label="Stroke"
-                        onChange={handleInputChange} />
+                        onChange={(e,v) => handleColorChange(2, "stroke", v)} />
             </div>  
             
         </div>

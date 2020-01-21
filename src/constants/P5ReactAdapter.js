@@ -11,17 +11,10 @@ class P5ReactAdapter {
 
     static readJsonShape(json, frequencyMapping, p) {
         p.push()
-        if (json.fill) {
-            p.fill(json.fill)
-        } else {
-            p.noFill()
-        }
 
-        if (json.stroke) {
-            p.stroke(json.stroke)
-        } else {
-            p.noStroke()
-        }
+        p.fill(`rgb(1,33,23)`)
+        console.log(json.stroke)
+        p.stroke(`rgb(${json.stroke})`)
 
         const {width, height, amount, spin, orbit, shape} = json
         p.rotate(orbit * p.frameCount)
