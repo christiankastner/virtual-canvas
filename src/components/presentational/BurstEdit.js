@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { API_ROOT, HEADERS } from '../../constants/index';
-import { Slider, Button, InputLabel, FormControl, MenuItem, Select, TextField } from '@material-ui/core';
+import { Slider, Button, Typography, FormControl, MenuItem, Select, Divider } from '@material-ui/core';
 
 const BurstEdit = props => {
   
     const [burst, setBurst] = useState({...props.animation})
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target
+    const handleInputChange = (name, value) => {
+        console.log(name,value)
         setBurst({
                 ...burst, 
                 [name]: value
@@ -43,7 +43,9 @@ const BurstEdit = props => {
     }
     
     return (
-        <div>
+        <>
+        <div className="tool-burst">
+            <div classNamE="burst1">
             <h3>Burst</h3>
             <Button onClick={handleSubmit}>Save Burst</Button>
             <Button onClick={handleDelete}>Delete Burst</Button>
@@ -54,7 +56,7 @@ const BurstEdit = props => {
                         id="shape"
                         name="shape"
                         value={burst.shape} 
-                        onChange={handleInputChange}>
+                        onChange={(e,v) => handleInputChange("shape", e.target.value)}>
                         <MenuItem value="circle" >Circle</MenuItem>
                         <MenuItem value="rect" >Rectangle</MenuItem>
                         <MenuItem value="cross" >Cross</MenuItem>
@@ -63,38 +65,89 @@ const BurstEdit = props => {
                         <MenuItem value="curve" >Curve</MenuItem>
                     </Select>
                 </FormControl>
-                <form>
-                    <TextField 
+                <FormControl>
+                    <Select 
+                        labelId="color-select"
+                        id="color"
                         name="color"
-                        label="Color"
-                        onChange={handleInputChange} />
-                    <TextField 
+                        value={burst.color} 
+                        onChange={(e,v) => handleInputChange("shape", e.target.value)}>
+                        <MenuItem value="red" >Red</MenuItem>
+                        <MenuItem value="yellow" >Yellow</MenuItem>
+                        <MenuItem value="pink" >Pink</MenuItem>
+                        <MenuItem value="blue" >Blue</MenuItem>
+                        <MenuItem value="cyan" >Cyan</MenuItem>
+                        <MenuItem value="magenta">Magenta</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+                <div className="burst2">
+                    <Typography id="slider" gutterBottom>
+                        Radius 1
+                    </Typography>
+                    <Slider
                         name="radius_1"
+                        orientation="vertical"
+                        value={burst["radius_1"]}
                         label="Radius 1"
-                        onChange={handleInputChange} />
-                    <TextField 
+                        valueLabelDisplay='auto'
+                        onChange={(e,v) => handleInputChange("radius_1", v)} />
+                    <Typography id="slider" gutterBottom>
+                        Radius 2
+                    </Typography>
+                    <Slider 
                         name="radius_2"
+                        orientation="vertical"
+                        value={burst["radius_2"]}
                         label="Radius 2"
-                        onChange={handleInputChange} />
-                    <TextField 
+                        valueLabelDisplay='auto'
+                        onChange={(e,v) => handleInputChange("radius_2", v)} />
+                    <Typography id="slider" gutterBottom>
+                        Count
+                    </Typography>
+                    <Slider 
                         name="count"
+                        orientation="vertical"
+                        value={burst.count}
                         label="Count"
-                        onChange={handleInputChange} />
-                    <TextField 
+                        max={20}
+                        valueLabelDisplay='auto'
+                        onChange={(e,v) => handleInputChange("count", v)} />
+                    <Typography id="slider" gutterBottom>
+                        Duration
+                    </Typography>
+                    <Slider 
                         name="duration"
+                        value={burst.duration}
+                        orientation="vertical"
                         label="Duration"
-                        onChange={handleInputChange} />
-                    <TextField 
+                        valueLabelDisplay='auto'
+                        onChange={(e,v) => handleInputChange("duration", v)} />
+                    <Typography id="slider" gutterBottom>
+                        Angle
+                    </Typography>
+                    <Slider 
                         name="angle"
+                        orientation="vertical"
+                        value={burst.angle}
                         label="Angle"
-                        onChange={handleInputChange} />
-                    <TextField 
+                        valueLabelDisplay='auto'
+                        onChange={(e,v) => handleInputChange("angle", v)} />
+                    <Typography id="slider" gutterBottom>
+                        Stroke Width
+                    </Typography>
+                    <Slider
                         name="stroke_width"
+                        orientation="vertical"
+                        value={burst["stroke_width"]}
                         label="Stroke Width"
-                        onChange={handleInputChange} />
-                </form>
+                        valueLabelDisplay='auto'
+                        onChange={(e,v) => handleInputChange("stroke_width", v)} />
+                </div>
             </div>
         </div>
+        <Divider />
+    </>
     )
 }
 

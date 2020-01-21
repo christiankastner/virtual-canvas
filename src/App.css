@@ -65,7 +65,7 @@ h1 {
 }
 
 .banner-img {
-  background-image: url('dance-floor.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('dance-floor.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -109,6 +109,19 @@ h1 {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   padding: 10px;
+}
+
+.tool-burst {
+  display: flex;
+}
+
+.burst1, .burst2 {
+  height: 150px;
+  padding: 10px;
+}
+
+.burst2 {
+  display: flex;
 }
 
 .toolbox1, .toolbox2, .toolbox3, .toolbox4 {
