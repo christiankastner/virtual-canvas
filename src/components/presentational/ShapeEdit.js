@@ -86,10 +86,9 @@ const ShapeEdit = props => {
     return (
         <>
         <div className="tool" >
-            <div className="toolbox1">
-            <h3>Shape</h3>
             <Button onClick={handleSubmit}>Save Shape</Button>
             <Button onClick={handleDelete}>Delete Shape</Button>
+            <div className="toolbox1">
                 <FormControl>
                     <Select 
                         labelId="frequency-select"
@@ -117,6 +116,28 @@ const ShapeEdit = props => {
                         <MenuItem value="line" >Line</MenuItem>
                     </Select>
                 </FormControl>
+                <Typography id="vertical-slider" gutterBottom>
+                    Stagger Radius 
+                </Typography>
+                <Slider 
+                    name="stagger_radius"
+                    label="stagger_radius"
+                    min={-10}
+                    max={10}
+                    value={shape["stagger_radius"]}
+                    valueLabelDisplay='auto'
+                    onChange={(e,v) => handleInputChange("stagger_radius", v)} />
+                <Typography id="vertical-slider" gutterBottom>
+                    Stagger Place
+                </Typography>
+                <Slider 
+                    name="stagger_place"
+                    label="stagger_place"
+                    min={-10}
+                    max={10}
+                    value={shape['stagger_place']}
+                    valueLabelDisplay='auto'
+                    onChange={(e,v) => handleInputChange("stagger_place", v)} />
             </div>
             <div className="toolbox2">
                         <Typography id="slider" gutterBottom>

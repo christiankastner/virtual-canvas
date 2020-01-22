@@ -184,7 +184,7 @@ const mapStateToProps = state => {
         canvas: state.canvas,
         selected: state.selected,
         shapes: state.canvasShapes,
-        bursts: state.canvasBursts.map(animation => {
+        bursts: state.canvasBursts ? state.canvasBursts.map(animation => {
             return {
                 user_id: animation.user_id,
                 burst: new mojs.Burst({
@@ -202,7 +202,7 @@ const mapStateToProps = state => {
                     }
                 })
             }
-        })
+        }) : []
     }
 }
 

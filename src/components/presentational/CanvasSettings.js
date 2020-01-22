@@ -65,7 +65,13 @@ const CanvasSettings = props => {
             headers: HEADERS,
             body: JSON.stringify({
                 picture: {
-                    background: background.join(',')
+                    background: background.join(','),
+                    bass_mapping_1: bass[0],
+                    bass_mapping_2: bass[1],
+                    mid_mapping_1: mid[0],
+                    mid_mapping_2: mid[1],
+                    treble_mapping_1: treble[0],
+                    treble_mapping_2: treble[1]
                 }
             })
         })
@@ -113,7 +119,7 @@ const CanvasSettings = props => {
                 max={300}
                 label="bass"
                 valueLabelDisplay='auto'
-                onChange={(e,v) => handleRangeChange("bass", v)} />
+                onChange={(e,v) => setBass(v)} />
             <Typography id="vertical-slider" gutterBottom>
                 Mid Mapping
             </Typography>
@@ -123,7 +129,7 @@ const CanvasSettings = props => {
                 label="mid"
                 max={300}
                 valueLabelDisplay='auto'
-                onChange={(e,v) => handleRangeChange("mid", v)} />
+                onChange={(e,v) => setMid(v)} />
             <Typography id="vertical-slider" gutterBottom>
                 Treble Mapping
             </Typography>
@@ -133,7 +139,7 @@ const CanvasSettings = props => {
                 label="treble"
                 max={300}
                 valueLabelDisplay='auto'
-                onChange={(e,v) => handleRangeChange("treble", v)} />
+                onChange={(e,v) => setTreble(v)} />
         </div>
         <Divider />
         </>

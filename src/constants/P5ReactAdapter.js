@@ -15,16 +15,16 @@ class P5ReactAdapter {
         p.fill(`rgb(${json.fill})`)
         p.stroke(`rgb(${json.stroke})`)
 
-        const {width, height, amount, spin, orbit, shape} = json
+        const {width, height, amount, spin, orbit, shape, stagger_radius, stagger_place } = json
         p.rotate(orbit * p.frameCount/10)
         switch (shape) {
             case "rect":
                 //This will allow the shape to rotate around its own axis
                 for (let i = 0; i < amount; i++) {
                     p.push()
-                        p.rotate((360/amount)*i)
+                        p.rotate((360/amount) * i + stagger_place)
                         p.push()
-                            p.translate(frequencyMapping,frequencyMapping)
+                            p.translate(frequencyMapping + stagger_radius, frequencyMapping + stagger_radius)
                             p.rotate(spin * p.frameCount/10)
                             p.rectMode(p.CENTER)
                             p.rect(0, 0, width, height)
