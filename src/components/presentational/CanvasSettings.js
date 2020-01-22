@@ -44,14 +44,20 @@ const BlueSlider = withStyles({
 
 const CanvasSettings = props => {
     const [background, setBackground] = useState([...props.canvas.background.split(',').map(num => parseInt(num))])
+    const [bass, setBass] = useState([props.canvas.bass_mapping_1, props.canvas.bass_mapping_2])
+    const [mid, setMid] = useState([props.canvas.mid_mapping_1, props.canvas.mid_mapping_2])
+    const [treble, setTreble] = useState([props.canvas.treble_mapping_1, props.canvas.treble_mapping_2])
+
 
     const handleChange = (num,v) => {
         setBackground([...background.slice(0,num), v, ...background.slice(num+1)])
     }
 
-    const handleInputChange = () => {
-        
+    const handleRangeChange = (name, v) => {
+        console.log(name,v)
     }
+
+    
 
     const handleSaveCanvas = () => {
         fetch(`${API_ROOT}/pictures/${props.canvas.id}`, {
@@ -73,9 +79,7 @@ const CanvasSettings = props => {
         <>
         <div className="canvas-settings">
             <Button onClick={handleSaveCanvas}>Save Canvas</Button>
-            <Typography id="vertical-slider" gutterBottom>
-                Background Color
-            </Typography>
+            <h3>Background Color</h3>
             <RedSlider 
                 value={background[0]}
                 min={0}
@@ -99,17 +103,37 @@ const CanvasSettings = props => {
                 onChange={(e,v) => handleChange(2, v)} />
         </div>
         <div className="canvas-settings">
-            <h1>Frequency Mappings</h1>
+            <h3>Frequencies </h3>
             <Typography id="vertical-slider" gutterBottom>
                 Bass Mapping
             </Typography>
             <Slider
-                name="radius_1"
-                orientation="vertical"
-                value={0}
-                label="Radius 1"
+                name="bass"
+                value={bass}
+                max={300}
+                label="bass"
                 valueLabelDisplay='auto'
-                onChange={(e,v) => handleInputChange("radius_1", v)} />
+                onChange={(e,v) => handleRangeChange("bass", v)} />
+            <Typography id="vertical-slider" gutterBottom>
+                Mid Mapping
+            </Typography>
+            <Slider
+                name="mid"
+                value={mid}
+                label="mid"
+                max={300}
+                valueLabelDisplay='auto'
+                onChange={(e,v) => handleRangeChange("mid", v)} />
+            <Typography id="vertical-slider" gutterBottom>
+                Treble Mapping
+            </Typography>
+            <Slider
+                name="treble"
+                value={treble}
+                label="treble"
+                max={300}
+                valueLabelDisplay='auto'
+                onChange={(e,v) => handleRangeChange("treble", v)} />
         </div>
         <Divider />
         </>

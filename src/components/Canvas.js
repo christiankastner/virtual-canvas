@@ -130,21 +130,22 @@ class Canvas extends React.Component {
         }
       
         p.draw = () => {
+            const { background, mid_mapping_1, mid_mapping_2, treble_mapping_1, treble_mapping_2, bass_mapping_1, bass_mapping_2} = this.props.canvas
     
-            p.background(`rgb(${this.props.canvas.background})`);
+            p.background(`rgb(${background})`);
 
             p.translate(p.width / 2, p.height / 2);
 
             p.level = analyzer.getLevel();
             fft.analyze();
 
-            var bass = fft.getEnergy(100, 150);
-            var treble = fft.getEnergy(150, 250);
+            var bass = fft.getEnergy('bass');
+            var treble = fft.getEnergy('treble');
             var mid = fft.getEnergy("mid");
 
-            var mapMid = p.map(mid, 0, 255, -100, 200);
-            var mapTreble = p.map(treble, 0, 255, 200, 350);
-            var mapBass = p.map(bass, 0, 255, 50, 200);
+            var mapMid = p.map(mid, 0, 255, mid_mapping_1, mid_mapping_2);
+            var mapTreble = p.map(treble, 0, 255, treble_mapping_1, treble_mapping_2);
+            var mapBass = p.map(bass, 0, 255, bass_mapping_1, bass_mapping_2);
 
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "treble", mapTreble, p)
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "mid", mapMid, p)
