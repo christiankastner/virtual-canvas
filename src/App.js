@@ -82,7 +82,7 @@ class App extends React.Component {
               handleOnSignup={this.handleUserFetch("users")} 
               toggleModal={this.toggleModal}
             />
-            {user ? <p>Hello, {user.displayName}</p> : null}
+            {/* {user ? <p>Hello, {user.displayName}</p> : null}
               {user ? (
                 <button
                   onClick={signOut}
@@ -95,7 +95,7 @@ class App extends React.Component {
                 >
                   Sign in with Google
                 </button>
-              )}
+              )} */}
             <Navbar loggedin={this.state.loggedin} 
               toggleModal={this.toggleModal} 
               handleLogout={this.handleLogout} 

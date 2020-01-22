@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { connect, useSelector } from 'react-redux';
 import { API_ROOT, HEADERS } from '../../constants/index';
 import { Slider, Button, FormControl, MenuItem, Select, Typography, Divider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles'
@@ -32,6 +32,16 @@ const BlueSlider = withStyles({
 })(Slider)
 
 const ShapeEdit = props => {
+
+    useEffect(() => {
+        if (props.shape.id !== shape.id) {
+            setShape({
+                ...props.shape,
+                fill: [...props.shape.fill.split(',').map(num => parseInt(num))],
+                stroke: [...props.shape.stroke.split(',').map(num => parseInt(num))]
+            })
+        }
+    })
 
     const [shape, setShape] = useState({
         ...props.shape,
@@ -69,7 +79,6 @@ const ShapeEdit = props => {
     }
 
     const handleInputChange = (name, value) => {
-        console.log(name,value)
         setShape({
                 ...shape, 
                 [name]: value
@@ -263,5 +272,6 @@ const ShapeEdit = props => {
         </>
     )
 }
+
 
 export default connect()(ShapeEdit)
