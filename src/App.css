@@ -100,6 +100,10 @@ h1 {
   padding: 20px;
 }
 
+.canvases-index {
+  display: flex;
+}
+
 .canvas-show {
   /* background-color: black; */
   height: 100%;
@@ -133,6 +137,10 @@ h1 {
 .tool-burst {
   display: grid;
   grid-template-rows: 1fr 1fr;
+  padding: 10px;
+}
+
+.canvas-settings {
   padding: 10px;
 }
 

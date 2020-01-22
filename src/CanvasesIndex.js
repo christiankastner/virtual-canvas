@@ -1,17 +1,14 @@
 import React from 'react';
 import CanvasesContainer from './containers/CanvasesContainer'
 
+const CanvasesIndex = props => {
 
-
-class CanvasesIndex extends React.Component {
-
-    render() {
-        return (
-            <div className="canvases-index" >
-                <CanvasesContainer />
-            </div>
-        )
-    }
+    return (
+        <div className="canvases-index" >
+            <CanvasesContainer />
+        </div>
+    )
+    
 }
 
 export default CanvasesIndex

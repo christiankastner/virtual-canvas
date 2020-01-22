@@ -12,6 +12,13 @@ class Canvas extends React.Component {
     constructor(props) {
         super(props);
         this.myRef = React.createRef();
+        this.state = {
+            connected: false
+        }
+    }
+
+    toggleConnection = () => {
+        this.setState({connected: !this.state.connected})
     }
 
     componentDidMount() {
@@ -44,9 +51,10 @@ class Canvas extends React.Component {
                 id: this.props.paramsId
             },{
                 connected: () => {
-                    console.log("Connected!")
+                    console.log("connected!")
+                    this.toggleConnection()
                 },
-                disconnected: () => console.log("pictureChannel disconnected"),
+                disconnected: () => this.toggleConnection(),
                 received: data => {
                     if ('type' in data) {
                         this.props.dispatch(data)
