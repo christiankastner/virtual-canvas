@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Slider from '@material-ui/core/Slider'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import Divider from '@material-ui/core/Divider'
 import { HEADERS, API_ROOT } from '../../constants';
 import { withStyles } from '@material-ui/core/styles'
 
@@ -48,6 +49,10 @@ const CanvasSettings = props => {
         setBackground([...background.slice(0,num), v, ...background.slice(num+1)])
     }
 
+    const handleInputChange = () => {
+        
+    }
+
     const handleSaveCanvas = () => {
         fetch(`${API_ROOT}/pictures/${props.canvas.id}`, {
             method: "PATCH",
@@ -65,6 +70,7 @@ const CanvasSettings = props => {
     }
 
     return (
+        <>
         <div className="canvas-settings">
             <Button onClick={handleSaveCanvas}>Save Canvas</Button>
             <Typography id="vertical-slider" gutterBottom>
@@ -92,6 +98,21 @@ const CanvasSettings = props => {
                 label="Green" 
                 onChange={(e,v) => handleChange(2, v)} />
         </div>
+        <div className="canvas-settings">
+            <h1>Frequency Mappings</h1>
+            <Typography id="vertical-slider" gutterBottom>
+                Bass Mapping
+            </Typography>
+            <Slider
+                name="radius_1"
+                orientation="vertical"
+                value={0}
+                label="Radius 1"
+                valueLabelDisplay='auto'
+                onChange={(e,v) => handleInputChange("radius_1", v)} />
+        </div>
+        <Divider />
+        </>
     )
 }
 

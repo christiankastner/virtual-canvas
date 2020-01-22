@@ -28,7 +28,11 @@ const CanvasTools = (props) => {
             case "paint":
                 return <PaintEdit />
             case "settings":
-                return <CanvasSettings />
+                return (
+                    <div className='tools-container' >
+                        <CanvasSettings />
+                    </div> 
+                )
             default:
                 return <></>
         }
