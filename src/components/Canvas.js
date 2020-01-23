@@ -81,7 +81,7 @@ class Canvas extends React.Component {
           this.uploadedAudio = p.loadSound(file.data, p.uploadedAudioPlay);
         }
 
-        p.mouseDragged = () => {
+        // p.mouseDragged = () => {
             // if (this.props.selected === "paint") {
             //     this.canvasChannel.send({
             //         canvas_id: this.props.paramsId,
@@ -91,7 +91,7 @@ class Canvas extends React.Component {
             //         }
             //     })
             // }
-        }
+        // }
 
         p.mouseClicked = () => {
             if (this.props.selected === "bursts") {
@@ -156,6 +156,7 @@ class Canvas extends React.Component {
     componentWillUnmount() {
         this.cable.disconnect()
         this.props.dispatch({type: "REMOVE_CANVAS"})
+        this.song.pause()
     }
 
     handleRecievedBurst = response => {
@@ -167,13 +168,11 @@ class Canvas extends React.Component {
                 bursts[i].burst.tune(tune).replay()
             }
         }
-        // this.props.bursts.find(animation => animation.id === id).burst.tune(tune).replay()
     }
 
     render() {
         return (
             <div id="canvas" className="canvas" onClick={this.handleClick} ref={this.myRef}>
-                
             </div>
         )
     }

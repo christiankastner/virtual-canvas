@@ -51,9 +51,10 @@ header {
 .toggle-btn {
   padding: 8px 25px;
   margin: 10px;
-  background-color: rgba(234,0,217,1);
+  background-color: rgb(25, 64, 131);
   border: none;
   border-radius: 50px;
+  color: white;
 }
 
 body, html {
@@ -101,14 +102,25 @@ h1 {
 }
 
 .canvases-index {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
+.canvas-list, .canvas-form {
+  margin: 50px;
+  padding: 10px;
+}
+
+
 .canvas-show {
-  background-color: rgb(9,24,50);
+  /* background-color: rgb(9,24,35); */
   height: 100%;
   width: 100%;
   padding: 30px;
+}
+
+.canvas-header {
+  text-align: center;
 }
 
 .canvas-container {
@@ -119,12 +131,26 @@ h1 {
 
 .canvas {
   width: 600px;
+  margin-top: 10px;
   text-align: center;
+  box-shadow: 0px 50px 100px 0px rgba(9,24,50, 0.25);
+}
+
+.canvas-card {
+  background-color: rgba(9,24,50, 0.1);
+  color: black;
+  border-radius: 10px;
+  height: 50px;
+  width: 200px;
+  padding: 15px;
 }
 
 .tools-container {
+  margin-left: 20px;
+  margin-top: 10px;
   height: 625px;
-  overflow: scroll;
+  overflow-y: scroll;
+  box-shadow: 0px 50px 100px 0px rgba(9,24,50, 0.25);
 }
 
 .tool {
@@ -141,7 +167,7 @@ h1 {
 }
 
 .canvas-settings {
-  padding: 10px;
+  padding: 15px;
 }
 
 .burst1, .burst2 {

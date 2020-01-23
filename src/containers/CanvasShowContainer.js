@@ -8,20 +8,6 @@ import Button from '@material-ui/core/Button'
 const CanvasShowContainer = props => {
     return (
         <>
-            { localStorage["id"] ? <ButtonGroup >
-                <Button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "shapes"})}>
-                    Shapes
-                </Button>
-                <Button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "bursts"})}>
-                    Bursts
-                </Button>
-                {/* <Button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "paint"})}>
-                    Paint
-                </Button>  */}
-                {localStorage["id"] == props.admin ? <Button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "settings"})}>
-                    Settings
-                </Button> : ""}
-            </ButtonGroup> : "" }
             <div id="canvas-container" className="canvas-container">
                 <Canvas paramsId={props.paramsId} />
                 <CanvasTools />

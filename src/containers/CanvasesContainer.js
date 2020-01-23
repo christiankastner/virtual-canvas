@@ -58,7 +58,11 @@ class CanvasesContainer extends React.Component {
     render() {
         return (
             <>
-                <div >
+                <div className="canvas-list">
+                    <h3>Active Canvases</h3>
+                    <DisplayCanvases canvases={this.state.canvases} />
+                </div>
+                <div className="canvas-form">
                     {localStorage["id"] ? <Form onChange={this.handleOnChange}>
                         <label>Name</label><br/>
                         <Form.Group >
@@ -68,10 +72,6 @@ class CanvasesContainer extends React.Component {
                             <Button onClick={() => this.handleNewCanvas()}>New Canvas</Button>
                         </Form.Group>
                     </Form> : ""}
-                </div>
-                <div>
-                    <h3>Canvases</h3>
-                    <DisplayCanvases canvases={this.state.canvases} />
                 </div>
             </>
         )

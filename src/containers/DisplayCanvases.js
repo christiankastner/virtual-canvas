@@ -1,4 +1,5 @@
 import React from 'react';
+import CanvasCard from '../components/presentational/CanvasCard'
 import { Link } from 'react-router-dom';
 
 const DisplayCanvases = (props) => {
@@ -6,9 +7,9 @@ const DisplayCanvases = (props) => {
         if (props.canvases && props.canvases.length > 0) {
             return props.canvases.map(canvas => {
                 return (
-                    <div key={canvas.id}>
+                    <div key={canvas.id} className='canvas-list'>
                         <Link key={canvas.id} to={`/canvases/${canvas.id}`} >
-                            {canvas.title}
+                            <CanvasCard canvas={canvas} user={canvas.user.username} />
                         </Link>
                     </div>
                 )
@@ -17,10 +18,10 @@ const DisplayCanvases = (props) => {
     }
 
     return (
-        <div className="canvas-list">
+        <>
         {props.title ? <h3>{props.title}</h3> : null}
             {renderCanvases()}
-        </div>
+        </>
     )
 }
 

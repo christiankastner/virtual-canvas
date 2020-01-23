@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { API_ROOT, HEADERS } from '../../constants/index';
 import { Slider, Button, FormControl, MenuItem, Select, Typography, Divider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles'
@@ -94,9 +94,11 @@ const ShapeEdit = props => {
 
     return (
         <>
-        <div className="tool" >
+        <div className="tool-header">
             <Button onClick={handleSubmit}>Save Shape</Button>
             <Button onClick={handleDelete}>Delete Shape</Button>
+        </div>
+        <div className="tool" >
             <div className="toolbox1">
                 <FormControl>
                     <Select 
