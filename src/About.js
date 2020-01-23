@@ -4,10 +4,11 @@ const About = () => {
 
     return (
         <div className="about-container" >
-
-            <h1>
-                About
-            </h1>
+            <div className="about-text" >
+                <h2>
+                    About
+                </h2>
+            </div>
             
         </div>
     )

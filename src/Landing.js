@@ -11,9 +11,6 @@ const Landing = () => {
                 <h1>
                     Virtual Canvas
                 </h1>
-                <p>
-                    Lorem ipsum
-                </p>
             </div>
         </div>
         <About>

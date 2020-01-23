@@ -1,12 +1,35 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles({
+    card: {
+        width: 200,
+        margin: 10
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    },
+});
 
 const CanvasCard = props => {
-
+    const classes = useStyles();
     return (
-        <div className="canvas-card" >
-            <h4>{props.canvas.title}</h4>
-            <p>{props.username}</p>
-        </div>
+        <Card className={classes.card}>
+            <CardContent className={classes.title}>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                    {props.user}
+                </Typography>
+                <Typography variant="h5" component="h2">
+                    {props.canvas.title}
+                </Typography>
+            </CardContent>  
+        </Card>
     )
 }
 

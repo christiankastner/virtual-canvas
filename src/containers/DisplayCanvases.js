@@ -7,21 +7,21 @@ const DisplayCanvases = (props) => {
         if (props.canvases && props.canvases.length > 0) {
             return props.canvases.map(canvas => {
                 return (
-                    <div key={canvas.id} className='canvas-list'>
+                    <li key={canvas.id}>
                         <Link key={canvas.id} to={`/canvases/${canvas.id}`} >
-                            <CanvasCard canvas={canvas} user={canvas.user.username} />
+                            <CanvasCard canvas={canvas} user={canvas.user ? canvas.user.name : ""} />
                         </Link>
-                    </div>
+                    </li>
                 )
             })
         }
     }
 
     return (
-        <>
-        {props.title ? <h3>{props.title}</h3> : null}
+        <ul>
+            {props.title ? <h3>{props.title}</h3> : ""}
             {renderCanvases()}
-        </>
+        </ul>
     )
 }
 

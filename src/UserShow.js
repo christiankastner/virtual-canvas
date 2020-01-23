@@ -1,6 +1,6 @@
 import React from 'react';
 import { API_ROOT } from './constants/index'
-import DisplayCanvases from './containers/DisplayCanvases'
+import CreatedCanvasesContainer from './containers/CreatedCanvasesContainer'
 
 class UserShow extends React.Component {
     constructor(props) {
@@ -28,13 +28,15 @@ class UserShow extends React.Component {
         return (
             <div className="user-show" >
                 <h2>
-                    Welcome {name}
+                    Welcome, {name}
                 </h2>
                 <h3>
                     Email: {email}
                 </h3>
-                <DisplayCanvases title="Created Canvases" canvases={pictures} />
-                <DisplayCanvases title="Bookmarked Canvases" canvases={bookmarkCanvases} />
+                <div className="user-canvases-container">
+                    { pictures ? <CreatedCanvasesContainer title="Created Canvases" canvases={pictures} /> : '' }
+                    {/* <DispklayCanvases title="Bookmarked Canvases" canvases={bookmarkCanvases} /> */}
+                </div>
             </div>
         )
     }

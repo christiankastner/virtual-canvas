@@ -97,8 +97,18 @@ h1 {
 }
 
 .about-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+
   text-align: center;
   padding: 20px;
+  height: 700px;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+}
+
+.about-text {
+  margin-top: 50px;
 }
 
 .canvases-index {
@@ -111,6 +121,21 @@ h1 {
   padding: 10px;
 }
 
+.canvas-list ul {
+  overflow: scroll;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  max-height: 500px;
+}
+
+.user-canvases-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.user-show {
+  padding: 20px;
+}
 
 .canvas-show {
   /* background-color: rgb(9,24,35); */
@@ -143,6 +168,15 @@ h1 {
   height: 50px;
   width: 200px;
   padding: 15px;
+  margin: 10px;
+}
+
+.canvas-card h4 {
+  width: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: none;
 }
 
 .tools-container {

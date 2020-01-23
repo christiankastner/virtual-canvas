@@ -2,8 +2,6 @@ import React from 'react';
 import Canvas from '../components/Canvas';
 import { connect } from 'react-redux'
 import CanvasTools from './CanvasTools';
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Button from '@material-ui/core/Button'
 
 const CanvasShowContainer = props => {
     return (
