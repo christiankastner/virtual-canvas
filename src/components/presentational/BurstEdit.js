@@ -140,7 +140,7 @@ const BurstEdit = props => {
                         label="Angle"
                         valueLabelDisplay='auto'
                         onChange={(e,v) => handleInputChange("angle", v)} />
-                    <Typography id="slider" gutterBottom>
+                    {/* <Typography id="slider" gutterBottom>
                         Stroke Width
                     </Typography>
                     <Slider
@@ -150,7 +150,7 @@ const BurstEdit = props => {
                         label="Stroke Width"
                         max={10}
                         valueLabelDisplay='auto'
-                        onChange={(e,v) => handleInputChange("stroke_width", v)} />
+                        onChange={(e,v) => handleInputChange("stroke_width", v)} /> */}
                 </div>
             </div>
         </div>

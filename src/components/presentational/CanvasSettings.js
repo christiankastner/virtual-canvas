@@ -53,12 +53,6 @@ const CanvasSettings = props => {
         setBackground([...background.slice(0,num), v, ...background.slice(num+1)])
     }
 
-    const handleRangeChange = (name, v) => {
-        console.log(name,v)
-    }
-
-    
-
     const handleSaveCanvas = () => {
         fetch(`${API_ROOT}/pictures/${props.canvas.id}`, {
             method: "PATCH",
@@ -97,7 +91,7 @@ const CanvasSettings = props => {
                 value={background[1]}
                 min={0}
                 max={255}
-                valueLabelDisplay='auto'valueLabelDisplay='auto'
+                valueLabelDisplay='auto'
                 label="Blue" 
                 onChange={(e,v) => handleChange(1, v)} />
             <GreenSlider 

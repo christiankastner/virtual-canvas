@@ -133,8 +133,8 @@ const ShapeEdit = props => {
                 <Slider 
                     name="stagger_radius"
                     label="stagger_radius"
-                    min={-10}
-                    max={10}
+                    min={-20}
+                    max={20}
                     value={shape["stagger_radius"]}
                     valueLabelDisplay='auto'
                     onChange={(e,v) => handleInputChange("stagger_radius", v)} />
@@ -144,8 +144,8 @@ const ShapeEdit = props => {
                 <Slider 
                     name="stagger_place"
                     label="stagger_place"
-                    min={-10}
-                    max={10}
+                    min={-20}
+                    max={20}
                     value={shape['stagger_place']}
                     valueLabelDisplay='auto'
                     onChange={(e,v) => handleInputChange("stagger_place", v)} />
@@ -207,7 +207,6 @@ const ShapeEdit = props => {
                             label="Amount"
                             min={0}
                             max={20}
-                            onChange={handleInputChange} 
                             orientation="vertical"
                             value={shape.amount}
                             valueLabelDisplay='auto'
@@ -220,7 +219,6 @@ const ShapeEdit = props => {
                             name="orbit"
                             label="Orbit"
                             min={-100}
-                            onChange={handleInputChange}
                             orientation="vertical"
                             value={shape.orbit}
                             valueLabelDisplay='auto'
@@ -232,7 +230,6 @@ const ShapeEdit = props => {
                             name="spin"
                             label="Spin"
                             min={-100}
-                            onChange={handleInputChange} 
                             orientation="vertical"
                             value={shape.spin}
                             valueLabelDisplay='auto'

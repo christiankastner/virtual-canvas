@@ -28,14 +28,17 @@ class UserShow extends React.Component {
         return (
             <div className="user-show" >
                 <h2>
-                    Welcome, {name}
+                    Account overview
                 </h2>
                 <h3>
                     Email: {email}
                 </h3>
+                <h3>
+                    Name: {name}
+                </h3>
                 <div className="user-canvases-container">
-                    { pictures ? <CreatedCanvasesContainer title="Created Canvases" canvases={pictures} /> : '' }
-                    {/* <DispklayCanvases title="Bookmarked Canvases" canvases={bookmarkCanvases} /> */}
+                    { pictures ? <CreatedCanvasesContainer title="Created Canvases" canvases={pictures} deletePath={`${API_ROOT}/pictures/`}/> : "" }
+                    {/* { bookmarkCanvases.length > 0 ? <CreatedCanvasesContainer title="Bookmarked Canvases" canvases={bookmarkCanvases} deletePath={`${API_ROOT}/bookmarks/`}/> : ""} */}
                 </div>
             </div>
         )

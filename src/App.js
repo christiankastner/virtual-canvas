@@ -100,8 +100,12 @@ class App extends React.Component {
               toggleModal={this.toggleModal} 
               handleLogout={this.handleLogout} 
             />
-            <Route exact path="/" component={Landing}/>
-            <Route exact path="/about" component={About} />
+            <Route exact path="/" render={() => {
+              return (<>
+                <Landing />
+                <About />
+              </>)
+            }}/>
             <Route path="/user" >
               {this.state.loggedin ? <UserShow /> : <Redirect to="/" />}
             </Route>

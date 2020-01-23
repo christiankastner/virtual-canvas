@@ -16,6 +16,7 @@ class P5ReactAdapter {
         p.stroke(`rgb(${json.stroke})`)
 
         const {width, height, amount, spin, orbit, shape, stagger_radius, stagger_place } = json
+        const radius = frequencyMapping + stagger_radius
         p.rotate(orbit * p.frameCount/10)
         switch (shape) {
             case "rect":
@@ -24,7 +25,7 @@ class P5ReactAdapter {
                     p.push()
                         p.rotate((360/amount) * i + stagger_place)
                         p.push()
-                            p.translate(frequencyMapping + stagger_radius, frequencyMapping + stagger_radius)
+                            p.translate(radius, radius)
                             p.rotate(spin * p.frameCount/10)
                             p.rectMode(p.CENTER)
                             p.rect(0, 0, width, height)
@@ -35,9 +36,9 @@ class P5ReactAdapter {
             case "ellipse":
                 for (let i = 0; i < amount; i++) {
                     p.push()
-                        p.rotate((360/amount)*i)
+                        p.rotate((360/amount)*i + stagger_place)
                         p.push()
-                            p.translate(frequencyMapping,frequencyMapping)
+                            p.translate(radius, radius)
                             p.rotate(spin * p.frameCount/10)
                             p.ellipseMode(p.CENTER)
                             p.ellipse(0, 0, width, height)
@@ -48,10 +49,10 @@ class P5ReactAdapter {
             case "triangle":
                 for (let i = 0; i < amount; i++) {
                     p.push()
-                        p.rotate((360/amount)*i)
+                        p.rotate((360/amount)*i + stagger_place)
                         p.push()
                             const center = 2 * height/3
-                            p.translate(frequencyMapping, frequencyMapping)
+                            p.translate(radius, radius)
                             p.rotate(spin * p.frameCount/10)
                             p.triangle(0, -center, width, height, -width, height)
                         p.pop()
@@ -61,9 +62,9 @@ class P5ReactAdapter {
             case "line":
                 for (let i = 0; i < amount; i++) {
                     p.push()
-                        p.rotate((360/amount)*i)
+                        p.rotate((360/amount)*i + stagger_place)
                         p.push()
-                            p.translate(frequencyMapping, frequencyMapping)
+                            p.translate(radius, radius)
                             p.rotate(spin * p.frameCount/10)
                             p.line(0, 0, width, height)
                         p.pop()
