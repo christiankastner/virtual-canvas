@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/virtual_canvas/static/css/main.d932b14c.chunk.css",
-    "main.js": "/virtual_canvas/static/js/main.c6e870c4.chunk.js",
-    "main.js.map": "/virtual_canvas/static/js/main.c6e870c4.chunk.js.map",
-    "runtime-main.js": "/virtual_canvas/static/js/runtime-main.8f3140f3.js",
-    "runtime-main.js.map": "/virtual_canvas/static/js/runtime-main.8f3140f3.js.map",
-    "static/js/2.62d31cda.chunk.js": "/virtual_canvas/static/js/2.62d31cda.chunk.js",
-    "static/js/2.62d31cda.chunk.js.map": "/virtual_canvas/static/js/2.62d31cda.chunk.js.map",
-    "index.html": "/virtual_canvas/index.html",
-    "precache-manifest.ea7868cecc9618ae3fdfdee3cff3d118.js": "/virtual_canvas/precache-manifest.ea7868cecc9618ae3fdfdee3cff3d118.js",
-    "service-worker.js": "/virtual_canvas/service-worker.js",
-    "static/css/main.d932b14c.chunk.css.map": "/virtual_canvas/static/css/main.d932b14c.chunk.css.map",
-    "static/js/2.62d31cda.chunk.js.LICENSE": "/virtual_canvas/static/js/2.62d31cda.chunk.js.LICENSE",
-    "static/media/index.css": "/virtual_canvas/static/media/dance-floor.5deb96c1.jpg",
-    "static/media/folds.mp3": "/virtual_canvas/static/media/folds.bc4e5cac.mp3",
-    "static/media/lights.jpg": "/virtual_canvas/static/media/lights.a713bd66.jpg"
+    "main.css": "/virtual-canvas/static/css/main.79618155.chunk.css",
+    "main.js": "/virtual-canvas/static/js/main.a2039245.chunk.js",
+    "main.js.map": "/virtual-canvas/static/js/main.a2039245.chunk.js.map",
+    "runtime-main.js": "/virtual-canvas/static/js/runtime-main.42b057a6.js",
+    "runtime-main.js.map": "/virtual-canvas/static/js/runtime-main.42b057a6.js.map",
+    "static/js/2.a76ae3ea.chunk.js": "/virtual-canvas/static/js/2.a76ae3ea.chunk.js",
+    "static/js/2.a76ae3ea.chunk.js.map": "/virtual-canvas/static/js/2.a76ae3ea.chunk.js.map",
+    "index.html": "/virtual-canvas/index.html",
+    "precache-manifest.06c8d5e891e286ab6444f286a5935cad.js": "/virtual-canvas/precache-manifest.06c8d5e891e286ab6444f286a5935cad.js",
+    "service-worker.js": "/virtual-canvas/service-worker.js",
+    "static/css/main.79618155.chunk.css.map": "/virtual-canvas/static/css/main.79618155.chunk.css.map",
+    "static/js/2.a76ae3ea.chunk.js.LICENSE": "/virtual-canvas/static/js/2.a76ae3ea.chunk.js.LICENSE",
+    "static/media/index.css": "/virtual-canvas/static/media/dance-floor.5deb96c1.jpg",
+    "static/media/folds.mp3": "/virtual-canvas/static/media/folds.bc4e5cac.mp3",
+    "static/media/lights.jpg": "/virtual-canvas/static/media/lights.a713bd66.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8f3140f3.js",
-    "static/js/2.62d31cda.chunk.js",
-    "static/css/main.d932b14c.chunk.css",
-    "static/js/main.c6e870c4.chunk.js"
+    "static/js/runtime-main.42b057a6.js",
+    "static/js/2.a76ae3ea.chunk.js",
+    "static/css/main.79618155.chunk.css",
+    "static/js/main.a2039245.chunk.js"
   ]
 }
