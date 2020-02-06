@@ -1,8 +1,8 @@
 {
-  "name": "virtual-canvas-frontend",
+  "name": "virtual-canvas",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://christiankastner.github.io/virtual_canvas",
+  "homepage": "https://christiankastner.github.io/virtual-canvas",
   "dependencies": {
     "@material-ui/core": "^4.8.3",
     "@testing-library/jest-dom": "^4.2.4",
