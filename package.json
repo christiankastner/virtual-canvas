@@ -2,12 +2,14 @@
   "name": "virtual-canvas-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://christiankastner.github.io/virtual_canvas",
   "dependencies": {
     "@material-ui/core": "^4.8.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "firebase": "^7.7.0",
+    "gh-pages": "^2.2.0",
     "mo-js": "^0.288.2",
     "react": "^16.12.0",
     "react-actioncable-provider": "^2.0.0",
@@ -25,7 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

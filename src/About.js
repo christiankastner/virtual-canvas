@@ -20,7 +20,7 @@ const About = () => {
                 </div>
                 <div className="links">
                     <button>
-                        <Link to="/canvases" >
+                        <Link exact to="/canvases" >
                                 Get Started
                         </Link>
                     </button>

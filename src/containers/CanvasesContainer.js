@@ -63,6 +63,7 @@ class CanvasesContainer extends React.Component {
                     <DisplayCanvases canvases={this.state.canvases} />
                 </div>
                 <div className="canvas-form">
+                    <h2>Create Your Own</h2>
                     {localStorage["id"] ? <Form onChange={this.handleOnChange}>
                         <label>Name</label><br/>
                         <Form.Group >

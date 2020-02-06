@@ -71,7 +71,6 @@ const CanvasSettings = props => {
         })
             .then(resp => resp.json())
             .then(json => {
-                console.log(json)
             })
     }
 
@@ -87,19 +86,19 @@ const CanvasSettings = props => {
                 lable="Red" 
                 valueLabelDisplay='auto'
                 onChange={(e,v) => handleChange(0, v)} />
-            <BlueSlider 
+            <GreenSlider 
                 value={background[1]}
                 min={0}
                 max={255}
                 valueLabelDisplay='auto'
-                label="Blue" 
+                label="Green" 
                 onChange={(e,v) => handleChange(1, v)} />
-            <GreenSlider 
+            <BlueSlider 
                 value={background[2]}
                 min={0}
                 max={255}
                 valueLabelDisplay='auto'
-                label="Green" 
+                label="Blue" 
                 onChange={(e,v) => handleChange(2, v)} />
         </div>
         <div className="canvas-settings">

@@ -152,18 +152,27 @@ h1 {
 .canvases-index {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  height: 100%;
 }
 
 .canvas-list, .canvas-form {
-  margin: 50px;
-  padding: 10px;
+  padding: 5em 2em;
+}
+
+.canvas-form {
+    background: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    height: 900px;
+    color: white;
+    
 }
 
 .canvas-list ul {
-  overflow: scroll;
+  overflow-y: scroll;
   display: flex;
   flex-wrap: wrap-reverse;
   max-height: 500px;
+
 }
 
 th {
