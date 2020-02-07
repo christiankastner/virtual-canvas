@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import CanvasesIndex from "./CanvasesIndex"
 import CanvasShow from './CanvasShow'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
 import { API_ROOT, HEADERS } from './constants/index'
 import LoginModal from './components/LoginModal'
 import './App.css';
