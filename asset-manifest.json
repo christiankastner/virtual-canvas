@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/virtual-canvas/static/css/main.79618155.chunk.css",
-    "main.js": "/virtual-canvas/static/js/main.f67f7a49.chunk.js",
-    "main.js.map": "/virtual-canvas/static/js/main.f67f7a49.chunk.js.map",
+    "main.js": "/virtual-canvas/static/js/main.ce99c0cd.chunk.js",
+    "main.js.map": "/virtual-canvas/static/js/main.ce99c0cd.chunk.js.map",
     "runtime-main.js": "/virtual-canvas/static/js/runtime-main.c14bdbea.js",
     "runtime-main.js.map": "/virtual-canvas/static/js/runtime-main.c14bdbea.js.map",
     "static/js/2.1e6ec4d0.chunk.js": "/virtual-canvas/static/js/2.1e6ec4d0.chunk.js",
     "static/js/2.1e6ec4d0.chunk.js.map": "/virtual-canvas/static/js/2.1e6ec4d0.chunk.js.map",
     "index.html": "/virtual-canvas/index.html",
-    "precache-manifest.fab7eb5a3688c3eefde40e52d00b8135.js": "/virtual-canvas/precache-manifest.fab7eb5a3688c3eefde40e52d00b8135.js",
+    "precache-manifest.f188f80eb158e704fc878fbfb4b792f8.js": "/virtual-canvas/precache-manifest.f188f80eb158e704fc878fbfb4b792f8.js",
     "service-worker.js": "/virtual-canvas/service-worker.js",
     "static/css/main.79618155.chunk.css.map": "/virtual-canvas/static/css/main.79618155.chunk.css.map",
     "static/js/2.1e6ec4d0.chunk.js.LICENSE": "/virtual-canvas/static/js/2.1e6ec4d0.chunk.js.LICENSE",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.c14bdbea.js",
     "static/js/2.1e6ec4d0.chunk.js",
     "static/css/main.79618155.chunk.css",
-    "static/js/main.f67f7a49.chunk.js"
+    "static/js/main.ce99c0cd.chunk.js"
   ]
 }
