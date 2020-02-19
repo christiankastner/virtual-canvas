@@ -10,17 +10,6 @@ import Landing from './Landing'
 import About from "./About"
 import UserShow from './UserShow'
 import Navbar from './components/Navbar';
-import withFirebaseAuth from 'react-with-firebase-auth'
-import * as firebase from 'firebase/app'
-import 'firebase/auth'
-import firebaseConfig from './constants/firbaseConfig'
-
-const firebaseApp = firebase.initializeApp(firebaseConfig)
-
-const firebaseAppAuth = firebaseApp.auth()
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider()
-}
 
 class App extends React.Component {
 
@@ -82,20 +71,6 @@ class App extends React.Component {
               handleOnSignup={this.handleUserFetch("users")} 
               toggleModal={this.toggleModal}
             />
-            {/* {user ? <p>Hello, {user.displayName}</p> : null}
-              {user ? (
-                <button
-                  onClick={signOut}
-                >
-                  Sign out
-                </button>
-              ) : (
-                <button
-                  onClick={signInWithGoogle}
-                >
-                  Sign in with Google
-                </button>
-              )} */}
             <Navbar loggedin={this.state.loggedin} 
               toggleModal={this.toggleModal} 
               handleLogout={this.handleLogout} 
@@ -118,7 +93,4 @@ class App extends React.Component {
     }
   }
 
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth
-})(connect()(App));
+export default connect()(App);
