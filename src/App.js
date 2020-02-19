@@ -27,7 +27,10 @@ class App extends React.Component {
   handleLogout = () => {
     this.setState({
       loggedin: false
-    }, () => localStorage.clear())
+    }, () => {
+      localStorage.clear()
+      this.props.dispatch({type: "LOGOUT"})
+    })
   }
 
   // This takes in a string to specify whether the fetch is to find a user to login or create a user to sign up
@@ -54,7 +57,8 @@ class App extends React.Component {
             modal: false
         }, () => {
             localStorage.setItem('id', json.id)
-            localStorage.setItem('email', json.email)     
+            localStorage.setItem('email', json.email)    
+            this.props.dispatch({type: "LOGIN", user_id: json.id}) 
         })
     } else {
         console.log(json)
@@ -62,7 +66,6 @@ class App extends React.Component {
   }
   
   render() {
-    const { user, signOut, signInWithGoogle } = this.props
       return (
           <Router >
             <LoginModal 
@@ -84,7 +87,7 @@ class App extends React.Component {
             <Route path="/user" >
               {this.state.loggedin ? <UserShow /> : <Redirect to="/" />}
             </Route>
-            <Route exact path="/canvases" render={() => <CanvasesIndex />} />
+            <Route exact path="/canvases" render={routerProps => <CanvasesIndex {...routerProps} />} />
             <Route exact path="/canvases/:id" render={routerProps => (
               <CanvasShow {...routerProps} />
             )} />
@@ -92,5 +95,10 @@ class App extends React.Component {
       );
     }
   }
+const mapStateToProps = state => {
+  return {
+    user_id: state.user_id
+  }
+}
 
-export default connect()(App);
+export default connect(mapStateToProps)(App);

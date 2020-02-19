@@ -180,6 +180,7 @@ class Canvas extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        user_id: state.user_id,
         canvas: state.canvas,
         selected: state.selected,
         shapes: state.canvasShapes,

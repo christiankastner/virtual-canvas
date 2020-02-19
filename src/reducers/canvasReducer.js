@@ -12,16 +12,16 @@ const initialState = {
 export default function canvasReducer(state = initialState, action) {
 
     switch(action.type) {
-        // case "LOGIN":
-        //     return {
-        //         ...state,
-        //         user_id: action.user_id
-        //     }
-        // case "LOGOUT":
-        //     return {
-        //         ...state,
-
-        //     }
+        case "LOGIN":
+            return {
+                ...state,
+                user_id: action.user_id
+            }
+        case "LOGOUT":
+            return {
+                ...state,
+                user_id: ''
+            }
         case "LOAD_CANVAS": 
             return {
                 ...state,
