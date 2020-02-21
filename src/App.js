@@ -56,8 +56,7 @@ class App extends React.Component {
             loggedin: true,
             modal: false
         }, () => {
-            localStorage.setItem('id', json.id)
-            localStorage.setItem('email', json.email)    
+            localStorage.setItem('id', json.id) 
             this.props.dispatch({type: "LOGIN", user_id: json.id}) 
         })
     } else {

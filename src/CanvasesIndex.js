@@ -3,9 +3,13 @@ import CanvasesContainer from './containers/CanvasesContainer'
 
 const CanvasesIndex = props => {
 
+    const handleNewCanvas = (canvas) => {
+        props.history.push(`/canvases/${canvas.id}`)
+    }
+
     return (
         <div className="canvases-index" >
-            <CanvasesContainer />
+            <CanvasesContainer handleNewCanvas={handleNewCanvas}/>
         </div>
     )
     

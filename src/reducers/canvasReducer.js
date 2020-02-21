@@ -1,5 +1,5 @@
 const initialState = {
-    user_id: false, 
+    user_id: localStorage["id"], 
     canvas: {}, 
     canvasBursts: [], 
     myBursts: [], 

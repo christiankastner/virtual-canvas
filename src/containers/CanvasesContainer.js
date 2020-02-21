@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Button, Form } from 'semantic-ui-react'
 import { API_ROOT, HEADERS } from '../constants/index'
 import DisplayCanvases from './DisplayCanvases';
@@ -10,7 +11,7 @@ class CanvasesContainer extends React.Component {
             canvases: [],
             newCanvas: {
                 title: "",
-                user_id: localStorage["id"]
+                user_id: this.props.user_id
             }
         }
     }
@@ -26,7 +27,7 @@ class CanvasesContainer extends React.Component {
     }
 
     handleNewCanvas = () => {
-        if (localStorage["id"]) {
+        if (this.props.user_id) {
             fetch(`${API_ROOT}/pictures`, {
                 method: 'POST',
                 headers: HEADERS,
@@ -37,6 +38,7 @@ class CanvasesContainer extends React.Component {
                 .then(resp => resp.json())
                 .then(json => {
                     console.log(json)
+                    this.props.handleNewCanvas(json)
                     this.setState(prevState => {
                         return {
                             canvases: [...prevState.canvases, json]
@@ -58,13 +60,9 @@ class CanvasesContainer extends React.Component {
     render() {
         return (
             <>
-                <div className="canvas-list">
-                    <h3>Active Canvases</h3>
-                    <DisplayCanvases canvases={this.state.canvases} />
-                </div>
                 <div className="canvas-form">
-                    <h2>Create Your Own</h2>
-                    {localStorage["id"] ? <Form onChange={this.handleOnChange}>
+                    <h3>Create Your Own</h3>
+                    {this.props.user_id ? <Form onChange={this.handleOnChange}>
                         <label>Name</label><br/>
                         <Form.Group >
                             <Form.Field >
@@ -72,12 +70,22 @@ class CanvasesContainer extends React.Component {
                             </Form.Field>
                             <Button onClick={() => this.handleNewCanvas()}>New Canvas</Button>
                         </Form.Group>
-                    </Form> : ""}
+                    </Form> : <h4>Must login or create a profile to create a canvas</h4>}
+                </div>
+                <div className="canvas-list">
+                    <h3>Active Canvases</h3>
+                    <DisplayCanvases canvases={this.state.canvases} />
                 </div>
             </>
         )
     }
 }
 
-export default CanvasesContainer
+const mapStateToProps = state => {
+    return {
+        user_id: state.user_id
+    }
+}
+
+export default connect(mapStateToProps)(CanvasesContainer)
 

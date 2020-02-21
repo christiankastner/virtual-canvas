@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
 
 * {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   margin: 0;
   padding: 0;
+}
+
+#root {
+  height: 100%;
 }
 
 li, a {
@@ -77,17 +81,17 @@ h1 {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 700px;
+  height: 70vw;
 }
 
 .banner-text {
   text-align: center;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  width: 45%;
+  width: 55%;
   padding: 40px 0;
   border-top-left-radius: 70px;
   border-bottom-right-radius: 70px;
@@ -97,31 +101,36 @@ h1 {
 }
 
 .about-container {
-
     background: rgb(40, 88, 129);
     text-align: center;
     padding: 1em 2em;
     height: 600px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     color: white;
-    
 }
 
-.left, .right {
-    box-shadow: 0px 50px 100px 0px rgba(9,24,50, 0.25);
+.about-card {
+  height: 100%;
+  width: 855px;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
 }
 
-.left img {
-  max-height: 100%;
+.left {
+  grid-column: 1 / 2;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
 }
 
 .right {
-    padding: 4em 0 0;
-    background: rgba(0, 0, 0, 0.75);
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
+  grid-column: 2 / 3;
+  padding: 4em 0 0;
+  background: rgba(6, 20, 30);
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
 }
 
 .text {
@@ -131,6 +140,10 @@ h1 {
 
 .text h1 {
     margin: 1em 0;
+}
+
+h3 {
+  font-size: 2em;
 }
 
 .text p {
@@ -145,30 +158,28 @@ h1 {
 .links button {
     flex: 1;
     color: white;
-    background-color: rgb(72,36,9);
+    background-color: #ff0546;
     border: none ;
 }
 
 .canvases-index {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-flow: column;
   height: 100%;
 }
 
 .canvas-list, .canvas-form {
-  padding: 5em 2em;
+  padding: 4em 2em;
 }
 
 .canvas-form {
     background: rgba(0, 0, 0, 0.75);
     justify-content: center;
-    height: 900px;
     color: white;
-    
 }
 
 .canvas-list ul {
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-wrap: wrap-reverse;
   max-height: 500px;
@@ -182,6 +193,7 @@ th {
 .user-canvases-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: none;
 }
 
 .user-show {
