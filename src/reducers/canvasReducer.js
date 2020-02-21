@@ -1,5 +1,5 @@
 const initialState = {
-    user_id: '', 
+    user_id: false, 
     canvas: {}, 
     canvasBursts: [], 
     myBursts: [], 
@@ -20,7 +20,7 @@ export default function canvasReducer(state = initialState, action) {
         case "LOGOUT":
             return {
                 ...state,
-                user_id: ''
+                user_id: false
             }
         case "LOAD_CANVAS": 
             return {

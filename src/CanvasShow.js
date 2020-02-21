@@ -33,8 +33,8 @@ class CanvasShow extends React.Component {
             <div className="canvas-show">
                 <div className="canvas-header">
                     <h2>{this.props.canvas.title}</h2> 
-                    {localStorage["id"] && !this.props.admin ? <Button onClick={this.handleSaveCanvas}>Bookmark Canvas</Button> : null}
-                    { localStorage["id"] ? <ButtonGroup >
+                    {/* {localStorage["id"] && !this.props.admin ? <Button onClick={this.handleSaveCanvas}>Bookmark Canvas</Button> : null} */}
+                    { this.props.user_id ? <ButtonGroup >
                 <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "shapes"})}>
                     Shapes
                 </Button>
@@ -44,7 +44,7 @@ class CanvasShow extends React.Component {
                 {/* <Button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "paint"})}>
                     Paint
                 </Button>  */}
-                {localStorage["id"] == this.props.admin ? <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "settings"})}>
+                {this.props.user_id == this.props.admin ? <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "settings"})}>
                     Settings
                 </Button> : ""}
             </ButtonGroup> : "" }
@@ -58,6 +58,7 @@ class CanvasShow extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
+        user_id: state.user_id,
         canvas: state.canvas,
         admin: state.admin
     }
