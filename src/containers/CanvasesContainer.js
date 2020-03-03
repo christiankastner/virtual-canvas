@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Button, Form } from 'semantic-ui-react'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import { API_ROOT, HEADERS } from '../constants/index'
 import DisplayCanvases from './DisplayCanvases';
 
@@ -8,6 +9,7 @@ class CanvasesContainer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            loading: false,
             canvases: [],
             newCanvas: {
                 title: "",
@@ -17,13 +19,16 @@ class CanvasesContainer extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`${API_ROOT}/pictures`)
-            .then(resp => resp.json())
-            .then(json => {
-                this.setState({
-                    canvases: json
+        this.setState({loading: true}, () => {
+            fetch(`${API_ROOT}/pictures`)
+                .then(resp => resp.json())
+                .then(json => {
+                    this.setState({
+                        canvases: json,
+                        loading: false
+                    })
                 })
-            })
+        })
     }
 
     handleNewCanvas = () => {
@@ -74,6 +79,7 @@ class CanvasesContainer extends React.Component {
                 </div>
                 <div className="canvas-list">
                     <h3>Active Canvases</h3>
+                    {this.state.loading ? <CircularProgress /> : ""}
                     <DisplayCanvases canvases={this.state.canvases} />
                 </div>
             </>
