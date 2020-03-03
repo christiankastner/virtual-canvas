@@ -24,18 +24,17 @@ class UserShow extends React.Component {
     render() {
         const {name, email, bookmarks, pictures} = this.state.user
         const bookmarkCanvases = bookmarks ? bookmarks.map(bookmark => bookmark.picture) : []
-        console.log(bookmarkCanvases)
         return (
             <div className="user-show" >
                 <h2>
                     Account overview
                 </h2>
-                <h3>
+                <h4>
                     Email: {email}
-                </h3>
-                <h3>
+                </h4>
+                <h4>
                     Name: {name}
-                </h3>
+                </h4>
                 <div className="user-canvases-container">
                     { pictures ? <CreatedCanvasesContainer title="Created Canvases" canvases={pictures} deletePath={`${API_ROOT}/pictures/`}/> : "" }
                     {/* { bookmarkCanvases.length > 0 ? <CreatedCanvasesContainer title="Bookmarked Canvases" canvases={bookmarkCanvases} deletePath={`${API_ROOT}/bookmarks/`}/> : ""} */}

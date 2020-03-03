@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Button from '@material-ui/core/Button'
 import { API_ROOT, HEADERS } from '../constants/index'
 
-
 const CreatedCanvasesContainer = props => {
     const [state, setState] = useState({
         data: [

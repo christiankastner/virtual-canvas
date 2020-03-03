@@ -178,6 +178,10 @@ h3 {
     color: white;
 }
 
+.canvas-list {
+  height: 100%;
+}
+
 .canvas-list ul {
   overflow-y: auto;
   display: flex;

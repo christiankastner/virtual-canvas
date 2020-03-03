@@ -15,7 +15,8 @@ class App extends React.Component {
 
   state = {
     loggedin: !!localStorage["id"],
-    modal: false
+    modal: false,
+    message: ""
   }
 
   toggleModal = () => {
@@ -44,7 +45,7 @@ class App extends React.Component {
     return fetch(path, {
       method: "POST",
       headers: HEADERS,
-      body: JSON.stringify(user)
+      body: JSON.stringify({user: user})
     })
         .then(resp => resp.json())
         .then(this.loginCallBack)
@@ -60,7 +61,9 @@ class App extends React.Component {
             this.props.dispatch({type: "LOGIN", user_id: json.id}) 
         })
     } else {
-        console.log(json)
+        this.setState({
+          message: json.error
+        })
     }
   }
   
@@ -72,6 +75,7 @@ class App extends React.Component {
               handleOnLogin={this.handleUserFetch("users/login")} 
               handleOnSignup={this.handleUserFetch("users")} 
               toggleModal={this.toggleModal}
+              message={this.state.message}
             />
             <Navbar loggedin={this.state.loggedin} 
               toggleModal={this.toggleModal} 

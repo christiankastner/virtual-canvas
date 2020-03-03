@@ -2,16 +2,17 @@ import React from 'react'
 import { Header, Modal , Form, Divider, Icon} from 'semantic-ui-react'
 
 class LoginModal extends React.Component {
-
     constructor(props) {
         super(props)
         this.state ={
             login: {
-                email: ""
+                email: "",
+                password: ""
             },
             signup: {
                 email: "",
-                name: ""
+                name: "",
+                password: ""
             }
         }
     }
@@ -39,8 +40,9 @@ class LoginModal extends React.Component {
     handleOnLoginChange = (event) => {
         this.setState({
             login: {
-                email: event.target.value
-            }
+                    ...this.state.login,
+                    [event.target.id]: event.target.value
+                }
         })
     }
 
@@ -50,15 +52,16 @@ class LoginModal extends React.Component {
                 <Modal.Header><Icon name="times" onClick={this.props.toggleModal}/>Log in/Sign up</Modal.Header>
                 <Modal.Content image>
                 <Modal.Description>
+                    <h4 style={{color: "red"}}>{this.props.message}</h4>
                     <Form onChange={this.handleOnLoginChange} key="login">
                         <Form.Field >
                             <label>Email</label>
                             <input placeholder="Email" id="email"/>
                         </Form.Field>
-                        {/* <Form.Field >
+                        <Form.Field >
                             <label>Password</label>
-                            <input placeholder="Password" />
-                        </Form.Field> */}
+                            <input type="password" placeholder="Password" id="password"/>
+                        </Form.Field>
                         <Form.Button onClick={this.handleLoginClick} className="login" fluid={true} color="green">Login</Form.Button>
                     </Form>
                     <Divider horizontal>Or</Divider>
@@ -72,14 +75,10 @@ class LoginModal extends React.Component {
                             <label>Email</label>
                             <input placeholder="Email" id="email"/>
                         </Form.Field>
-                        {/* <Form.Field >
-                            <label>Password</label>
-                            <input placeholder="Password" />
-                        </Form.Field>
                         <Form.Field >
-                            <label>Password Confirmation</label>
-                            <input placeholder="Password Confirmation" />
-                        </Form.Field> */}
+                            <label>Password</label>
+                            <input type="password" placeholder="Password" id="password"/>
+                        </Form.Field>
                         <Form.Button className="login" onClick={this.handleSignupClick} fluid={true} color="yellow">Sign Up</Form.Button>
                     </Form>
                 </Modal.Description>
