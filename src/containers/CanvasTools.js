@@ -69,6 +69,7 @@ const CanvasTools = (props) => {
 
 const mapStateToProps = state => {
     return {
+        user_id: state.user_id,
         canvas_id: state.canvas.id,
         myBursts: state.myBursts,
         myShapes: state.myShapes,

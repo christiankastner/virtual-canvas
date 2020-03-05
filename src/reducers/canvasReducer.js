@@ -15,12 +15,16 @@ export default function canvasReducer(state = initialState, action) {
         case "LOGIN":
             return {
                 ...state,
-                user_id: action.user_id
+                user_id: action.user_id,
+                myBursts: state.canvasBursts.filter(animation => animation.user_id == localStorage["id"]),
+                myShapes: state.canvasShapes.filter(animation => animation.user_id == localStorage["id"])
             }
         case "LOGOUT":
             return {
                 ...state,
-                user_id: false
+                user_id: false,
+                myBursts: [],
+                myShapes: []
             }
         case "LOAD_CANVAS": 
             return {
