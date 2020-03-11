@@ -6,7 +6,11 @@ import p5 from 'p5';
 import "p5/lib/addons/p5.sound";
 import P5ReactAdapter from '../constants/P5ReactAdapter'
 import { API_WS_ROOT } from '../constants/index'
+import firebaseConfig from "../constants/firbaseConfig"
+import firebase from 'firebase'
 const actioncable = require("actioncable")
+
+firebase.initializeApp(firebaseConfig)
 
 class Canvas extends React.Component {
     constructor(props) {
@@ -77,8 +81,16 @@ class Canvas extends React.Component {
         }
       
         p.uploaded = file => {
-          this.uploadLoading = true;
-          this.uploadedAudio = p.loadSound(file.data, p.uploadedAudioPlay);
+            this.uploadLoading = true;
+            console.log(file)
+            const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
+            console.log(musicRef)
+            musicRef.put(file.file).then(() => {
+                const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
+                console.log(storageRef.child(file.file.name).getMetadata())
+            }).then(() => {})
+
+            this.uploadedAudio = p.loadSound(file.data, p.uploadedAudioPlay);
         }
 
         // p.mouseDragged = () => {
@@ -116,8 +128,9 @@ class Canvas extends React.Component {
             if (this.song.isPlaying()) {
                 this.song.pause()
             }
-        
+            
             this.song = file
+
             this.song.play() 
         }
       
