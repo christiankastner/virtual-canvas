@@ -5,7 +5,6 @@ import CanvasShow from './CanvasShow'
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
 import { API_ROOT, HEADERS } from './constants/index'
 import LoginModal from './components/LoginModal'
-import './App.css';
 import Landing from './Landing'
 import About from "./About"
 import UserShow from './UserShow'
