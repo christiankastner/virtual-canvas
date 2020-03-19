@@ -9,16 +9,12 @@ class CanvasImg extends React.Component {
     }
 
     sketch = (p) => {
-        const { background, mid_mapping_1, mid_mapping_2, treble_mapping_1, treble_mapping_2, bass_mapping_1, bass_mapping_2, p5_shapes} = this.props.canvas
+        const { background, mid_mapping_1, treble_mapping_1, bass_mapping_1, p5_shapes } = this.props.canvas
         p.setup = () => {
             p.angleMode(p.DEGREES)
-            p.createCanvas(400,200)
+            p.createCanvas(300,150)
             p.background(`rgb(${background})`)
             p.translate(p.width / 2, p.height / 2);
-            // const mapMid = p.map(0, 0, 255, mid_mapping_1, mid_mapping_2);
-            // const mapTreble = p.map(0, 0, 255, treble_mapping_1, treble_mapping_2);
-            // const mapBass = p.map(bass, 0, 255, bass_mapping_1, bass_mapping_2);
-
             P5ReactAdapter.readFrequencyShapes(p5_shapes, "treble", treble_mapping_1, p)
             P5ReactAdapter.readFrequencyShapes(p5_shapes, "mid", mid_mapping_1, p)
             P5ReactAdapter.readFrequencyShapes(p5_shapes, "bass", bass_mapping_1, p)

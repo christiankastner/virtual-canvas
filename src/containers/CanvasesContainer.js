@@ -4,6 +4,7 @@ import { Button, Form } from 'semantic-ui-react'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { API_ROOT, HEADERS } from '../constants/index'
 import DisplayCanvases from './DisplayCanvases';
+import "./styles/CanvasesContainer.scss"
 
 class CanvasesContainer extends React.Component {
     constructor(props) {
@@ -79,6 +80,7 @@ class CanvasesContainer extends React.Component {
                 </div>
                 <div className="canvas-list">
                     <h3>Active Canvases</h3>
+                    <div id='divider'/>
                     {this.state.loading ? <CircularProgress /> : ""}
                     <DisplayCanvases canvases={this.state.canvases} />
                 </div>

@@ -23,7 +23,6 @@ header {
   align-items: center;
   padding: 30px 10%;
   background-color: #091833;
-  
 }
 
 .nav-links {
@@ -65,6 +64,7 @@ body, html {
   margin: 0;
   padding: 0;
 }
+
 h1 {
   font-size: 70px;
   text-transform: uppercase;
@@ -161,37 +161,6 @@ h3 {
     border: none ;
 }
 
-.canvases-index {
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-}
-
-.canvas-list, .canvas-form {
-  padding: 4em 2em;
-}
-
-.canvas-form {
-    background: rgba(0, 0, 0, 0.75);
-    justify-content: center;
-    color: white;
-}
-
-.canvas-list {
-  height: 100%;
-}
-
-.canvas-list ul {
-  overflow-y: auto;
-  display: flex;
-  flex-wrap: wrap-reverse;
-  max-height: 500px;
-}
-
-th {
-  text-align: left;
-}
-
 .user-canvases-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -203,7 +172,6 @@ th {
 }
 
 .canvas-show {
-  /* background-color: rgb(9,24,35); */
   height: 100%;
   width: 100%;
   padding: 30px;
@@ -224,24 +192,6 @@ th {
   margin-top: 10px;
   text-align: center;
   box-shadow: 0px 50px 100px 0px rgba(9,24,50, 0.25);
-}
-
-.canvas-card {
-  background-color: rgba(9,24,50, 0.1);
-  color: black;
-  border-radius: 10px;
-  height: 50px;
-  width: 200px;
-  padding: 15px;
-  margin: 10px;
-}
-
-.canvas-card h4 {
-  width: 95%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: none;
 }
 
 .tools-container {
