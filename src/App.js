@@ -42,7 +42,9 @@ class App extends React.Component {
   }
 
   fetchUser = (path, user) => {
-    return fetch(path, {
+    return api.user.fetchUser(path)
+
+    fetch(path, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify({user: user})
@@ -72,7 +74,7 @@ class App extends React.Component {
           <Router >
             <LoginModal 
               modal={this.state.modal} 
-              handleOnLogin={this.handleUserFetch("users/login")} 
+              handleOnLogin={() => handleLogin()} 
               handleOnSignup={this.handleUserFetch("users")} 
               toggleModal={this.toggleModal}
               message={this.state.message}

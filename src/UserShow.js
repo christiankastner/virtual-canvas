@@ -1,6 +1,7 @@
 import React from 'react';
 import { API_ROOT } from './constants/index'
 import CreatedCanvasesContainer from './containers/CreatedCanvasesContainer'
+import { api } from './services/api'
 
 class UserShow extends React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class UserShow extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`${API_ROOT}/users/${localStorage["id"]}`)
+        api.user.getUser()
             .then(resp => resp.json())
             .then(json => {
                 console.log(json)
