@@ -48,7 +48,7 @@ class LoginModal extends React.Component {
 
     render() {
         return (
-            <Modal open={this.props.modal} size="small">
+            <Modal open={this.props.modal} closeOnDimmerClick={true} onClose={this.props.toggleModal} size="small">
                 <Modal.Header><Icon name="times" onClick={this.props.toggleModal}/>Log in/Sign up</Modal.Header>
                 <Modal.Content image>
                 <Modal.Description>

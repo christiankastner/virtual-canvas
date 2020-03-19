@@ -78,9 +78,9 @@ class CanvasesContainer extends React.Component {
                         </Form.Group>
                     </Form> : <h4>Must login or create a profile to create a canvas</h4>}
                 </div>
+                <h3>Active Canvases</h3>
+                <div id='divider'/>
                 <div className="canvas-list">
-                    <h3>Active Canvases</h3>
-                    <div id='divider'/>
                     {this.state.loading ? <CircularProgress /> : ""}
                     <DisplayCanvases canvases={this.state.canvases} />
                 </div>

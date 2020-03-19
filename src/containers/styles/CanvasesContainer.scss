@@ -3,6 +3,8 @@
     flex-flow: column;
     height: 100%;
     background: rgb(19, 20, 23);
+    padding: 4em 2em;
+    color: white;
 
     #divider {
         background-color: rgb(2,189,252);
@@ -11,25 +13,21 @@
     }
 }
 
-.canvas-list, .canvas-form {
-    padding: 4em 2em;
-    color: white;
-}
-
 .canvas-form {
     justify-content: center;
 }
 
 .canvas-list {
+    overflow: auto;
     ul {
         display: flex;
         list-style: none;
         display: flex;
         flex-wrap: wrap-reverse;
-        justify-content: space-evenly;
+        justify-content: space-around;
+
         li {
             margin: 1em;
-            padding: 1em;
         }
     }
 }
