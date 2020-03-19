@@ -1,5 +1,7 @@
 import React from 'react'
 import { Header, Modal , Form, Divider, Icon} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { api } from '../services/api'
 
 class LoginModal extends React.Component {
     constructor(props) {
@@ -13,7 +15,8 @@ class LoginModal extends React.Component {
                 email: "",
                 name: "",
                 password: ""
-            }
+            },
+            message: ''
         }
     }
 
@@ -29,14 +32,6 @@ class LoginModal extends React.Component {
         })
     }
 
-    handleLoginClick = () => {
-        this.props.handleOnLogin(this.state.login)
-    }
-
-    handleSignupClick = () => {
-        this.props.handleOnSignup(this.state.signup)
-    }
-
     handleOnLoginChange = (event) => {
         this.setState({
             login: {
@@ -46,13 +41,38 @@ class LoginModal extends React.Component {
         })
     }
 
+    handleLoginClick = () => {
+        api.user.userLogin(this.state.login)
+            .then(resp => resp.json())
+            .then(this.loginCallBack)
+    }
+
+    handleSignupClick = () => {
+        api.user.userCreate(this.state.signup)
+            .then(resp => resp.json())
+            .then(this.loginCallBack)
+    }
+    
+    loginCallBack = (json) => {
+    if (!json.error) {
+        this.props.toggleModal()
+        localStorage.setItem('id', json.id) 
+        this.props.dispatch({type: "LOGIN", user_id: json.id}) 
+    } else {
+        this.setState({
+            message: json.error
+        })
+    }
+    }
+
+
     render() {
         return (
             <Modal open={this.props.modal} closeOnDimmerClick={true} onClose={this.props.toggleModal} size="small">
                 <Modal.Header><Icon name="times" onClick={this.props.toggleModal}/>Log in/Sign up</Modal.Header>
                 <Modal.Content image>
                 <Modal.Description>
-                    <h4 style={{color: "red"}}>{this.props.message}</h4>
+                    <h4 style={{color: "red"}}>{this.state.message}</h4>
                     <Form onChange={this.handleOnLoginChange} key="login">
                         <Form.Field >
                             <label>Email</label>
@@ -88,4 +108,4 @@ class LoginModal extends React.Component {
     }
 }
 
-export default LoginModal
+export default connect()(LoginModal);

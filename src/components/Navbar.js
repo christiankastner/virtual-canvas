@@ -1,16 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 import './styles/NavBar.scss'
 
 const Navbar = props => {
 
     const conditionalUserLink = () => {
-        if (props.loggedin) {
+        if (props.user_id) {
             return (
                 <>
                     <li>
                         <NavLink exact to="/" >
-                            <button onClick={props.handleLogout}>
+                            <button onClick={handleLogout}>
                                 Log out
                             </button>
                         </NavLink>
@@ -30,6 +31,11 @@ const Navbar = props => {
             )
         }
     }
+
+    const handleLogout = () => {
+        localStorage.clear()
+        props.dispatch({type: "LOGOUT"})
+      }
 
     return (
         <header >
@@ -55,4 +61,10 @@ const Navbar = props => {
     )
 }
 
-export default Navbar
+const mapStateToProps = (state) => {
+    return {
+        user_id: state.user_id
+    }
+}
+
+export default connect(mapStateToProps)(Navbar)

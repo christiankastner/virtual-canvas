@@ -7,6 +7,22 @@ export const HEADERS = {
 
 const getUser = () => fetch(`${API_ROOT}/users/${localStorage["id"]}`)
 
+const userLogin = (user) => {
+    return fetch(`${API_ROOT}/users/login`, {
+    method: "POST",
+    headers: HEADERS,
+    body: JSON.stringify({user: user})
+  })
+}
+
+const userCreate = (user) => {
+    return fetch(`${API_ROOT}/users`, {
+    method: "POST",
+    headers: HEADERS,
+    body: JSON.stringify({user: user})
+  })
+}
+
 const bookmarkCanvas = (canvasId) => {
     return fetch(`${API_ROOT}/users/${localStorage["id"]}/bookmarks`, {
         method: "POST",
@@ -24,7 +40,9 @@ const fetchCanvas = (canvasId) => fetch(`${API_ROOT}/pictures/${this.props.match
 
 export const api = {
     user: {
-        getUser
+        getUser,
+        userLogin,
+        userCreate
     },
     canvas: {
         bookmarkCanvas,
