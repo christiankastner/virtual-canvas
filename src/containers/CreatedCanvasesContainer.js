@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Button from '@material-ui/core/Button'
 import { API_ROOT, HEADERS } from '../constants/index'
+import './styles/CreatedCanvasesContainer.scss'
+import CanvasCard from '../components/presentational/CanvasCard'
 
 const CreatedCanvasesContainer = props => {
     const [state, setState] = useState({
@@ -30,25 +32,22 @@ const CreatedCanvasesContainer = props => {
     const renderRows = () => {
         return state.data.map(canvas => {
             return (
-                <tr>
-                    <td><Button onClick={() => handleDelete(canvas.id)}>Delete</Button></td>   
-                    <td>{canvas.title}</td>
-                </tr>
+                <li>
+                    <CanvasCard canvas={canvas} delete={() => handleDelete(canvas.id)}/>
+                </li>
             )
         })
     }
 
     return (
-        <div className="canvas-table">
+        <>
             <h3>Created Canvases</h3>
-            <table >
-                <tr>
-                    <th>Action</th>
-                    <th>Title</th>
-                </tr>
+            <div className="canvas-table">
+                <ul>
                 {renderRows()}
-            </table>
-        </div>
+                </ul>
+            </div>
+        </>
     )
 }
 

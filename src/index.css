@@ -17,39 +17,6 @@ li, a {
   text-decoration: none;
 }
 
-header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 30px 10%;
-  background-color: #091833;
-}
-
-.nav-links {
-  list-style: none;
-}
-
-.nav-links li {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 0px 20px;
-}
-
-.nav-links li a {
-  transition: all 0.3s ease 0s;
-}
-.nav-links li a:hover {
-  color: #133e7c
-}
-
-.nav-links button {
-  padding: 8px 25px;
-  background-color: rgba(234,0,217,1);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-}
-
 .toggle-btn {
   padding: 8px 25px;
   margin: 10px;
@@ -69,10 +36,6 @@ h1 {
   font-size: 70px;
   text-transform: uppercase;
   margin: 0;
-}
-
-.App {
-  text-align: center;
 }
 
 .banner-img {
@@ -161,14 +124,11 @@ h3 {
     border: none ;
 }
 
-.user-canvases-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: none;
-}
-
 .user-show {
   padding: 20px;
+  background: rgb(19, 20, 23);
+  color: white;
+  height: 100%;
 }
 
 .canvas-show {

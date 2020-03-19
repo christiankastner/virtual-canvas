@@ -9,6 +9,7 @@ import Landing from './Landing'
 import About from "./About"
 import UserShow from './UserShow'
 import Navbar from './components/Navbar';
+import './App.scss'
 
 class App extends React.Component {
 

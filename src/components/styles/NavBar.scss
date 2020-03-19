@@ -1,0 +1,33 @@
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 10%;
+    background-color: #091833;
+  }
+  
+.nav-links {
+list-style: none;
+button {
+    padding: 8px 25px;
+    background-color: rgba(234,0,217,1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+li {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 0px 20px;
+    a {
+        transition: all 0.3s ease 0s;
+    }
+    a:hover {
+        color: #133e7c
+    }
+}
+}
+
+  

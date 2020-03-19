@@ -6,7 +6,8 @@ class UserShow extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: {}
+            user: {},
+            selected: "canvases"
         }
     }
 
