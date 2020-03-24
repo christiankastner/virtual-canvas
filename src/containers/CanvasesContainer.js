@@ -44,6 +44,7 @@ class CanvasesContainer extends React.Component {
                         }
                     })
                 })
+                .catch(console.log)
         }
     }
 

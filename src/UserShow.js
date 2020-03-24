@@ -12,11 +12,20 @@ class UserShow extends React.Component {
         }
     }
 
+    handleRemoveCanvas = (id) => {
+        console.log(id)
+        this.setState({
+            user: {
+                ...this.state.user,
+                pictures: this.state.user.pictures.filter((canvas) => canvas.id !== id)
+            }
+        })
+    }
+
     componentDidMount() {
         api.user.getUser()
             .then(resp => resp.json())
             .then(json => {
-                console.log(json)
                 this.setState({
                     user: json
                 })
@@ -25,7 +34,7 @@ class UserShow extends React.Component {
 
     render() {
         const {name, email, bookmarks, pictures} = this.state.user
-        const bookmarkCanvases = bookmarks ? bookmarks.map(bookmark => bookmark.picture) : []
+        // const bookmarkCanvases = bookmarks ? bookmarks.map(bookmark => bookmark.picture) : []
         return (
             <div className="user-show" >
                 <h2>
@@ -38,7 +47,7 @@ class UserShow extends React.Component {
                     Name: {name}
                 </h4>
                 <div className="user-canvases-container">
-                    { pictures ? <CreatedCanvasesContainer title="Created Canvases" canvases={pictures} deletePath={`${API_ROOT}/pictures/`}/> : "" }
+                    { pictures ? <CreatedCanvasesContainer handleRemoveCanvas={this.handleRemoveCanvas} title="Created Canvases" canvases={pictures} deletePath={`${API_ROOT}/pictures/`}/> : "" }
                     {/* { bookmarkCanvases.length > 0 ? <CreatedCanvasesContainer title="Bookmarked Canvases" canvases={bookmarkCanvases} deletePath={`${API_ROOT}/bookmarks/`}/> : ""} */}
                 </div>
             </div>

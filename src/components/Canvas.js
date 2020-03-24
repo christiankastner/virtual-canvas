@@ -82,17 +82,17 @@ class Canvas extends React.Component {
       
         p.uploaded = file => {
             this.uploadLoading = true;
-            console.log(file)
-            const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
-            console.log(musicRef)
-            musicRef.put(file.file).then(() => {
-                const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-                storageRef.child(file.file.name).getMetadata()
-                    .then((metaData) => {
-                        let url = metaData.downloadURLs
-                        console.log(metaData.fullPath)
-                    })
-                })
+            // console.log(file)
+            // const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
+            // console.log(musicRef)
+            // musicRef.put(file.file).then(() => {
+            //     const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
+            //     storageRef.child(file.file.name).getMetadata()
+            //         .then((metaData) => {
+            //             let url = metaData.downloadURLs
+            //             console.log(metaData.fullPath)
+            //         })
+            //     })
             this.uploadedAudio = p.loadSound(file.data, p.uploadedAudioPlay);
         }
 

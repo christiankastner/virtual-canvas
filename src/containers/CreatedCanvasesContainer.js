@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import Button from '@material-ui/core/Button'
+import React from 'react'
 import './styles/CreatedCanvasesContainer.scss'
 import CanvasCard from '../components/presentational/CanvasCard'
 import { api } from '../services/api'
@@ -10,18 +9,12 @@ const CreatedCanvasesContainer = props => {
         api.canvas.deleteCanvas(id)
                             .then(resp => resp.json())
                             .then(json => {
-                                if (json.message === "Successful") {
-                                    // setState(prevState => {
-                                    //     return { data: [...prevState.data.filter(canvas => canvas.id !== id)]}
-                                    // })
-                                }
-    
+                                props.handleRemoveCanvas(id)
                             })
     }
 
     const renderRows = () => {
         return props.canvases.map(canvas => {
-            console.log(canvas)
             return (
                 <li>
                     <CanvasCard canvas={canvas} delete={() => handleDelete(canvas.id)}/>

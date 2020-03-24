@@ -1,7 +1,9 @@
-// export const API_ROOT = 'https://intense-harbor-90528.herokuapp.com';
 
-//development
-export const API_ROOT = 'http://localhost:3000'
+//Production
+export const API_ROOT = 'https://intense-harbor-90528.herokuapp.com';
+
+//Development
+// export const API_ROOT = 'http://localhost:3000'
 export const API_WS_ROOT = 'wss://intense-harbor-90528.herokuapp.com/cable';
 export const HEADERS = {
   'Content-Type': 'application/json',
@@ -33,7 +35,7 @@ const bookmarkCanvas = (canvasId) => {
         body: JSON.stringify({
             bookmark: {
                 user_id: localStorage["id"],
-                picture_id: this.props.canvas.id
+                picture_id: canvasId
             }
         })
     })
@@ -47,9 +49,7 @@ const newCanvas = (canvas) => {
     return fetch(`${API_ROOT}/pictures`, {
         method: 'POST',
         headers: HEADERS,
-        body: JSON.stringify({
-            picture: canvas,
-        })
+        body: JSON.stringify({picture: canvas})
     })
 }
 

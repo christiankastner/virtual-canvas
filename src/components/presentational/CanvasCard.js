@@ -1,6 +1,5 @@
 import React from 'react'
 import CanvasImg from './CanvasImg'
-import { Button } from '@material-ui/core'
 import "./styles/CanvasCard.scss"
 
 const CanvasCard = props => {
@@ -9,7 +8,7 @@ const CanvasCard = props => {
             <CanvasImg canvas={props.canvas} />
            
             <h4>{props.canvas.title}</h4>
-            {props.delete ? <button>Delete</button> : <p>By: {props.user}</p>}
+            {props.delete ? <button onClick={props.delete}>Delete</button> : <p>By: {props.user}</p>}
         </div>
     )
 }
