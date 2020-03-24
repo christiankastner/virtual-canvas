@@ -4,7 +4,7 @@ import Slider from '@material-ui/core/Slider'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
-import { HEADERS, API_ROOT } from '../../constants';
+import { api } from '../../services/api';
 import { withStyles } from '@material-ui/core/styles'
 
 const RedSlider = withStyles({

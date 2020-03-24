@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { API_ROOT, HEADERS } from '../../constants/index';
 import { Slider, Button, FormControl, MenuItem, Select, Typography, Divider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles'
+import { api } from '../../services/api';
 
 const RedSlider = withStyles({
     root: {
@@ -50,17 +50,13 @@ const ShapeEdit = props => {
     })
 
     const handleSubmit = () => {
-        fetch(`${API_ROOT}/p5_shapes/${props.shape.id}`, {
-            method: "PATCH",
-            headers: HEADERS,
-            body: JSON.stringify({
-                p5_shape: {
-                    ...shape,
-                    stroke: shape.stroke.join(','),
-                    fill: shape.fill.join(',')
-                }
-            })}
-        )
+        api.p5.editP5(props.shape.id, {
+            p5_shape: {
+                ...shape,
+                stroke: shape.stroke.join(','),
+                fill: shape.fill.join(',')
+            }
+        })
             .then(resp => resp.json())
             .then(json => {
                 props.dispatch({type: "HTTP_EDIT_SHAPE", animation: json})
@@ -68,10 +64,7 @@ const ShapeEdit = props => {
     }
 
     const handleDelete = () => {
-        fetch(`${API_ROOT}/p5_shapes/${props.shape.id}`, {
-            method: "DELETE",
-            headers: HEADERS
-        })
+        api.p5.deleteP5(props.shape.id)
             .then(resp => resp.json())
             .then(json => {
                 props.dispatch(json)

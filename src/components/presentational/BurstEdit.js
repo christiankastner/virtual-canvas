@@ -16,7 +16,6 @@ const BurstEdit = props => {
     const [burst, setBurst] = useState({...props.animation})
 
     const handleInputChange = (name, value) => {
-        console.log(name,value)
         setBurst({
                 ...burst, 
                 [name]: value
@@ -24,14 +23,11 @@ const BurstEdit = props => {
     }
 
     const handleSubmit = () => {
-        fetch(`${API_ROOT}/animate_mos/${props.animation.id}`, {
-            method: "PATCH",
-            headers: HEADERS,
-            body: JSON.stringify({
+        api.mojs.deleteMojs(props.animation.id,{
                 animate_mo: {
                     ...burst
                 }
-            })}
+            }
         )
             .then(resp => resp.json())
             .then(json => {
@@ -40,10 +36,7 @@ const BurstEdit = props => {
     }
 
     const handleDelete = () => {
-        fetch(`${API_ROOT}/animate_mos/${props.animation.id}`, {
-            method: "DELETE",
-            headers: HEADERS
-        })
+        api.mojs.deleteMojs(props.animation.id)
             .then(resp => resp.json())
             .then(json => {
                 props.dispatch(json)
@@ -140,17 +133,6 @@ const BurstEdit = props => {
                         label="Angle"
                         valueLabelDisplay='auto'
                         onChange={(e,v) => handleInputChange("angle", v)} />
-                    {/* <Typography id="slider" gutterBottom>
-                        Stroke Width
-                    </Typography>
-                    <Slider
-                        name="stroke_width"
-                        orientation="vertical"
-                        value={burst["stroke_width"]}
-                        label="Stroke Width"
-                        max={10}
-                        valueLabelDisplay='auto'
-                        onChange={(e,v) => handleInputChange("stroke_width", v)} /> */}
                 </div>
             </div>
         </div>

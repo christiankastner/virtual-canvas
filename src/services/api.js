@@ -77,10 +77,34 @@ const newAnimation = (modelName) => {
     })
 }
 
-const editAnimation = (animation) => {
-    return 
+const editP5 = (shapeId, data) => {
+    return fetch(`${API_ROOT}/p5_shapes/${shapeId}`, {
+        method: "PATCH",
+        headers: HEADERS,
+        body: JSON.stringify(data)}
+    )
 }
 
+const deleteP5 = (shapeId) => {
+    return fetch(`${API_ROOT}/p5_shapes/${shapeId}`, {
+        method: "DELETE",
+        headers: HEADERS
+    })
+}
+
+const editMojs = (burstId, data) => {
+    return fetch(`${API_ROOT}/animate_mos/${burstId}`, {
+        method: "PATCH",
+        headers: HEADERS,
+        body: JSON.stringify(data)})
+}
+
+const deleteMojs = (burstId) => {
+    return fetch(`${API_ROOT}/animate_mos/${burstId}`, {
+        method: "DELETE",
+        headers: HEADERS
+    })
+}
 export const api = {
     user: {
         getUser,
@@ -97,6 +121,13 @@ export const api = {
     },
     animation: {
         newAnimation,
-        editAnimation: 
+    },
+    p5: {
+        editP5,
+        deleteP5
+    },
+    mojs: {
+        editMoJs,
+        deleteMojs
     }
 }
