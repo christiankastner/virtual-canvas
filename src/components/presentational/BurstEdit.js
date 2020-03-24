@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { API_ROOT, HEADERS } from '../../constants/index';
+import { api } from '../../services/api';
 import { Slider, Button, Typography, FormControl, MenuItem, Select, Divider } from '@material-ui/core';
 
 const BurstEdit = props => {

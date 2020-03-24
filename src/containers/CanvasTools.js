@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
-import { API_ROOT, HEADERS } from '../constants/index'
+import { api } from '../services/api'
 import PaintEdit from '../components/presentational/PaintEdit'
 import BurstEdit from '../components/presentational/BurstEdit'
 import ShapeEdit from '../components/presentational/ShapeEdit'
@@ -39,7 +39,7 @@ const CanvasTools = (props) => {
     }
     
     const handleNewAnimation = (modelName) => {
-        api.animation.newAnimation(modelName)
+        api.animation.newAnimation(modelName, props.canvas_id)
             .then(resp => resp.json())
             .then(json => {
                 if (modelName == 'animate_mo') {

@@ -1,4 +1,7 @@
-export const API_ROOT = 'https://intense-harbor-90528.herokuapp.com';
+// export const API_ROOT = 'https://intense-harbor-90528.herokuapp.com';
+
+//development
+export const API_ROOT = 'http://localhost:3000'
 export const API_WS_ROOT = 'wss://intense-harbor-90528.herokuapp.com/cable';
 export const HEADERS = {
   'Content-Type': 'application/json',
@@ -36,7 +39,7 @@ const bookmarkCanvas = (canvasId) => {
     })
 }
 
-const fetchCanvas = (canvasId) => fetch(`${API_ROOT}/pictures/${this.props.match.params.id}`)
+const fetchCanvas = (canvasId) => fetch(`${API_ROOT}/pictures/${canvasId}`)
 
 const fetchCanvases = () => fetch(`${API_ROOT}/pictures`)
 
@@ -59,19 +62,19 @@ const editCanvas = (canvasId, data) => {
 }
 
 const deleteCanvas = (canvasId) => {
-    return fetch(`${API_ROOT}/pictures/${id}`, {
+    return fetch(`${API_ROOT}/pictures/${canvasId}`, {
         method: 'DELETE',
         headers: HEADERS
     })
 }
-const newAnimation = (modelName) => {
+const newAnimation = (modelName, canvasId) => {
     return fetch(`${API_ROOT}/${modelName}s`, {
         method: "POST",
         headers: HEADERS,
         body: JSON.stringify({
             [`${modelName}`]: {
                 user_id: localStorage["id"],
-                picture_id: props.canvas_id,
+                picture_id: canvasId,
             }
         })
     })
@@ -127,7 +130,7 @@ export const api = {
         deleteP5
     },
     mojs: {
-        editMoJs,
+        editMojs,
         deleteMojs
     }
 }
