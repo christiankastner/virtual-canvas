@@ -39,16 +39,7 @@ const CanvasTools = (props) => {
     }
     
     const handleNewAnimation = (modelName) => {
-        fetch(`${API_ROOT}/${modelName}s`, {
-            method: "POST",
-            headers: HEADERS,
-            body: JSON.stringify({
-                [`${modelName}`]: {
-                    user_id: localStorage["id"],
-                    picture_id: props.canvas_id,
-                }
-            })
-        })
+        api.animation.newAnimation(modelName)
             .then(resp => resp.json())
             .then(json => {
                 if (modelName == 'animate_mo') {

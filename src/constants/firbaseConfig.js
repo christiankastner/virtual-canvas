@@ -1,5 +1,5 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyBjEbxXggiBfnzQWTQu09soV9lbRJSA_TA",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "virtual-canvas.firebaseapp.com",
     databaseURL: "https://virtual-canvas.firebaseio.com",
     projectId: "virtual-canvas",

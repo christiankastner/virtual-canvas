@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Button, Form } from 'semantic-ui-react'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { API_ROOT, HEADERS } from '../constants/index'
+import { api } from '../services/api'
 import DisplayCanvases from './DisplayCanvases';
 import "./styles/CanvasesContainer.scss"
 
@@ -21,7 +21,7 @@ class CanvasesContainer extends React.Component {
 
     componentDidMount() {
         this.setState({loading: true}, () => {
-            fetch(`${API_ROOT}/pictures`)
+            api.canvas.fetchCanvases()
                 .then(resp => resp.json())
                 .then(json => {
                     this.setState({
@@ -34,16 +34,9 @@ class CanvasesContainer extends React.Component {
 
     handleNewCanvas = () => {
         if (this.props.user_id) {
-            fetch(`${API_ROOT}/pictures`, {
-                method: 'POST',
-                headers: HEADERS,
-                body: JSON.stringify({
-                    picture: this.state.newCanvas,
-                })
-            })
+            api.canvas.newCanvas(this.state.newCanvas)
                 .then(resp => resp.json())
                 .then(json => {
-                    console.log(json)
                     this.props.handleNewCanvas(json)
                     this.setState(prevState => {
                         return {

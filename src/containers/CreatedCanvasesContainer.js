@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button'
 import { API_ROOT, HEADERS } from '../constants/index'
 import './styles/CreatedCanvasesContainer.scss'
 import CanvasCard from '../components/presentational/CanvasCard'
+import { api } from '../services/api'
 
 const CreatedCanvasesContainer = props => {
     const [state, setState] = useState({
@@ -14,10 +15,7 @@ const CreatedCanvasesContainer = props => {
     })
 
     const handleDelete = (id) => {
-        fetch(`${API_ROOT}/pictures/${id}`, {
-                            method: 'DELETE',
-                            headers: HEADERS
-                        })
+        api.canvas.deleteCanvas(id)
                             .then(resp => resp.json())
                             .then(json => {
                                 if (json.message === "Successful") {
