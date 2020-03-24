@@ -1,7 +1,21 @@
-.user-canvases-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: none;
-    color: white;
-    
+.canvas-table {
+  width: 100%;
+  overflow-x: auto;
+
+    ul {
+      display: flex;
+      list-style: none;
+
+      li {
+        margin-right: 1em;
+
+        button {
+          color: white;
+          background-color: rgb(100,20,0);
+          padding: .75em 1em;
+          border-radius: .5em;
+          border: none;
+        }
+      }
+    }
   }

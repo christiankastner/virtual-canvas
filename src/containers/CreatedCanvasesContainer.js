@@ -11,9 +11,9 @@ const CreatedCanvasesContainer = props => {
                             .then(resp => resp.json())
                             .then(json => {
                                 if (json.message === "Successful") {
-                                    setState(prevState => {
-                                        return { data: [...prevState.data.filter(canvas => canvas.id !== id)]}
-                                    })
+                                    // setState(prevState => {
+                                    //     return { data: [...prevState.data.filter(canvas => canvas.id !== id)]}
+                                    // })
                                 }
     
                             })
@@ -24,7 +24,7 @@ const CreatedCanvasesContainer = props => {
             console.log(canvas)
             return (
                 <li>
-                    {/* <CanvasCard canvas={canvas} delete={() => handleDelete(canvas.id)}/> */}
+                    <CanvasCard canvas={canvas} delete={() => handleDelete(canvas.id)}/>
                 </li>
             )
         })
