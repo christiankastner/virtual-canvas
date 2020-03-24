@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/virtual-canvas/static/css/main.ef1a6e3a.chunk.css",
-    "main.js": "/virtual-canvas/static/js/main.d04a6028.chunk.js",
-    "main.js.map": "/virtual-canvas/static/js/main.d04a6028.chunk.js.map",
-    "runtime-main.js": "/virtual-canvas/static/js/runtime-main.c14bdbea.js",
-    "runtime-main.js.map": "/virtual-canvas/static/js/runtime-main.c14bdbea.js.map",
-    "static/js/2.2d0ab686.chunk.js": "/virtual-canvas/static/js/2.2d0ab686.chunk.js",
-    "static/js/2.2d0ab686.chunk.js.map": "/virtual-canvas/static/js/2.2d0ab686.chunk.js.map",
+    "main.css": "/virtual-canvas/static/css/main.368ae8ec.chunk.css",
+    "main.js": "/virtual-canvas/static/js/main.4b8b7342.chunk.js",
+    "main.js.map": "/virtual-canvas/static/js/main.4b8b7342.chunk.js.map",
+    "runtime-main.js": "/virtual-canvas/static/js/runtime-main.dcbac245.js",
+    "runtime-main.js.map": "/virtual-canvas/static/js/runtime-main.dcbac245.js.map",
+    "static/js/2.1a28f20c.chunk.js": "/virtual-canvas/static/js/2.1a28f20c.chunk.js",
+    "static/js/2.1a28f20c.chunk.js.map": "/virtual-canvas/static/js/2.1a28f20c.chunk.js.map",
     "index.html": "/virtual-canvas/index.html",
-    "precache-manifest.fd3130d472687d2efbbc8813e58e8ede.js": "/virtual-canvas/precache-manifest.fd3130d472687d2efbbc8813e58e8ede.js",
+    "precache-manifest.5c9f206a214bfb66d042eab30d494f3e.js": "/virtual-canvas/precache-manifest.5c9f206a214bfb66d042eab30d494f3e.js",
     "service-worker.js": "/virtual-canvas/service-worker.js",
-    "static/css/main.ef1a6e3a.chunk.css.map": "/virtual-canvas/static/css/main.ef1a6e3a.chunk.css.map",
-    "static/js/2.2d0ab686.chunk.js.LICENSE": "/virtual-canvas/static/js/2.2d0ab686.chunk.js.LICENSE",
+    "static/css/main.368ae8ec.chunk.css.map": "/virtual-canvas/static/css/main.368ae8ec.chunk.css.map",
+    "static/js/2.1a28f20c.chunk.js.LICENSE.txt": "/virtual-canvas/static/js/2.1a28f20c.chunk.js.LICENSE.txt",
     "static/media/index.css": "/virtual-canvas/static/media/dance-floor.5deb96c1.jpg",
     "static/media/folds.mp3": "/virtual-canvas/static/media/folds.bc4e5cac.mp3",
     "static/media/lights.jpg": "/virtual-canvas/static/media/lights.a713bd66.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.c14bdbea.js",
-    "static/js/2.2d0ab686.chunk.js",
-    "static/css/main.ef1a6e3a.chunk.css",
-    "static/js/main.d04a6028.chunk.js"
+    "static/js/runtime-main.dcbac245.js",
+    "static/js/2.1a28f20c.chunk.js",
+    "static/css/main.368ae8ec.chunk.css",
+    "static/js/main.4b8b7342.chunk.js"
   ]
 }
