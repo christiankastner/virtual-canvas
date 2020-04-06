@@ -85,6 +85,13 @@ class Canvas extends React.Component {
             // console.log(file)
             // const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
             // console.log(musicRef)
+            const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
+            storageRef.child(file.file.name).getMetadata()
+                        .then((metaData) => {
+                            let url = metaData
+                            console.log(url)
+                        })
+                        
             // musicRef.put(file.file).then(() => {
             //     const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
             //     storageRef.child(file.file.name).getMetadata()
