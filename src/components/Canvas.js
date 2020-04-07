@@ -79,19 +79,26 @@ class Canvas extends React.Component {
             p.fill(250)
             p.ellipse(x, y, 5,5);
         }
+
+        // p.mouseClicked = () => {
+        //     console.log('running')
+        //     const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
+        //         storageRef.child("never.mp3").getDownloadURL()
+        //             .then((url) => {
+        //                 this.uploadBtn.input(url)
+        //             })
+        // }
       
         p.uploaded = file => {
             this.uploadLoading = true;
+            let audio;
+            console.log(file)
             // console.log(file)
             // const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
             // console.log(musicRef)
-            const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-            storageRef.child(file.file.name).getMetadata()
-                        .then((metaData) => {
-                            let url = metaData
-                            console.log(url)
-                        })
-                        
+
+
+
             // musicRef.put(file.file).then(() => {
             //     const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
             //     storageRef.child(file.file.name).getMetadata()
@@ -100,7 +107,7 @@ class Canvas extends React.Component {
             //             console.log(metaData.fullPath)
             //         })
             //     })
-            this.uploadedAudio = p.loadSound(file.data, p.uploadedAudioPlay);
+            // this.uploadedAudio = p.loadSound(file.data, p.uploadedAudioPlay);
         }
 
         // p.mouseDragged = () => {
