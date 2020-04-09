@@ -6,6 +6,7 @@ import PaintEdit from '../components/presentational/PaintEdit'
 import BurstEdit from '../components/presentational/BurstEdit'
 import ShapeEdit from '../components/presentational/ShapeEdit'
 import CanvasSettings from '../components/presentational/CanvasSettings'
+import "./styles/CanvasTools.scss"
 
 const CanvasTools = (props) => {
 

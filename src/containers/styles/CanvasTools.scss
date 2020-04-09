@@ -1,0 +1,43 @@
+.tools-container {
+    margin-left: 20px;
+    margin-top: 10px;
+    height: 625px;
+    width: 630px;
+    overflow-y: auto;
+    box-shadow: 0px 50px 100px 0px rgba(9,24,50, 0.25);
+  }
+  
+  .tool {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 10px;
+  }
+  
+  .tool-burst {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding: 10px;
+  }
+  
+  .canvas-settings {
+    padding: 15px;
+  }
+  
+  .burst1, .burst2 {
+    height: 150px;
+    padding: 10px;
+  }
+  
+  .burst2 {
+    display: flex;
+  }
+  
+  .toolbox1, .toolbox2, .toolbox3, .toolbox4 {
+    height: 150px;
+    padding: 10px;
+  }
+  
+  .toolbox4 {
+    display: flex;
+  }
