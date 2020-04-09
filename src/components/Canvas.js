@@ -28,6 +28,17 @@ class Canvas extends React.Component {
     componentDidMount() {
         this.myP5 = new p5 (this.sketch, this.myRef.current)
         this.cable = actioncable.createConsumer(API_WS_ROOT)
+        const database = firebase.database().ref(`canvas-${this.props.canvas.id}`)
+        const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
+        database.on('value', this.loadData, this.errData)
+    }
+
+    loadData = (data) => {
+        console.log(data.val())
+    }
+
+    errData = (err) => {
+        console.log(err)
     }
 
     sketch = (p) => {
@@ -94,17 +105,21 @@ class Canvas extends React.Component {
             // console.log(typeof file.data)
             let objURL
             const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-            storageRef.child("never.mp3").getDownloadURL().then(url => {
-                var xhr = new XMLHttpRequest();
-                xhr.responseType = 'blob';
-                xhr.onload = function(event) {
-                    var blob = xhr.response;
-                    objURL = URL.createObjectURL(blob)
-                    console.log(objURL)
-                    this.uploadedAudio = p.loadSound(objURL, p.uploadedAudioPlay);
-                };
-                xhr.open('GET', url);
-                xhr.send();
+            storageRef.child(file.name).getDownloadURL().then(url => {
+                const databaseRef = firebase.database().ref(`canvas-${this.props.canvas.id}`)
+                databaseRef.push({
+                    songName: file.name,
+                    url: url
+                })
+                // let xhr = new XMLHttpRequest();
+                // xhr.responseType = 'blob';
+                // xhr.onload = function(event) {
+                //     let blob = xhr.response;
+                //     objURL = URL.createObjectURL(blob)
+                //     this.uploadedAudio = p.loadSound(objURL, p.uploadedAudioPlay);
+                // };
+                // xhr.open('GET', url);
+                // xhr.send();
             })
 
             // console.log(file)
