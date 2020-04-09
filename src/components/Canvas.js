@@ -42,7 +42,8 @@ class Canvas extends React.Component {
     }
 
     sketch = (p) => {
-        let fft, analyzer
+        let fft, analyzer;
+        let extraCanvas;
 
         p.preload = () => {
             this.song = p.loadSound(folds)
@@ -50,6 +51,10 @@ class Canvas extends React.Component {
       
         p.setup = () => {
             p.createCanvas(600, 600);
+
+            extraCanvas = p.createGraphics(600,600);
+
+            extraCanvas.clear();
         
             this.toggleBtn = p.createButton("Play / Pause")
         
@@ -73,8 +78,8 @@ class Canvas extends React.Component {
                 received: data => {
                     if ('type' in data) {
                         this.props.dispatch(data)
-                    // } else if ('draw' in data) {
-                    //     p.newDrawing(data.draw.x, data.draw.y)
+                    } else if ('draw' in data) {
+                        p.newDrawing(data.draw.x, data.draw.y)
                     } else {
                         this.handleRecievedBurst(data)
                     } 
@@ -86,9 +91,9 @@ class Canvas extends React.Component {
         };
 
         p.newDrawing = (x,y) => {
-            p.noStroke()
-            p.fill(250)
-            p.ellipse(x, y, 5,5);
+            extraCanvas.noStroke()
+            extraCanvas.fill(250)
+            extraCanvas.ellipse(x, y, 5,5);
         }
 
         // p.mouseClicked = () => {
@@ -140,6 +145,8 @@ class Canvas extends React.Component {
 
         p.mouseDragged = () => {
             if (this.props.selected === "paint") {
+                p.newDrawing(p.mouseX, p.mouseY)
+                console.log(p.mouseX, p.mouseY)
                 this.canvasChannel.send({
                     canvas_id: this.props.paramsId,
                     draw: {
@@ -191,6 +198,8 @@ class Canvas extends React.Component {
             const { background, mid_mapping_1, mid_mapping_2, treble_mapping_1, treble_mapping_2, bass_mapping_1, bass_mapping_2} = this.props.canvas
     
             p.background(`rgb(${background})`);
+            
+            p.image(extraCanvas, 0, 0)
 
             p.translate(p.width / 2, p.height / 2);
 
@@ -208,6 +217,7 @@ class Canvas extends React.Component {
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "treble", mapTreble, p)
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "mid", mapMid, p)
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "bass", mapBass, p)
+
         };
     }
 
