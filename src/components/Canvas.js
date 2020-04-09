@@ -90,18 +90,23 @@ class Canvas extends React.Component {
         // }
       
         p.uploaded = file => {
-            this.uploadLoading = true;
-            console.log(file)
+            // this.uploadLoading = true;
+            // console.log(typeof file.data)
+            let objURL
             const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-            storageRef.child("never.mp3").getMetadata().then(url => {
+            storageRef.child("never.mp3").getDownloadURL().then(url => {
                 var xhr = new XMLHttpRequest();
                 xhr.responseType = 'blob';
                 xhr.onload = function(event) {
                     var blob = xhr.response;
+                    objURL = URL.createObjectURL(blob)
+                    console.log(objURL)
+                    this.uploadedAudio = p.loadSound(objURL, p.uploadedAudioPlay);
                 };
                 xhr.open('GET', url);
                 xhr.send();
             })
+
             // console.log(file)
             // const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
             // console.log(musicRef)
@@ -116,7 +121,6 @@ class Canvas extends React.Component {
             //             console.log(metaData.fullPath)
             //         })
             //     })
-            // this.uploadedAudio = p.loadSound(file.data, p.uploadedAudioPlay);
         }
 
         // p.mouseDragged = () => {
@@ -131,22 +135,22 @@ class Canvas extends React.Component {
             // }
         // }
 
-        p.mouseClicked = () => {
-            if (this.props.selected === "bursts") {
-                if (p.mouseX * p.mouseY > 0 && p.mouseX < 600 && p.mouseY < 600) {
-                    this.canvasChannel.send({
-                        canvas_id: this.props.paramsId,
-                        burst: {
-                            user_id: localStorage["id"],
-                            tune : {
-                                x: p.winMouseX,
-                                y: p.winMouseY
-                            }
-                        }
-                    })
-                }
-            }
-        }
+        // p.mouseClicked = () => {
+        //     if (this.props.selected === "bursts") {
+        //         if (p.mouseX * p.mouseY > 0 && p.mouseX < 600 && p.mouseY < 600) {
+        //             this.canvasChannel.send({
+        //                 canvas_id: this.props.paramsId,
+        //                 burst: {
+        //                     user_id: localStorage["id"],
+        //                     tune : {
+        //                         x: p.winMouseX,
+        //                         y: p.winMouseY
+        //                     }
+        //                 }
+        //             })
+        //         }
+        //     }
+        // }
       
         p.uploadedAudioPlay = (file) => {
             this.uploading = false;

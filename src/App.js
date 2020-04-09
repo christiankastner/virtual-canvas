@@ -31,7 +31,7 @@ const App = props => {
               <About />
             </>)
           }}/>
-          <Route path="/user" >
+          <Route exact path="/user" >
             {props.user_id ? <UserShow /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/canvases" render={routerProps => <CanvasesIndex {...routerProps} />} />
