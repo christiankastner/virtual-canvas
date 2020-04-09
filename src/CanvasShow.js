@@ -32,9 +32,9 @@ class CanvasShow extends React.Component {
                 <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "bursts"})}>
                     Bursts
                 </Button>
-                {/* <Button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "paint"})}>
+                <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "paint"})}>
                     Paint
-                </Button>  */}
+                </Button> 
                 {this.props.user_id == this.props.admin ? <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "settings"})}>
                     Settings
                 </Button> : ""}

@@ -138,17 +138,17 @@ class Canvas extends React.Component {
             //     })
         }
 
-        // p.mouseDragged = () => {
-            // if (this.props.selected === "paint") {
-            //     this.canvasChannel.send({
-            //         canvas_id: this.props.paramsId,
-            //         draw: {
-            //             x: p.mouseX,
-            //             y: p.mouseY
-            //         }
-            //     })
-            // }
-        // }
+        p.mouseDragged = () => {
+            if (this.props.selected === "paint") {
+                this.canvasChannel.send({
+                    canvas_id: this.props.paramsId,
+                    draw: {
+                        x: p.mouseX,
+                        y: p.mouseY
+                    }
+                })
+            }
+        }
 
         // p.mouseClicked = () => {
         //     if (this.props.selected === "bursts") {
