@@ -28,7 +28,7 @@ class Canvas extends React.Component {
     componentDidMount() {
         this.myP5 = new p5 (this.sketch, this.myRef.current)
         this.cable = actioncable.createConsumer(API_WS_ROOT)
-        const database = firebase.database().ref(`canvas-${this.props.canvas.id}`)
+        const database = firebase.database().ref(`canvas-2`)
         const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
         database.on('value', this.loadData, this.errData)
     }
@@ -59,12 +59,16 @@ class Canvas extends React.Component {
             this.toggleBtn = p.createButton("Play / Pause")
         
             this.uploadBtn = p.createFileInput(p.uploaded)
+
+            this.clearCanvasBtn = p.createButton("Clear Drawing")
         
             this.uploadBtn.addClass("upload-btn")
         
             this.toggleBtn.addClass("toggle-btn");
         
             this.toggleBtn.mousePressed(p.toggleAudio);
+
+            this.clearCanvasBtn.mousePressed(extraCanvas.clear)
 
             this.canvasChannel = this.cable.subscriptions.create({
                 channel: `PicturesChannel`, 
@@ -108,14 +112,14 @@ class Canvas extends React.Component {
         p.uploaded = file => {
             // this.uploadLoading = true;
             // console.log(typeof file.data)
-            let objURL
-            const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-            storageRef.child(file.name).getDownloadURL().then(url => {
-                const databaseRef = firebase.database().ref(`canvas-${this.props.canvas.id}`)
-                databaseRef.push({
-                    songName: file.name,
-                    url: url
-                })
+            // let objURL
+            // const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
+            // storageRef.child(file.name).getDownloadURL().then(url => {
+            //     const databaseRef = firebase.database().ref(`canvas-${this.props.canvas.id}`)
+            //     databaseRef.push({
+            //         songName: file.name,
+            //         url: url
+            //     })
                 // let xhr = new XMLHttpRequest();
                 // xhr.responseType = 'blob';
                 // xhr.onload = function(event) {
@@ -125,22 +129,21 @@ class Canvas extends React.Component {
                 // };
                 // xhr.open('GET', url);
                 // xhr.send();
+            // })
+
+        const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
+
+        musicRef.put(file.file).then(() => {
+            const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
+            storageRef.child(file.file.name).getDownloadURL()
+                .then((url) => {
+                    const databaseRef = firebase.database().ref(`canvas-${this.props.canvas.id}`)
+                    databaseRef.push({
+                        songName: file.name,
+                        url: url
+                        })
+                })
             })
-
-            // console.log(file)
-            // const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
-            // console.log(musicRef)
-
-
-
-            // musicRef.put(file.file).then(() => {
-            //     const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-            //     storageRef.child(file.file.name).getMetadata()
-            //         .then((metaData) => {
-            //             let url = metaData.downloadURLs
-            //             console.log(metaData.fullPath)
-            //         })
-            //     })
         }
 
         p.mouseDragged = () => {
@@ -198,7 +201,7 @@ class Canvas extends React.Component {
             const { background, mid_mapping_1, mid_mapping_2, treble_mapping_1, treble_mapping_2, bass_mapping_1, bass_mapping_2} = this.props.canvas
     
             p.background(`rgb(${background})`);
-            
+
             p.image(extraCanvas, 0, 0)
 
             p.translate(p.width / 2, p.height / 2);
@@ -217,7 +220,6 @@ class Canvas extends React.Component {
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "treble", mapTreble, p)
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "mid", mapMid, p)
             P5ReactAdapter.readFrequencyShapes( this.props.shapes, "bass", mapBass, p)
-
         };
     }
 
