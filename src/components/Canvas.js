@@ -28,20 +28,12 @@ class Canvas extends React.Component {
         this.cable = actioncable.createConsumer(API_WS_ROOT)
     }
 
-    loadData = (data) => {
-        console.log(data.val())
-    }
-
-    errData = (err) => {
-        console.log(err)
-    }
-
     sketch = (p) => {
         let fft, analyzer;
         let extraCanvas;
 
         p.preload = () => {
-            this.song = p.loadSound(folds)
+            this.song = p.loadSound(this.props.loadedSong)
         }
       
         p.setup = () => {
@@ -94,18 +86,9 @@ class Canvas extends React.Component {
             extraCanvas.fill(250)
             extraCanvas.ellipse(x, y, 5,5);
         }
-
-        // p.mouseClicked = () => {
-        //     console.log('running')
-        //     const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-        //         storageRef.child("never.mp3").getDownloadURL()
-        //             .then((url) => {
-        //                 this.uploadBtn.input(url)
-        //             })
-        // }
       
         p.uploaded = file => {
-            // this.uploadLoading = true;
+            this.uploadLoading = true;
             // console.log(typeof file.data)
             // let objURL
             // const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
@@ -115,15 +98,6 @@ class Canvas extends React.Component {
             //         songName: file.name,
             //         url: url
             //     })
-                // let xhr = new XMLHttpRequest();
-                // xhr.responseType = 'blob';
-                // xhr.onload = function(event) {
-                //     let blob = xhr.response;
-                //     objURL = URL.createObjectURL(blob)
-                //     this.uploadedAudio = p.loadSound(objURL, p.uploadedAudioPlay);
-                // };
-                // xhr.open('GET', url);
-                // xhr.send();
             // })
 
         const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
@@ -248,6 +222,7 @@ const mapStateToProps = state => {
         user_id: state.user_id,
         canvas: state.canvas,
         selected: state.selected,
+        loadedSong: state.loadedSong,
         shapes: state.canvasShapes,
         bursts: state.canvasBursts ? state.canvasBursts.map(animation => {
             return {

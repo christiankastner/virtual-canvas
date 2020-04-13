@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react"
 import { connect } from 'react-redux'
 import firebase from '../constants/firbase'
+import './styles/SongsContainer.scss'
 
 const SongsContainer = props => {
     const [songs, setSongs] = useState([])
 
     useEffect(() => {
-        renderSongs()
-    })
-
-    const renderSongs = () => {
         const database = firebase.database().ref(`canvas-${props.canvasId}`)
         database.on('value', readSongs, errData)
-        // const keys = Object.keys(data)
-    }
+    }, [props.canvasId])
 
     const readSongs = (data) => {
         const songs = data.val();
@@ -25,12 +21,25 @@ const SongsContainer = props => {
         console.log(err)
     }
 
+    const loadSong = (url) => {
+        return () => {
+            let xhr = new XMLHttpRequest();
+                    xhr.responseType = 'blob';
+                    xhr.onload = function(event) {
+                        let blob = xhr.response;
+                        let objURL = URL.createObjectURL(blob)
+                        props.dispatch({type: "LOAD_SONG", url: objURL})
+                    };
+                    xhr.open('GET', url);
+                    xhr.send();
+        }
+    }
+
     return (
         <div className="song-container">
             <ul>
-            hello
                 {songs.map(song => {
-                    return <li>{song.songName}</li>
+                    return <li onClick={loadSong(song.url)}>{song.songName}</li>
                 })}
             </ul>
         </div>

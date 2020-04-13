@@ -6,11 +6,11 @@ const initialState = {
     canvasShapes: [], 
     myShapes: [],
     selected: '',
+    loadedSong: '',
     admin: ''
 }
 
 export default function canvasReducer(state = initialState, action) {
-
     switch(action.type) {
         case "LOGIN":
             return {
@@ -40,6 +40,11 @@ export default function canvasReducer(state = initialState, action) {
             return {
                 ...state,
                 canvas: action.canvas.picture
+            }
+        case "LOAD_SONG":
+            return {
+                ...state,
+                loadedSong: action.url
             }
         case "HTTP_NEW_BURST":
             return {
@@ -141,6 +146,7 @@ export default function canvasReducer(state = initialState, action) {
                 myAnimations: [],
                 canvasAnimations: [],
                 selected: '',
+                loadedSong: '',
                 admin: ''
             }
         default: return state
