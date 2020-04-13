@@ -1,3 +1,5 @@
+import firebase from 'firebase'
+
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "virtual-canvas.firebaseapp.com",
@@ -9,4 +11,6 @@ const firebaseConfig = {
     measurementId: "G-KHGVVPE55P"
   };
 
-export default firebaseConfig
+
+firebase.initializeApp(firebaseConfig)
+export default firebase

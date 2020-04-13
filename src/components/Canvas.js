@@ -6,11 +6,9 @@ import p5 from 'p5';
 import "p5/lib/addons/p5.sound";
 import P5ReactAdapter from '../constants/P5ReactAdapter'
 import { API_WS_ROOT } from '../constants/index'
-import firebaseConfig from "../constants/firbaseConfig"
-import firebase from 'firebase'
-const actioncable = require("actioncable")
+import firebase from '../constants/firbase'
 
-firebase.initializeApp(firebaseConfig)
+const actioncable = require("actioncable")
 
 class Canvas extends React.Component {
     constructor(props) {
@@ -28,9 +26,6 @@ class Canvas extends React.Component {
     componentDidMount() {
         this.myP5 = new p5 (this.sketch, this.myRef.current)
         this.cable = actioncable.createConsumer(API_WS_ROOT)
-        const database = firebase.database().ref(`canvas-2`)
-        const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-        database.on('value', this.loadData, this.errData)
     }
 
     loadData = (data) => {
