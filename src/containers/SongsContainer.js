@@ -1,26 +1,24 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { connect } from 'react-redux'
 import firebase from '../constants/firbase'
 
 const SongsContainer = props => {
+    const [songs, setSongs] = useState([])
+
+    useEffect(() => {
+        renderSongs()
+    })
+
     const renderSongs = () => {
         const database = firebase.database().ref(`canvas-${props.canvasId}`)
-        let data;
-        database.on('value', (firebaseData) => {console.log(firebaseData.val())}, errData)
-        console.log(data)
+        database.on('value', readSongs, errData)
         // const keys = Object.keys(data)
-        return (
-            <ul>
-                {/* {keys.map(key => {
-                    return <li>{data[key].name}</li>
-                })} */}
-            </ul>
-        )
     }
 
     const readSongs = (data) => {
-        console.log(typeof data.val())
-        return data.val()
+        const songs = data.val();
+        const keys = songs ? Object.keys(songs) : []
+        setSongs([...keys.map(key => songs[key])])
     }
 
     const errData = err => {
@@ -28,8 +26,13 @@ const SongsContainer = props => {
     }
 
     return (
-        <div>
-            {renderSongs()}
+        <div className="song-container">
+            <ul>
+            hello
+                {songs.map(song => {
+                    return <li>{song.songName}</li>
+                })}
+            </ul>
         </div>
     )
 }
