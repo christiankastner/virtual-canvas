@@ -33,7 +33,7 @@ class Canvas extends React.Component {
         let extraCanvas;
 
         p.preload = () => {
-            this.song = p.loadSound(this.props.loadedSong)
+            this.song = p.loadSound(folds)
         }
       
         p.setup = () => {
