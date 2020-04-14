@@ -42,6 +42,7 @@ export default function canvasReducer(state = initialState, action) {
                 canvas: action.canvas.picture
             }
         case "LOAD_SONG":
+            URL.revokeObjectURL(state.loadedSong)
             return {
                 ...state,
                 loadedSong: action.url

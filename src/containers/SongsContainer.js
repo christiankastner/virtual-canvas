@@ -24,14 +24,14 @@ const SongsContainer = props => {
     const loadSong = (url) => {
         return () => {
             let xhr = new XMLHttpRequest();
-                    xhr.responseType = 'blob';
-                    xhr.onload = function(event) {
-                        let blob = xhr.response;
-                        let objURL = URL.createObjectURL(blob)
-                        props.dispatch({type: "LOAD_SONG", url: objURL})
-                    };
-                    xhr.open('GET', url);
-                    xhr.send();
+            xhr.responseType = 'blob';
+            xhr.onload = function(event) {
+                let blob = xhr.response;
+                let objURL = URL.createObjectURL(blob)
+                props.dispatch({type: "LOAD_SONG", url: objURL})
+            };
+            xhr.open('GET', url);
+            xhr.send();
         }
     }
 

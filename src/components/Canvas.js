@@ -89,36 +89,25 @@ class Canvas extends React.Component {
       
         p.uploaded = file => {
             this.uploadLoading = true;
-            // console.log(typeof file.data)
-            // let objURL
-            // const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-            // storageRef.child(file.name).getDownloadURL().then(url => {
-            //     const databaseRef = firebase.database().ref(`canvas-${this.props.canvas.id}`)
-            //     databaseRef.push({
-            //         songName: file.name,
-            //         url: url
-            //     })
-            // })
 
-        const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
+            const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
 
-        musicRef.put(file.file).then(() => {
-            const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-            storageRef.child(file.file.name).getDownloadURL()
-                .then((url) => {
-                    const databaseRef = firebase.database().ref(`canvas-${this.props.canvas.id}`)
-                    databaseRef.push({
-                        songName: file.name,
-                        url: url
-                        })
+            musicRef.put(file.file).then(() => {
+                const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
+                storageRef.child(file.file.name).getDownloadURL()
+                    .then((url) => {
+                        const databaseRef = firebase.database().ref(`canvas-${this.props.canvas.id}`)
+                        databaseRef.push({
+                            songName: file.name,
+                            url: url
+                            })
+                    })
                 })
-            })
         }
 
         p.mouseDragged = () => {
             if (this.props.selected === "paint") {
                 p.newDrawing(p.mouseX, p.mouseY)
-                console.log(p.mouseX, p.mouseY)
                 this.canvasChannel.send({
                     canvas_id: this.props.paramsId,
                     draw: {
@@ -145,6 +134,12 @@ class Canvas extends React.Component {
         //         }
         //     }
         // }
+
+        p.redrawNewProps = (props) => {
+            console.log(this.song)
+            console.log(props.loadedSong)
+            // this.uploadedAudio = p.loadSound(props.loadedSong, p.uploadedAudioPlay);
+        }
       
         p.uploadedAudioPlay = (file) => {
             this.uploading = false;
@@ -194,8 +189,9 @@ class Canvas extends React.Component {
 
     componentWillUnmount() {
         this.cable.disconnect()
-        this.props.dispatch({type: "REMOVE_CANVAS"})
         this.song.pause()
+        URL.revokeObjectURL(this.props.loadedSong)
+        this.props.dispatch({type: "REMOVE_CANVAS"})
     }
 
     handleRecievedBurst = response => {
@@ -209,10 +205,16 @@ class Canvas extends React.Component {
         }
     }
 
+    uploadAudio = () => {
+        if (this.myP5) {
+            this.myP5.redrawNewProps(this.props)
+        }
+    }
+
     render() {
+        this.uploadAudio()
         return (
-            <div id="canvas" className="canvas" onClick={this.handleClick} ref={this.myRef}>
-            </div>
+            <div id="canvas" className="canvas" ref={this.myRef}/>
         )
     }
 }
@@ -224,25 +226,25 @@ const mapStateToProps = state => {
         selected: state.selected,
         loadedSong: state.loadedSong,
         shapes: state.canvasShapes,
-        bursts: state.canvasBursts ? state.canvasBursts.map(animation => {
-            return {
-                user_id: animation.user_id,
-                burst: new mojs.Burst({
-                    parent: document.getElementById("canvas"),
-                    left: 0, top: 0,
-                    count: animation.count,
-                    angle: {0: animation.angle},
-                    radius: {[animation.radius_1]: animation.radius_2},
-                    children: {
-                        shape: animation.shape,
-                        fill:    animation.color,
-                        radius:     20,
-                        strokeWidth: animation.stroke_width,
-                        duration:   animation.duration*100
-                    }
-                })
-            }
-        }) : []
+        // bursts: state.canvasBursts ? state.canvasBursts.map(animation => {
+        //     return {
+        //         user_id: animation.user_id,
+        //         burst: new mojs.Burst({
+        //             parent: document.getElementById("canvas"),
+        //             left: 0, top: 0,
+        //             count: animation.count,
+        //             angle: {0: animation.angle},
+        //             radius: {[animation.radius_1]: animation.radius_2},
+        //             children: {
+        //                 shape: animation.shape,
+        //                 fill:    animation.color,
+        //                 radius:     20,
+        //                 strokeWidth: animation.stroke_width,
+        //                 duration:   animation.duration*100
+        //             }
+        //         })
+        //     }
+        // }) : []
     }
 }
 
