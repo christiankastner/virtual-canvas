@@ -15,7 +15,7 @@ class P5ReactAdapter {
         p.fill(`rgb(${json.fill})`)
         p.stroke(`rgb(${json.stroke})`)
 
-        const {width, height, amount, spin, orbit, shape, stagger_radius, stagger_place } = json
+        const { width, height, amount, spin, orbit, shape, stagger_radius, stagger_place } = json
         const radius = frequencyMapping + stagger_radius
         p.rotate(orbit * p.frameCount/10)
         switch (shape) {

@@ -72,7 +72,7 @@ class Canvas extends React.Component {
                     } else if ('draw' in data) {
                         p.newDrawing(data.draw.x, data.draw.y)
                     } else {
-                        this.handleRecievedBurst(data)
+                        // this.handleRecievedBurst(data)
                     } 
             }})
             analyzer = new p5.Amplitude();
@@ -135,10 +135,8 @@ class Canvas extends React.Component {
         //     }
         // }
 
-        p.redrawNewProps = (props) => {
-            console.log(this.song)
-            console.log(props.loadedSong)
-            // this.uploadedAudio = p.loadSound(props.loadedSong, p.uploadedAudioPlay);
+        p.loadSong = (song) => {
+            this.uploadedAudio = p.loadSound(song, p.uploadedAudioPlay);
         }
       
         p.uploadedAudioPlay = (file) => {
@@ -187,6 +185,12 @@ class Canvas extends React.Component {
         };
     }
 
+    componentDidUpdate(provProps) {
+        if (prevProps.loadedSong !== this.props.loadedSong) {
+            this.myP5.loadSong(props.loadedSong)
+        }
+    }
+
     componentWillUnmount() {
         this.cable.disconnect()
         this.song.pause()
@@ -194,16 +198,16 @@ class Canvas extends React.Component {
         this.props.dispatch({type: "REMOVE_CANVAS"})
     }
 
-    handleRecievedBurst = response => {
-        const {user_id, tune} = response.burst
-        const { bursts } = this.props
-        console.log(user_id, tune)
-        for (let i = 0; i < bursts.length; i++) {
-            if (bursts[i].user_id == user_id) {
-                bursts[i].burst.tune(tune).replay()
-            }
-        }
-    }
+    // handleRecievedBurst = response => {
+    //     const {user_id, tune} = response.burst
+    //     const { bursts } = this.props
+    //     console.log(user_id, tune)
+    //     for (let i = 0; i < bursts.length; i++) {
+    //         if (bursts[i].user_id == user_id) {
+    //             bursts[i].burst.tune(tune).replay()
+    //         }
+    //     }
+    // }
 
     uploadAudio = () => {
         if (this.myP5) {
@@ -211,8 +215,7 @@ class Canvas extends React.Component {
         }
     }
 
-    render() {
-        this.uploadAudio()
+    render() { 
         return (
             <div id="canvas" className="canvas" ref={this.myRef}/>
         )
