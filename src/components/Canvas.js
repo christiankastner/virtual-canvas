@@ -185,9 +185,9 @@ class Canvas extends React.Component {
         };
     }
 
-    componentDidUpdate(provProps) {
+    componentDidUpdate(prevProps) {
         if (prevProps.loadedSong !== this.props.loadedSong) {
-            this.myP5.loadSong(props.loadedSong)
+            this.myP5.loadSong(this.props.loadedSong)
         }
     }
 
@@ -208,12 +208,6 @@ class Canvas extends React.Component {
     //         }
     //     }
     // }
-
-    uploadAudio = () => {
-        if (this.myP5) {
-            this.myP5.redrawNewProps(this.props)
-        }
-    }
 
     render() { 
         return (
