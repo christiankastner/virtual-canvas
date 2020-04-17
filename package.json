@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "gh-pages": "^2.2.0",
-    "node-sass": "^4.13.1",
-    "react-testing-library": "^8.0.1"
+    "jest-fetch-mock": "^3.0.3",
+    "node-sass": "^4.13.1"
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import Canvas from '../components/Canvas';
 import { connect } from 'react-redux'
 import CanvasTools from './CanvasTools';
+import SongsContainer from './SongsContainer'
 
 const CanvasShowContainer = props => {
     return (
@@ -9,6 +10,7 @@ const CanvasShowContainer = props => {
             <div id="canvas-container" className="canvas-container">
                 <Canvas paramsId={props.paramsId} />
                 <CanvasTools />
+                <SongsContainer />
             </div>
         </>
     )
