@@ -6,7 +6,7 @@ import p5 from 'p5';
 import "p5/lib/addons/p5.sound";
 import P5ReactAdapter from '../constants/P5ReactAdapter'
 import { API_WS_ROOT } from '../constants/index'
-import firebase from '../constants/firbase'
+import firebase from '../constants/firebase'
 
 const actioncable = require("actioncable")
 

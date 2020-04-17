@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { connect } from 'react-redux'
-import firebase from '../constants/firbase'
+import firebase from '../constants/firebase'
 import './styles/SongsContainer.scss'
 
 const SongsContainer = props => {
@@ -35,11 +35,21 @@ const SongsContainer = props => {
         }
     }
 
+    const deleteSong = () => {
+        
+    }
+
     return (
         <div className="song-container">
             <ul>
                 {songs.map(song => {
-                    return <li onClick={loadSong(song.url)}>{song.songName}</li>
+                    return (
+                        <li>
+                            <span>{song.songName}</span>
+                            <button onClick={loadSong(song.url)}>Play</button>
+                            <button onClick={deleteSong()}>Delete</button>
+                        </li>
+                    )
                 })}
             </ul>
         </div>
