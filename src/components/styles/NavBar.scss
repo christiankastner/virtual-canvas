@@ -1,10 +1,13 @@
 
 header {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 30px 10%;
     background-color: #091833;
+  }
+  img {
+      width: 200px;
   }
   
 .nav-links {
@@ -34,12 +37,3 @@ li {
     }
 }
 }
-
-// li, a {
-//     font-weight: 500;
-//     font-size: 16px;
-//     color: #000000;
-//     text-decoration: none;
-//   }
-
-  

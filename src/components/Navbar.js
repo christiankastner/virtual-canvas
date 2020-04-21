@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import logo from '../virtualCanvasLogo.png'
 import './styles/NavBar.scss'
 
 const Navbar = props => {
@@ -39,6 +40,7 @@ const Navbar = props => {
 
     return (
         <header >
+            <img src={logo}/>
             <nav className="navbar">
                 <ul className="nav-links">
                     <li>
