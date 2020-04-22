@@ -1,11 +1,19 @@
 import React from 'react'
 import './styles/CreatedCanvasesContainer.scss'
 import CanvasCard from '../components/presentational/CanvasCard'
+import firebase from '../constants/firebase'
 import { api } from '../services/api'
 
 const CreatedCanvasesContainer = props => {
 
     const handleDelete = (id) => {
+        firebase.database().ref(`canvas-${id}`).remove()
+        firebase.storage().ref(`music/canvas-${id}`).listAll().then(res => {
+            res.items.forEach(song => {
+                firebase.storage().ref(song.location.path).delete();
+            }
+            )
+        })
         api.canvas.deleteCanvas(id)
                             .then(resp => resp.json())
                             .then(json => {
