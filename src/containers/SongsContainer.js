@@ -14,7 +14,10 @@ const SongsContainer = props => {
     const readSongs = (data) => {
         const songs = data.val();
         const keys = songs ? Object.keys(songs) : []
-        setSongs([...keys.map(key => songs[key])])
+        setSongs([...keys.map(key => {
+            return { ...songs[key], key: key}
+        }
+            )])
     }
 
     const errData = err => {
@@ -35,8 +38,11 @@ const SongsContainer = props => {
         }
     }
 
-    const deleteSong = () => {
-        
+    const deleteSong = ({key, songName}) => {
+        return () => {
+            firebase.database().ref(`canvas-${props.canvasId}`).child(key).remove()
+            firebase.storage().ref(`music/canvas-${props.canvasId}/${songName}`).delete()
+        }
     }
 
     return (
@@ -44,10 +50,10 @@ const SongsContainer = props => {
             <ul>
                 {songs.map(song => {
                     return (
-                        <li>
+                        <li key={song.key}>
                             <span>{song.songName}</span>
                             <button onClick={loadSong(song.url)}>Play</button>
-                            <button onClick={deleteSong()}>Delete</button>
+                            {props.admin == props.userId ? <button onClick={deleteSong(song)}>Delete</button> : ""}
                         </li>
                     )
                 })}
@@ -58,6 +64,8 @@ const SongsContainer = props => {
 
 const mapStateToProps = state => {
     return {
+        userId: state.user_id,
+        admin: state.admin,
         canvasId: state.canvas.id
     }
 }
