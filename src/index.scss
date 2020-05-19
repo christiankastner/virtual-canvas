@@ -5,15 +5,7 @@ $accent-color: #FF2079;
   padding: 0;
 }
 
-.toggle-btn {
-  padding: 8px 25px;
-  margin: 10px;
-  background-color: rgb(25, 64, 131);
-  border: none;
-  border-radius: 50px;
-}
-
-body{
+body {
   height: 100vh;
   background: #002A3E;
   color: white;
@@ -47,29 +39,6 @@ h3 {
   background: rgb(19, 20, 23);
   color: white;
   height: 100%;
-}
-
-.canvas-show {
-  height: 100%;
-  width: 100%;
-  padding: 30px;
-}
-
-.canvas-header {
-  text-align: center;
-}
-
-.canvas-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-height: 625px;
-} 
-
-.canvas {
-  width: 600px;
-  margin-top: 10px;
-  text-align: center;
-  box-shadow: 0px 50px 100px 0px rgba(9,24,50, 0.25);
 }
 
 .seen {

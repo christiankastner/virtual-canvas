@@ -1,0 +1,23 @@
+.canvas-table {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1em 0;
+
+    ul {
+      display: flex;
+      list-style: none;
+
+      li {
+        margin-right: 1em;
+
+        button {
+          color: white;
+          background-color: rgb(100,20,0);
+          padding: .75em 1em;
+          border-radius: .5em;
+          border: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }

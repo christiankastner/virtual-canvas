@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
-import CanvasesIndex from "./CanvasesIndex"
-import CanvasShow from './CanvasShow'
+import CanvasesIndex from "./pages/CanvasIndex/CanvasesIndex"
+import CanvasShow from './pages/CanvasShow/CanvasShow'
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
 import LoginModal from './components/LoginModal'
-import Landing from './pages/landing/Landing'
-import About from "./About"
-import UserShow from './UserShow'
-import Navbar from './components/Navbar';
-import './App.scss'
+import Landing from './pages/Landing/Landing'
+import About from "./pages/About/About"
+import UserShow from './pages/UserShow/UserShow'
+import Navbar from './components/NavBar/Navbar';
 
 const App = props => {
 

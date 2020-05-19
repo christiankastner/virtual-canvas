@@ -1,0 +1,18 @@
+.canvas-form {
+    justify-content: center;
+}
+
+.canvas-list {
+    overflow: auto;
+    ul {
+        display: flex;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap-reverse;
+        justify-content: space-around;
+
+        li {
+            margin: 1em;
+        }
+    }
+}
