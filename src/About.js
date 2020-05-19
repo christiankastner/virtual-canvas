@@ -1,5 +1,4 @@
 import React from 'react'
-import image from './lights.jpg'
 import { Link } from 'react-router-dom'
 
 const About = () => {
@@ -7,7 +6,7 @@ const About = () => {
     return (
         <div className="about-container" >
             <div className="about-card">
-                <img className="left" src={image} alt="lights" />
+                {/* <img className="left" src={image} alt="lights" /> */}
                 <div className="right" >
                     <div className="text">
                         <h2>

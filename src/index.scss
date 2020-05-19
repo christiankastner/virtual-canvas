@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Futura", sans-serif;
+}
+
+.toggle-btn {
+  padding: 8px 25px;
+  margin: 10px;
+  background-color: rgb(25, 64, 131);
+  border: none;
+  border-radius: 50px;
+}
+
+body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #002A3E;
+  color: white;
+}
+
+.text {
+    flex: 7;
+    margin: 2em;
+}
+
+.text h1 {
+    margin: 1em 0;
+}
+
+h3 {
+  font-size: 2em;
+}
+
+.text p {
+    line-height: 1.7rem;
+}
+
+.links {
+    flex: auto;
+    display: flex;
+}
+
+.user-show {
+  padding: 20px;
+  background: rgb(19, 20, 23);
+  color: white;
+  height: 100%;
+}
+
+.canvas-show {
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+}
+
+.canvas-header {
+  text-align: center;
+}
+
+.canvas-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-height: 625px;
+} 
+
+.canvas {
+  width: 600px;
+  margin-top: 10px;
+  text-align: center;
+  box-shadow: 0px 50px 100px 0px rgba(9,24,50, 0.25);
+}
