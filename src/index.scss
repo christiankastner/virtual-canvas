@@ -1,7 +1,8 @@
+$accent-color: #FF2079;
+
 * {
   margin: 0;
   padding: 0;
-  font-family: "Futura", sans-serif;
 }
 
 .toggle-btn {
@@ -13,11 +14,10 @@
 }
 
 body{
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  height: 100vh;
   background: #002A3E;
   color: white;
+  font-family: "Futura", sans-serif;
 }
 
 .text {
@@ -70,4 +70,8 @@ h3 {
   margin-top: 10px;
   text-align: center;
   box-shadow: 0px 50px 100px 0px rgba(9,24,50, 0.25);
+}
+
+.seen {
+  display: none;
 }

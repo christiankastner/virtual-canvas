@@ -4,7 +4,7 @@ import CanvasesIndex from "./CanvasesIndex"
 import CanvasShow from './CanvasShow'
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
 import LoginModal from './components/LoginModal'
-import Landing from './Landing'
+import Landing from './pages/landing/Landing'
 import About from "./About"
 import UserShow from './UserShow'
 import Navbar from './components/Navbar';
@@ -28,7 +28,7 @@ const App = props => {
           <Route exact path="/" render={() => {
             return (<>
               <Landing />
-              <About />
+              {/* <About /> */}
             </>)
           }}/>
           <Route exact path="/user" >

@@ -41,8 +41,8 @@ const Navbar = props => {
     return (
         <header >
             <Logo />
-            <nav className="navbar">
-                <ul className="nav-links">
+            <nav>
+                <ul>
                     <li>
                         <NavLink exact to="/" >
                             Home
@@ -52,9 +52,6 @@ const Navbar = props => {
                         <NavLink exact to="/canvases" >
                             Canvases
                         </NavLink>
-                    </li>
-                    <li>
-                        |
                     </li>
                     {conditionalUserLink()}
                 </ul>

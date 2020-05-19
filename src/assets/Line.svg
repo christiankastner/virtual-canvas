@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="553.213" height="523.461" viewBox="0 0 553.213 523.461">
+  <defs>
+    <style>
+      .line {
+        fill: none;
+        stroke: #ff2079;
+        stroke-width: 50px;
+      }
+    </style>
+  </defs>
+  <g id="logo">
+    <line id="Line_7" data-name="Line 7" class="line" x1="536.11" y1="18.23" x2="17.11" y2="505.23"/>
+    <line id="Line_6" data-name="Line 6" class="line" x1="560.11" y1="135.23" x2="102.11" y2="549.23"/>
+    <line id="Line_8" data-name="Line 8" class="line" x1="560.11" y1="262.23" x2="217.11" y2="580.23"/>
+  </g>
+</svg>
