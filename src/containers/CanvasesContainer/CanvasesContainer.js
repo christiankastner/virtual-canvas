@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Button, Form } from 'semantic-ui-react'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { api } from '../../services/api'
 import DisplayCanvases from '../DisplayCanvases/DisplayCanvases';
@@ -60,24 +59,15 @@ class CanvasesContainer extends React.Component {
     render() {
         return (
             <>
-                <div className="canvas-form">
+                {/* <div className="canvas-form">
                     <h3>Create Your Own</h3>
-                    {this.props.user_id ? <Form onChange={this.handleOnChange}>
-                        <label>Name</label><br/>
-                        <Form.Group >
-                            <Form.Field >
+                    {this.props.user_id ? <form onChange={this.handleOnChange}>
                                 <input value={this.state.newCanvas.title} id="title"/>
-                            </Form.Field>
-                            <Button onClick={() => this.handleNewCanvas()}>New Canvas</Button>
-                        </Form.Group>
-                    </Form> : <h4>Must login or create a profile to create a canvas</h4>}
-                </div>
-                <h3>Active Canvases</h3>
-                <div id='divider'/>
-                <div className="canvas-list">
-                    {this.state.loading ? <CircularProgress /> : ""}
-                    <DisplayCanvases canvases={this.state.canvases} />
-                </div>
+                    </form> : <h4>Must login or create a profile to create a canvas</h4>}
+                </div> */}
+                {/* <div id='divider'/> */}
+                {this.state.loading ? <CircularProgress /> : ""}
+                <DisplayCanvases canvases={this.state.canvases} />
             </>
         )
     }

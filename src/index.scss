@@ -1,4 +1,4 @@
-$accent-color: #FF2079;
+@import "./constants/colors.scss";
 
 * {
   margin: 0;
@@ -7,38 +7,13 @@ $accent-color: #FF2079;
 
 body {
   height: 100vh;
-  background: #002A3E;
+  background: $main-color;
   color: white;
   font-family: "Futura", sans-serif;
 }
 
-.text {
-    flex: 7;
-    margin: 2em;
-}
-
-.text h1 {
-    margin: 1em 0;
-}
-
-h3 {
-  font-size: 2em;
-}
-
-.text p {
-    line-height: 1.7rem;
-}
-
-.links {
-    flex: auto;
-    display: flex;
-}
-
-.user-show {
-  padding: 20px;
-  background: rgb(19, 20, 23);
-  color: white;
-  height: 100%;
+a {
+  text-decoration: none;
 }
 
 .seen {

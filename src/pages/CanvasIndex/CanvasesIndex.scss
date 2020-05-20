@@ -1,0 +1,13 @@
+.canvases-index {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    padding: 4em 2em;
+    color: white;
+
+    #divider {
+        background-color: rgb(1,189,198);
+        width: 100%;
+        height: .25em;
+    }
+}

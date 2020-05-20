@@ -21,7 +21,7 @@ class CanvasShow extends React.Component {
 
     render() {
         return (
-            <div className="canvas-show">
+            <main className="canvas-show">
                 <div className="canvas-header">
                     <h2>{this.props.canvas.title}</h2> 
                     {/* {localStorage["id"] && !this.props.admin ? <Button onClick={this.handleSaveCanvas}>Bookmark Canvas</Button> : null} */}
@@ -42,7 +42,7 @@ class CanvasShow extends React.Component {
                 </div>
                 <CanvasShowContainer 
                     paramsId={this.props.match.params.id} />
-            </div>
+            </main>
         )
     }
 }

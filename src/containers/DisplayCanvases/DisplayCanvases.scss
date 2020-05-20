@@ -1,13 +1,15 @@
-.canvases-index {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-    padding: 4em 2em;
-    color: white;
+@import "../../constants/colors.scss";
 
-    #divider {
-        background-color: rgb(2,189,252);
-        width: 100%;
-        height: .25em;
+.canvas-list {
+    overflow: auto;
+    background: $main-offset;
+    padding: 1em;
+    ul {
+        display: grid;
+        list-style: none;
+        grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+        li {
+            margin: 1em;
+        }
     }
 }

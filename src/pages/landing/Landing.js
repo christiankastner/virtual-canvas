@@ -6,7 +6,7 @@ const Landing = () => {
 
     return (
         <div>
-            <main>
+            <main className="landing">
                 <div className="banner-text">
                     <h1>
                         Build Visualizers Together

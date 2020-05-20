@@ -19,10 +19,12 @@ const DisplayCanvases = (props) => {
     }
 
     return (
-        <ul>
-            {props.title ? <h3>{props.title}</h3> : ""}
-            {renderCanvases()}
-        </ul>
+        <div className="canvas-list">
+            <ul>
+                {props.title ? <h3>{props.title}</h3> : ""}
+                {renderCanvases()}
+            </ul>
+        </div>
     )
 }
 

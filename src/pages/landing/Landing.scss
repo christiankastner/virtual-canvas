@@ -1,6 +1,6 @@
 @import "../../constants/colors.scss";
 
-main {
+.landing {
     div {
         text-align: center;
         padding: 0 1em;
@@ -43,7 +43,7 @@ main {
 }
 
 @media (min-width: 800px) {
-    main {
+    .landing {
         div {
             text-align: left;
             padding-left: 10vw;

@@ -1,5 +1,6 @@
 import React from 'react';
 import CanvasesContainer from '../../containers/CanvasesContainer/CanvasesContainer'
+import "./CanvasesIndex.scss"
 
 const CanvasesIndex = props => {
 
@@ -8,9 +9,9 @@ const CanvasesIndex = props => {
     }
 
     return (
-        <div className="canvases-index" >
+        <main className="canvases-index" >
             <CanvasesContainer handleNewCanvas={handleNewCanvas}/>
-        </div>
+        </main>
     )
     
 }

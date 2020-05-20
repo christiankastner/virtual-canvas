@@ -1,12 +1,11 @@
+@import "../../constants/colors.scss";
 .canvas-card {
+
   padding: 1em;
-  background-color: rgb(31,34,41);
-  color: white;
+  background-color: $main-color;
+  color: $text;
   border-radius: 10px;
-  // box-shadow: 0 20px 20px rgba(31,34,41,.25);
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.2);
   transition: all 0.3s ease 0s;
 
     h4 {
