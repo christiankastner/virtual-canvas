@@ -1,6 +1,6 @@
 @import "../../constants/colors.scss";
 .canvas-card {
-
+  text-align: center;
   padding: 1em;
   background-color: $main-color;
   color: $text;
@@ -10,6 +10,7 @@
 
     h4 {
       margin: 1em 0;
+      text-transform: uppercase;
     }
     p {
       font-size: .75em;
@@ -18,5 +19,11 @@
   }
 
 .canvas-card:hover {
-  box-shadow: 0 40px 40px rgba(0,0,0,.25);
+  box-shadow: 10px 10px 10px rgba(0,0,0,.35);
+}
+
+@media (min-width: 700px) {
+  .canvas-card {
+    text-align: left;
+  }
 }

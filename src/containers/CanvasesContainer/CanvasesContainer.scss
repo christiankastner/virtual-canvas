@@ -1,3 +1,12 @@
-.canvas-form {
-    justify-content: center;
+.canvases-container {
+    padding: 1em;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1em;
+        flex-wrap: wrap;
+        h1 {
+            margin-right: 2em;
+        }
+    }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import p5 from 'p5'
 import P5ReactAdapter from "../../constants/P5ReactAdapter"
+import "./CanvasImg.scss"
 
 class CanvasImg extends React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class CanvasImg extends React.Component {
         const { background, mid_mapping_1, treble_mapping_1, bass_mapping_1, p5_shapes } = this.props.canvas
         p.setup = () => {
             p.angleMode(p.DEGREES)
-            p.createCanvas(300,150)
+            const canvas = p.createCanvas(550,150)
             p.background(`rgb(${background})`)
             p.translate(p.width / 2, p.height / 2);
             P5ReactAdapter.readFrequencyShapes(p5_shapes, "treble", treble_mapping_1, p)
@@ -27,7 +28,7 @@ class CanvasImg extends React.Component {
 
     render() {
         return (
-        <div ref={this.myRef}>
+        <div ref={this.myRef} className="canvas-container">
         </div>
         )
     }

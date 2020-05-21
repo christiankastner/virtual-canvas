@@ -16,6 +16,16 @@ a {
   text-decoration: none;
 }
 
+.btn-primary {
+  cursor: pointer;
+  background: $accent-two;
+  border: none;
+  border-radius: .5em;
+  color: $text;
+  padding: 1em 3em;
+  text-transform: uppercase;
+}
+
 .seen {
   display: none;
 }

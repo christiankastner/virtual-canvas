@@ -12,6 +12,7 @@ class CanvasesContainer extends React.Component {
             loading: false,
             canvases: [],
             newCanvas: {
+                seen: false,
                 title: "",
                 user_id: this.props.user_id
             }
@@ -24,7 +25,7 @@ class CanvasesContainer extends React.Component {
                 .then(resp => resp.json())
                 .then(json => {
                     this.setState({
-                        canvases: json,
+                        canvases: json.reverse(),
                         loading: false
                     })
                 })
@@ -55,10 +56,19 @@ class CanvasesContainer extends React.Component {
             }
         })
     }
+
+    showForm = () => {
+        this.setState({
+            newCanvas: {
+                ...this.state.newCanvas,
+                seen: !this.state.newCanvas.seen
+            }
+        })
+    }
     
     render() {
         return (
-            <>
+            <div className="canvases-container">
                 {/* <div className="canvas-form">
                     <h3>Create Your Own</h3>
                     {this.props.user_id ? <form onChange={this.handleOnChange}>
@@ -66,9 +76,18 @@ class CanvasesContainer extends React.Component {
                     </form> : <h4>Must login or create a profile to create a canvas</h4>}
                 </div> */}
                 {/* <div id='divider'/> */}
+                <div className="header">
+                    <h1>Active Canvases</h1>
+                    <button className="btn-primary" onClick={this.showForm}>New Canvas</button>
+                </div>
+                <form className={this.state.newCanvas.seen ? "": "seen"}>
+                    <label htmlFor="title">Title</label>
+                    <input type="text" name="title" id ="title"/>
+                    <button type="submit" className="btn-secondary">Create</button>
+                </form>
                 {this.state.loading ? <CircularProgress /> : ""}
                 <DisplayCanvases canvases={this.state.canvases} />
-            </>
+            </div>
         )
     }
 }
