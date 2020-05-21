@@ -3,7 +3,6 @@ import {ReactComponent as Line} from "../../assets/Line.svg"
 import "./Landing.scss"
 
 const Landing = () => {
-
     return (
         <div>
             <main className="landing">
@@ -12,9 +11,9 @@ const Landing = () => {
                         Build Visualizers Together
                     </h1>
                     <p>
-                    A space for friends to jump onto online canvases, share music, draw, and animate shapes
+                        A space for friends to jump onto online canvases, share music, draw, and animate shapes
                     </p>
-                    <button>Get Started</button>
+                    <button className="btn-primary">Get Started</button>
                 </div>
             </main>
             <div className="line-container">
