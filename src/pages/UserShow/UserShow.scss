@@ -1,0 +1,29 @@
+@import "../../constants/colors.scss";
+.user-show {
+    background-color: white;
+    height: 100%;
+    margin: 1em;
+}
+
+.subnav {
+    display: flex;
+    background: black;
+    padding: 0 .5em;
+    margin: none;
+    button {
+        color: $text;
+        background: inherit;
+        border-bottom: none;
+        border-left: none;
+        border-top: none;
+        border-color: $main-offset;
+        font-family: "Futura" sans-serif;
+        font-size: 1em;
+        padding: 1em;
+        transition: all 0.3s ease 0s;
+    }
+
+    button:hover {
+        border-top: solid 1px $accent-two;
+    }
+}

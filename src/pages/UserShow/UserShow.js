@@ -3,6 +3,7 @@ import { API_ROOT } from '../../constants/index'
 import CreatedCanvasesContainer from '../../containers/CreatedCanvases/CreatedCanvasesContainer'
 import AccountOverview from "../../components/AccountOverview/AccountOverview"
 import { api } from '../../services/api'
+import "./UserShow.scss"
 
 class UserShow extends React.Component {
     constructor(props) {
@@ -14,7 +15,6 @@ class UserShow extends React.Component {
     }
 
     handleRemoveCanvas = (id) => {
-        console.log(id)
         this.setState({
             user: {
                 ...this.state.user,
@@ -51,7 +51,7 @@ class UserShow extends React.Component {
                     <button onClick={this.handleSelect("Canvases")}>Created Canvases</button>
                 </div>
                 {this.state.selected == "Account" ? 
-                    <AccountOverview />
+                    <AccountOverview user={this.state.user} />
                     : <div className="user-canvases-container">
                     { pictures ? <CreatedCanvasesContainer handleRemoveCanvas={this.handleRemoveCanvas} title="Created Canvases" canvases={pictures} deletePath={`${API_ROOT}/pictures/`}/> : "" }
                 </div> }

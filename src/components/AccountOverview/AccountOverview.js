@@ -1,6 +1,7 @@
 import React from 'react'
+import "./AccountOverview.scss"
 
-const AccountOverview = ({ name, email }) => {
+const AccountOverview = ({ user }) => {
     return (
         <div className="account-overview">
             <h1>Account Overview</h1>
@@ -8,18 +9,18 @@ const AccountOverview = ({ name, email }) => {
             <table>
                 <tr>
                     <th>
-                        Name
+                        <span>Name</span>
                     </th>
                     <th>
-                        {name}
+                        <p>{user.name}</p>
                     </th>
                 </tr>
                 <tr>
                     <th>
-                        Email
+                        <span>Email</span>
                     </th>
                     <th>
-                        {email}
+                        <p>{user.email}</p>
                     </th>
                 </tr>
             </table>
