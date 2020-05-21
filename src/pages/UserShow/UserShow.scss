@@ -7,23 +7,31 @@
 
 .subnav {
     display: flex;
-    background: black;
+    justify-content: space-between;
+    background: #002A3E;
     padding: 0 .5em;
     margin: none;
     button {
         color: $text;
         background: inherit;
-        border-bottom: none;
-        border-left: none;
-        border-top: none;
-        border-color: $main-offset;
+        border: none;
         font-family: "Futura" sans-serif;
         font-size: 1em;
         padding: 1em;
         transition: all 0.3s ease 0s;
     }
+}
 
-    button:hover {
-        border-top: solid 1px $accent-two;
+@media (min-width: 800px) {
+    .user-show {
+        display: flex;
+    }
+    
+    .subnav {
+        justify-content: unset;
+        flex-direction: column;
+        button {
+            margin-top: 1em;
+        }
     }
 }
