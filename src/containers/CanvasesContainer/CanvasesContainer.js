@@ -32,7 +32,7 @@ class CanvasesContainer extends React.Component {
         })
     }
 
-    handleNewCanvas = () => {
+    handleSubmit = () => {
         if (this.props.user_id) {
             api.canvas.newCanvas(this.state.newCanvas)
                 .then(resp => resp.json())
@@ -80,11 +80,13 @@ class CanvasesContainer extends React.Component {
                     <h1>Active Canvases</h1>
                     <button className="btn-primary" onClick={this.showForm}>New Canvas</button>
                 </div>
-                <form className={this.state.newCanvas.seen ? "": "seen"}>
-                    <label htmlFor="title">Title</label>
-                    <input type="text" name="title" id ="title"/>
-                    <button type="submit" className="btn-secondary">Create</button>
-                </form>
+                <div className={this.state.newCanvas.seen ? "": "seen"}>
+                    <form onSubmit={this.handleSubmit} onChange={this.handleOnChange} >
+                        <label htmlFor="title">Title</label>
+                        <input type="text" name="title" id ="title"/>
+                        <button type="submit" className="btn-secondary">Create</button>
+                    </form>
+                </div>
                 {this.state.loading ? <CircularProgress /> : ""}
                 <DisplayCanvases canvases={this.state.canvases} />
             </div>

@@ -9,4 +9,10 @@
             margin-right: 2em;
         }
     }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
 }
