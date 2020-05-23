@@ -1,6 +1,6 @@
 import React from 'react';
 import { API_ROOT } from '../../constants/index'
-import CreatedCanvasesContainer from '../../containers/CreatedCanvases/CreatedCanvasesContainer'
+import CreatedCanvasesContainer from '../../containers/CreatedCanvasesContainer/CreatedCanvasesContainer'
 import AccountOverview from "../../components/AccountOverview/AccountOverview"
 import { api } from '../../services/api'
 import "./UserShow.scss"
@@ -10,7 +10,7 @@ class UserShow extends React.Component {
         super(props)
         this.state = {
             user: {},
-            selected: "Account"
+            selected: "canvases"
         }
     }
 
@@ -43,14 +43,13 @@ class UserShow extends React.Component {
 
     render() {
         const {name, email, pictures} = this.state.user
-        // const bookmarkCanvases = bookmarks ? bookmarks.map(bookmark => bookmark.picture) : []
         return (
             <main className="user-show" >
                 <div className="subnav">
-                    <button onClick={this.handleSelect("Account")}>Account Overview</button>
-                    <button onClick={this.handleSelect("Canvases")}>Created Canvases</button>
+                    <button onClick={this.handleSelect("account")}>Account Overview</button>
+                    <button onClick={this.handleSelect("canvases")}>Created Canvases</button>
                 </div>
-                {this.state.selected == "Account" ? 
+                {this.state.selected == "account" ? 
                     <AccountOverview user={this.state.user} />
                     : <div className="user-canvases-container">
                     { pictures ? <CreatedCanvasesContainer handleRemoveCanvas={this.handleRemoveCanvas} title="Created Canvases" canvases={pictures} deletePath={`${API_ROOT}/pictures/`}/> : "" }

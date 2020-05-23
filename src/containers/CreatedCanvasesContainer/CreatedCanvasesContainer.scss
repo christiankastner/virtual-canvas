@@ -1,11 +1,14 @@
 .canvas-table {
-  width: 100%;
-  overflow-x: auto;
-  padding: 1em 0;
-
+  overflow-y: auto;
+  padding: 2em;
+  
+  h1 {
+    color: black;
+    margin-bottom: 1em;
+  }
     ul {
-      display: flex;
-      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(19rem, .5fr));
 
       li {
         margin-right: 1em;

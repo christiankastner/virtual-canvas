@@ -32,14 +32,14 @@ const CreatedCanvasesContainer = props => {
     }
 
     return (
-        <>
-            <h3>Created Canvases</h3>
-            <div className="canvas-table">
-                <ul>
-                {renderRows()}
-                </ul>
-            </div>
-        </>
+        
+        <div className="canvas-table">
+            <h1>Created Canvases</h1>
+            <ul>
+            {renderRows()}
+            </ul>
+        </div>
+        
     )
 }
 
