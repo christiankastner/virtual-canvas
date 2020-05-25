@@ -33,9 +33,9 @@ const Navbar = props => {
         } else {
             return (
                 <li>
-                    <button onClick={() => props.toggleModal()}>
-                        Log in
-                    </button>
+                    <NavLink exact to="/login" >
+                        Log In
+                    </NavLink>
                 </li>
             )
         }
@@ -59,6 +59,11 @@ const Navbar = props => {
                     <li>
                         <NavLink exact to="/" >
                             Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink exact to="/about" >  
+                            About
                         </NavLink>
                     </li>
                     <li>

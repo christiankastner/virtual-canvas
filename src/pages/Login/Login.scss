@@ -1,0 +1,22 @@
+@import "../../constants/colors.scss";
+
+.login-container {
+    display: flex;
+    .form-container {
+        margin: 2em auto;
+        min-width: 600px;
+        padding: 2em;
+        border-radius: .5em;
+        background: $main-offset;
+
+        .toggle {
+            background: none;
+            border: none;
+            color: white;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 1em;
+        }
+    }
+    
+}

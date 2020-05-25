@@ -4,6 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import { api } from '../../services/api'
 import DisplayCanvases from '../DisplayCanvases/DisplayCanvases';
 import "./CanvasesContainer.scss"
+import Form from '../../components/Form/Form';
 
 class CanvasesContainer extends React.Component {
     constructor(props) {
@@ -69,23 +70,12 @@ class CanvasesContainer extends React.Component {
     render() {
         return (
             <div className="canvases-container">
-                {/* <div className="canvas-form">
-                    <h3>Create Your Own</h3>
-                    {this.props.user_id ? <form onChange={this.handleOnChange}>
-                                <input value={this.state.newCanvas.title} id="title"/>
-                    </form> : <h4>Must login or create a profile to create a canvas</h4>}
-                </div> */}
-                {/* <div id='divider'/> */}
                 <div className="header">
                     <h1>Active Canvases</h1>
                     <button className="btn-primary" onClick={this.showForm}>New Canvas</button>
                 </div>
                 <div className={this.state.newCanvas.seen ? "": "seen"}>
-                    <form onSubmit={this.handleSubmit} onChange={this.handleOnChange} >
-                        <label htmlFor="title">Title</label>
-                        <input type="text" name="title" id ="title"/>
-                        <button type="submit" className="btn-secondary">Create</button>
-                    </form>
+                    <Form inputs={[{name:"Title"}]} submitText="Create" handleSubmit={this.handleSubmit} />
                 </div>
                 {this.state.loading ? <CircularProgress /> : ""}
                 <DisplayCanvases canvases={this.state.canvases} />
