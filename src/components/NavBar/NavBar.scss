@@ -39,8 +39,13 @@ header {
 }
 
 @media (min-width: 800px) {
-    li {
-        margin-right: 5em;
+    header {
+        li {
+            margin-right: 5em;
+        }
+    }
+    .menu-btn {
+        display: none;
     }
 
 }
