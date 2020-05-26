@@ -22,13 +22,13 @@ const CreatedCanvasesContainer = props => {
     }
 
     const renderRows = () => {
-        return props.canvases.map(canvas => {
+        return props.canvases ? props.canvases.map(canvas => {
             return (
                 <li>
                     <CanvasCard canvas={canvas} delete={() => handleDelete(canvas.id)}/>
                 </li>
             )
-        })
+        }) : "" 
     }
 
     return (

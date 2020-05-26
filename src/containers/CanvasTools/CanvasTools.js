@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Button from '@material-ui/core/Button'
 import { api } from '../../services/api'
 import PaintEdit from '../../components/presentational/PaintEdit'
 import ShapeEdit from '../../components/presentational/ShapeEdit'
@@ -14,7 +13,7 @@ const CanvasTools = (props) => {
             case "shapes":
                 return (
                     <div className="tools-container">
-                        <Button onClick={() => handleNewAnimation('p5_shape')}>Create New Shape</Button>
+                        <button onClick={() => handleNewAnimation('p5_shape')}>Create New Shape</button>
                         {props.myShapes ? props.myShapes.map(shape => <ShapeEdit shape={shape} />) : null}
                     </div>
                 )
@@ -27,7 +26,7 @@ const CanvasTools = (props) => {
                     </div> 
                 )
             default:
-                return <></>
+                return ""
         }
     }
     

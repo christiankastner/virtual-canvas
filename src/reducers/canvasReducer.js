@@ -5,7 +5,7 @@ const initialState = {
     myBursts: [], 
     canvasShapes: [], 
     myShapes: [],
-    selected: '',
+    selected: 'paint',
     loadedSong: '',
     admin: ''
 }

@@ -74,8 +74,9 @@ class CanvasesContainer extends React.Component {
                     <h1>Active Canvases</h1>
                     <button className="btn-primary" onClick={this.showForm}>New Canvas</button>
                 </div>
-                <div className={this.state.newCanvas.seen ? "": "seen"}>
-                    <Form inputs={[{name:"Title"}]} submitText="Create" handleSubmit={this.handleSubmit} />
+                <div id="form" className={this.state.newCanvas.seen ? "": "seen"}>
+                    <span className="error">{this.props.user_id ? "" : "Must Log in before creating a canvas"}</span>
+                    <Form inputs={[{name:"title"}]} submitText="Create" handleSubmit={this.handleSubmit} />
                 </div>
                 {this.state.loading ? <CircularProgress /> : ""}
                 <DisplayCanvases canvases={this.state.canvases} />

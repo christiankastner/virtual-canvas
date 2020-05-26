@@ -6,7 +6,6 @@ import "p5/lib/addons/p5.sound";
 import P5ReactAdapter from '../../constants/P5ReactAdapter'
 import { API_WS_ROOT } from '../../constants/index'
 import firebase from '../../constants/firebase'
-
 const actioncable = require("actioncable")
 
 class Canvas extends React.Component {
@@ -23,8 +22,8 @@ class Canvas extends React.Component {
     }
 
     componentDidMount() {
-        this.myP5 = new p5 (this.sketch, this.myRef.current)
         this.cable = actioncable.createConsumer(API_WS_ROOT)
+        this.myP5 = new p5 (this.sketch, this.myRef.current)
     }
 
     sketch = (p) => {
@@ -197,17 +196,6 @@ class Canvas extends React.Component {
         this.props.dispatch({type: "REMOVE_CANVAS"})
     }
 
-    // handleRecievedBurst = response => {
-    //     const {user_id, tune} = response.burst
-    //     const { bursts } = this.props
-    //     console.log(user_id, tune)
-    //     for (let i = 0; i < bursts.length; i++) {
-    //         if (bursts[i].user_id == user_id) {
-    //             bursts[i].burst.tune(tune).replay()
-    //         }
-    //     }
-    // }
-
     render() { 
         return (
             <div id="canvas" className="canvas" ref={this.myRef}/>
@@ -222,25 +210,6 @@ const mapStateToProps = state => {
         selected: state.selected,
         loadedSong: state.loadedSong,
         shapes: state.canvasShapes,
-        // bursts: state.canvasBursts ? state.canvasBursts.map(animation => {
-        //     return {
-        //         user_id: animation.user_id,
-        //         burst: new mojs.Burst({
-        //             parent: document.getElementById("canvas"),
-        //             left: 0, top: 0,
-        //             count: animation.count,
-        //             angle: {0: animation.angle},
-        //             radius: {[animation.radius_1]: animation.radius_2},
-        //             children: {
-        //                 shape: animation.shape,
-        //                 fill:    animation.color,
-        //                 radius:     20,
-        //                 strokeWidth: animation.stroke_width,
-        //                 duration:   animation.duration*100
-        //             }
-        //         })
-        //     }
-        // }) : []
     }
 }
 

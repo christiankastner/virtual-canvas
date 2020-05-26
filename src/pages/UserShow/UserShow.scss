@@ -1,8 +1,11 @@
 @import "../../constants/colors.scss";
 .user-show {
-    background-color: white;
+    margin: 2em;
     height: 100%;
-    margin: 1em;
+    .content {
+        background-color: white;
+        width: 100%;
+    }
 }
 
 .subnav {
@@ -29,9 +32,13 @@
     
     .subnav {
         justify-content: unset;
-        flex-direction: column;
+        flex-direction: column;;
+        width: 300px;
         button {
             margin-top: 1em;
+        }
+        button:first-child {
+            margin-top: 3em;
         }
     }
 }

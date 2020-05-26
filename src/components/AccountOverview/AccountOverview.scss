@@ -2,8 +2,9 @@
 
 .account-overview {
     color: black;
-    height: 100%;
+    width: auto;
     padding: 2em 2em;
+
     h1 {
         margin-bottom: 1em;
     }
@@ -29,5 +30,11 @@
             justify-content: space-between;
             border-bottom: solid 1px rgb(162,162,162);
         }
+    }
+    
+}
+
+@media (min-width: 800px) {
+    .account-overview {
     }
 }

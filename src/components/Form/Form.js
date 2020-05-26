@@ -9,7 +9,7 @@ const Form = props => {
             return (
                 <div className="field"> 
                     <label htmlFor={input.name} >{input.name}</label>
-                    <input type="text" id={input.name} name={input.name} />
+                    <input placeholder="" type="text" id={input.name} name={input.name} />
                 </div>
             )
         })
@@ -20,7 +20,7 @@ const Form = props => {
             return (
                 <div className="field">
                     <label htmlFor="password" >Password</label>
-                    <input type="password" id="Password" name="Password"></input>
+                    <input type="password" id="password" name="password"></input>
                 </div>
             )
         }

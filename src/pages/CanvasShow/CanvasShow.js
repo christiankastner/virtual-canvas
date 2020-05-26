@@ -15,33 +15,24 @@ class CanvasShow extends React.Component {
             })
     }
 
-    handleSaveCanvas = () => {
-        api.canvas.bookmarkCanvas(this.props.canvas.id)
-    }
-
     render() {
         return (
             <main className="canvas-show">
                 <div className="canvas-header">
-                    <h2>{this.props.canvas.title}</h2> 
-                    {/* {localStorage["id"] && !this.props.admin ? <Button onClick={this.handleSaveCanvas}>Bookmark Canvas</Button> : null} */}
+                <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "paint"})}>
+                    Paint
+                </Button> 
                     { this.props.user_id ? <ButtonGroup >
                 <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "shapes"})}>
                     Shapes
                 </Button>
-                <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "bursts"})}>
-                    Bursts
-                </Button>
-                <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "paint"})}>
-                    Paint
-                </Button> 
                 {this.props.user_id == this.props.admin ? <Button onClick={() => this.props.dispatch({type: 'SELECT_ANIMATION', animation: "settings"})}>
                     Settings
                 </Button> : ""}
             </ButtonGroup> : "" }
-                </div>
-                <CanvasShowContainer 
-                    paramsId={this.props.match.params.id} />
+            </div>
+            <CanvasShowContainer 
+                paramsId={this.props.match.params.id} />
             </main>
         )
     }

@@ -1,3 +1,5 @@
+@import "../../constants/colors.scss";
+
 .canvases-container {
     padding: 1em;
     .header {
@@ -9,8 +11,11 @@
             margin-right: 2em;
         }
     }
+    span {
+        color: red;
+    }
 
-    form {
+    #form {
         width: 50%;
         margin-bottom: 2em;
     }

@@ -49,11 +49,10 @@ class UserShow extends React.Component {
                     <button onClick={this.handleSelect("account")}>Account Overview</button>
                     <button onClick={this.handleSelect("canvases")}>Created Canvases</button>
                 </div>
-                {this.state.selected == "account" ? 
-                    <AccountOverview user={this.state.user} />
-                    : <div className="user-canvases-container">
-                    { pictures ? <CreatedCanvasesContainer handleRemoveCanvas={this.handleRemoveCanvas} title="Created Canvases" canvases={pictures} deletePath={`${API_ROOT}/pictures/`}/> : "" }
-                </div> }
+                <div className="content">
+                    {this.state.selected == "account" ? <AccountOverview user={this.state.user} /> :
+                        <CreatedCanvasesContainer handleRemoveCanvas={this.handleRemoveCanvas} title="Created Canvases" canvases={pictures} deletePath={`${API_ROOT}/pictures/`}/> }
+                </div>
             </main>
         )
     }

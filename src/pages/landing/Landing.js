@@ -1,5 +1,6 @@
 import React from 'react'
 import {ReactComponent as Line} from "../../assets/Line.svg"
+import { NavLink } from "react-router-dom"
 import "./Landing.scss"
 
 const Landing = () => {
@@ -13,7 +14,9 @@ const Landing = () => {
                     <p>
                         A space for friends to jump onto online canvases, share music, draw, and animate shapes
                     </p>
-                    <button className="btn-primary">Get Started</button>
+                    <NavLink exact to="/about">
+                        <button className="btn-primary">Get Started</button>
+                    </NavLink>
                 </div>
             </main>
             <div className="line-container">

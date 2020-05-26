@@ -11,12 +11,11 @@
         width: 100%;
         position: relative;
         border-bottom: 1px solid $text;
-        margin: 4rem auto 1rem;
+        margin: 2rem auto 1rem;
 
         label {
             font-size: 1.25rem;
-            z-index: 0;
-            position: absolute;
+            text-transform: capitalize;
             transform: translateY();
             transform-origin: 0%;
             transition: transform 400ms;
@@ -53,10 +52,6 @@
 
     .field:focus-within {
         border-color: transparent;
-
-        label {
-            transform: scale(0.8) translateY(-2rem)
-        }
     }
 
     .field:focus-within:after {

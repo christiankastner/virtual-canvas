@@ -8,8 +8,8 @@ const CanvasShowContainer = props => {
     return (
         <>
             <div id="canvas-container" className="canvas-container">
-                <Canvas paramsId={props.paramsId} />
                 <CanvasTools />
+                <Canvas paramsId={props.paramsId} />
                 <SongsContainer />
             </div>
         </>
