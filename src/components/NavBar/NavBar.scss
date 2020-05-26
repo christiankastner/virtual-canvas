@@ -15,37 +15,62 @@ header {
         font-family: "Futura", sans-serif;
         cursor: pointer;
     }
-    ul {
-        list-style: none;
-        li {
-            display: inline-block;
-            margin-right: 4em;
-            font-weight: 500;
-            text-decoration: none;
-            a {
-                color: white;
+    .nav-links {
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        ul {
+            list-style: none;
+            position: relative;
+            z-index: 1;
+            li {
+                display: block;
+                margin-right: 4em;
+                font-weight: 500;
                 text-decoration: none;
-            }
-
-            a, button {
-                transition: all 0.3s ease 0s;
-            }
-            
-            a:hover, button:hover {
-                color: #133e7c
+                a {
+                    color: white;
+                    text-decoration: none;
+                }
+    
+                a, button {
+                    transition: all 0.3s ease 0s;
+                }
+                
+                a:hover, button:hover {
+                    color: #133e7c
+                }
             }
         }
     }
+    .menu-btn {
+        cursor: pointer;
+        width: 2em;
+    }
+
 }
 
-@media (min-width: 800px) {
+@media (min-width: 900px) {
     header {
-        li {
-            margin-right: 5em;
+        .nav-links {
+            // z-index: 1;
+            ul {
+                position: static;
+                li {
+                    margin-right: 4em;
+                    display: inline-block;
+                }
+            }
         }
     }
     .menu-btn {
         display: none;
+    }
+
+    .closed {
+        display: inherit;
     }
 
 }

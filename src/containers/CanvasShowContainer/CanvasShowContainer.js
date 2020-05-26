@@ -6,13 +6,19 @@ import SongsContainer from '../SongsContainer/SongsContainer'
 
 const CanvasShowContainer = props => {
     return (
-        <>
+        <main>
             <div id="canvas-container" className="canvas-container">
-                <CanvasTools />
-                <Canvas paramsId={props.paramsId} />
-                <SongsContainer />
+                <div className="tools">
+                    <CanvasTools />
+                </div>
+                <div className="canvas">
+                    <Canvas paramsId={props.paramsId} />
+                </div>
+                <div className="song">
+                    <SongsContainer />
+                </div>
             </div>
-        </>
+        </main>
     )
 }
 

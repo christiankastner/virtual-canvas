@@ -85,7 +85,9 @@ class Canvas extends React.Component {
             extraCanvas.ellipse(x, y, 5,5);
         }
         p.windowResized = () => {
-            p.resizeCanvas(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4); 
+            if (this.myRef.current) {
+                p.resizeCanvas(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4); 
+            }
         }
       
         p.uploaded = file => {
@@ -137,7 +139,7 @@ class Canvas extends React.Component {
       
         p.toggleAudio = () => {
             if (this.song.isPlaying()) {
-            this.song.pause();
+                if (this.song) this.song.pause();
             } else {
             this.song.play();
             }
@@ -177,7 +179,9 @@ class Canvas extends React.Component {
 
     componentWillUnmount() {
         this.cable.disconnect()
-        this.song.pause()
+        if (this.song && this.song.isPlaying()) {
+            this.song.pause()
+        }
         URL.revokeObjectURL(this.props.loadedSong)
         this.props.dispatch({type: "REMOVE_CANVAS"})
     }

@@ -26,7 +26,9 @@ class CanvasImg extends React.Component {
         }
 
         p.windowResized = () => {
-            p.resizeCanvas(this.myRef.current.offsetWidth, 150); 
+            if (this.myRef.current) {
+                p.resizeCanvas(this.myRef.current.offsetWidth, 150); 
+            }
         }
     }
 
@@ -35,7 +37,6 @@ class CanvasImg extends React.Component {
     }
 
     render() {
-        console.log(this.myRef)
         return (
         <div ref={this.myRef} className="canvas-img-container">
         </div>
