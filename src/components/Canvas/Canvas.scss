@@ -4,10 +4,9 @@
     background-color: rgb(25, 64, 131);
     border: none;
     border-radius: 50px;
+    display: none;
   }
 
-  .canvas-show {
-    height: 100%;
-    width: 100%;
-    padding: 30px;
+  .upload-btn {
+    display: none;
   }

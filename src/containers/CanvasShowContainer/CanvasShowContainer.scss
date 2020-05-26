@@ -1,0 +1,30 @@
+
+.canvas-container {
+    display: grid;
+    padding: 1em;
+    grid-template-areas: 
+        "tools canvas canvas"
+        "tools canvas canvas"
+        "tools songs songs";
+    grid-template-rows: 1fr 1fr .5fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: .75em;
+
+    .tools {
+        grid-area: tools;
+        background-color: white;
+    }
+
+    .songs {
+        grid-area: songs;
+        background: grey;
+    }
+
+    .canvas {
+        grid-area: canvas;
+    }
+
+    .curved {
+        border-radius: .25em;
+    }
+}

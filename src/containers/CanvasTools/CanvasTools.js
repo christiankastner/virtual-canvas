@@ -42,8 +42,39 @@ const CanvasTools = (props) => {
             })
     }
 
+    const renderShapeButton = () => {
+        if (props.user_id) {
+            return (
+                <button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "shapes"})}>
+                    Shapes
+                </button>
+            )
+        } else {
+            return ""
+        }
+    }
+
+    const renderSettingButton = () => {
+        if (props.user_id == props.admin) {
+            return (
+                <button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "settings"})}>
+                    Settings
+                </button>
+            )
+        } else {
+            return ""
+        }
+    }
+
     return (
         <>
+            <div className="tools-selector">
+                <button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "paint"})}>
+                    Paint
+                </button> 
+                {renderShapeButton()}
+                {renderSettingButton()}
+            </div>
             {renderMyAnimations()}
         </>
     )
@@ -55,7 +86,8 @@ const mapStateToProps = state => {
         user_id: state.user_id,
         canvas_id: state.canvas.id,
         myShapes: state.myShapes,
-        selected: state.selected
+        selected: state.selected,
+        admin: state.admin
     }
 }
 

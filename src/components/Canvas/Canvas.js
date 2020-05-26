@@ -37,7 +37,7 @@ class Canvas extends React.Component {
         p.setup = () => {
             p.createCanvas(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4);
 
-            extraCanvas = p.createGraphics(600,600);
+            extraCanvas = p.createGraphics(this.myRef.current.offsetWidth,3*this.myRef.current.offsetWidth/4);
 
             extraCanvas.clear();
         
@@ -45,7 +45,7 @@ class Canvas extends React.Component {
         
             this.uploadBtn = p.createFileInput(p.uploaded)
 
-            this.clearCanvasBtn = p.createButton("Clear Drawing")
+            // this.clearCanvasBtn = p.createButton("Clear Drawing")
         
             this.uploadBtn.addClass("upload-btn")
         
@@ -53,7 +53,7 @@ class Canvas extends React.Component {
         
             this.toggleBtn.mousePressed(p.toggleAudio);
 
-            this.clearCanvasBtn.mousePressed(extraCanvas.clear)
+            // this.clearCanvasBtn.mousePressed(extraCanvas.clear)
 
             this.canvasChannel = this.cable.subscriptions.create({
                 channel: `PicturesChannel`, 

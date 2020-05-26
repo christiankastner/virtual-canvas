@@ -1,4 +1,5 @@
 import React from 'react';
+import "./CanvasShowContainer.scss"
 import Canvas from '../../components/Canvas/Canvas';
 import { connect } from 'react-redux'
 import CanvasTools from '../CanvasTools/CanvasTools';
@@ -6,19 +7,17 @@ import SongsContainer from '../SongsContainer/SongsContainer'
 
 const CanvasShowContainer = props => {
     return (
-        <main>
-            <div id="canvas-container" className="canvas-container">
-                <div className="tools">
-                    <CanvasTools />
-                </div>
-                <div className="canvas">
-                    <Canvas paramsId={props.paramsId} />
-                </div>
-                <div className="song">
-                    <SongsContainer />
-                </div>
+            <div className="canvas-container">
+                    <div className="tools curved">
+                        <CanvasTools />
+                    </div>
+                    <div className="canvas">
+                        <Canvas paramsId={props.paramsId} />
+                    </div>
+                    <div className="songs curved">
+                        <SongsContainer />
+                    </div>
             </div>
-        </main>
     )
 }
 
