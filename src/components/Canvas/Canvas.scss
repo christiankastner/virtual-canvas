@@ -11,20 +11,3 @@
     width: 100%;
     padding: 30px;
   }
-  
-  .canvas-header {
-    text-align: center;
-  }
-  
-  .canvas-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-height: 625px;
-  } 
-  
-  .canvas {
-    width: 600px;
-    margin-top: 10px;
-    text-align: center;
-    box-shadow: 0px 50px 100px 0px rgba(9,24,50, 0.25);
-  }

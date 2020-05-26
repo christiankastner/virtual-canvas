@@ -35,7 +35,7 @@ class Canvas extends React.Component {
         }
       
         p.setup = () => {
-            p.createCanvas(600, 600);
+            p.createCanvas(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4);
 
             extraCanvas = p.createGraphics(600,600);
 
@@ -84,6 +84,9 @@ class Canvas extends React.Component {
             extraCanvas.fill(250)
             extraCanvas.ellipse(x, y, 5,5);
         }
+        p.windowResized = () => {
+            p.resizeCanvas(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4); 
+        }
       
         p.uploaded = file => {
             this.uploadLoading = true;
@@ -115,23 +118,6 @@ class Canvas extends React.Component {
                 })
             }
         }
-
-        // p.mouseClicked = () => {
-        //     if (this.props.selected === "bursts") {
-        //         if (p.mouseX * p.mouseY > 0 && p.mouseX < 600 && p.mouseY < 600) {
-        //             this.canvasChannel.send({
-        //                 canvas_id: this.props.paramsId,
-        //                 burst: {
-        //                     user_id: localStorage["id"],
-        //                     tune : {
-        //                         x: p.winMouseX,
-        //                         y: p.winMouseY
-        //                     }
-        //                 }
-        //             })
-        //         }
-        //     }
-        // }
 
         p.loadSong = (song) => {
             this.uploadedAudio = p.loadSound(song, p.uploadedAudioPlay);

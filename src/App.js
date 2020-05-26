@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import CanvasesIndex from "./pages/CanvasIndex/CanvasesIndex"
 import CanvasShow from './pages/CanvasShow/CanvasShow'
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
-import LoginModal from './components/LoginModal'
 import Landing from './pages/Landing/Landing'
 import Login from "./pages/Login/Login"
 import About from "./pages/About/About"
@@ -18,10 +17,6 @@ const App = props => {
   
     return (
         <Router >
-          <LoginModal 
-            modal={modal} 
-            toggleModal={toggleModal}
-          />
           <Navbar
             toggleModal={toggleModal} 
           />
