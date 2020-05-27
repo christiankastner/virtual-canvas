@@ -42,16 +42,6 @@ class Canvas extends React.Component {
             extraCanvas = p.createGraphics(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4);
 
             extraCanvas.clear();
-        
-            // this.toggleBtn = p.createButton("Play / Pause")
-        
-            // this.uploadBtn = p.createFileInput(p.uploaded)
-
-            // this.clearCanvasBtn = p.createButton("Clear Drawing")
-        
-            // this.uploadBtn.addClass("upload-btn")
-
-            // this.clearCanvasBtn.mousePressed(extraCanvas.clear)
 
             this.canvasChannel = this.cable.subscriptions.create({
                 channel: `PicturesChannel`, 
@@ -76,6 +66,10 @@ class Canvas extends React.Component {
       
             p.angleMode(p.DEGREES)
         };
+        
+        p.clearDrawing = () => {
+            extraCanvas.clear()
+        }
 
         p.newDrawing = (x,y) => {
             extraCanvas.noStroke()
@@ -169,6 +163,20 @@ class Canvas extends React.Component {
         };
     }
 
+    renderControls = () => {
+        if (this.myP5) {
+            return (
+                    <div className="controls">
+                        <button className="upload-btn btn-primary" onClick={this.myP5.uploaded} >Upload a Song</button>
+                        <button className="play-btn" onClick={this.myP5.toggleAudio} ><Play /></button>
+                        <button className="clear-btn btn-secondary" onClick={this.myP5.clearDrawing}>Clear Drawing</button>
+                    </div>
+                )
+        } else {
+            return ""
+        }
+    }
+
     componentDidUpdate(prevProps) {
         if (prevProps.loadedSong !== this.props.loadedSong) {
             this.myP5.loadSong(this.props.loadedSong)
@@ -188,8 +196,7 @@ class Canvas extends React.Component {
         return (
             <>
                 <div id="canvas" className="canvas" ref={this.myRef}/>
-                {this.myP5 ? 
-                <button className="play-btn" onClick={this.myP5.toggleAudio} className="play-btn"><Play /></button> : "" }
+                    {this.renderControls()}
             </>
         )
     }

@@ -1,23 +1,18 @@
-.toggle-btn {
-    padding: 8px 25px;
-    margin: 10px;
-    background-color: rgb(25, 64, 131);
+.controls {
+  display: flex;
+  justify-content: space-evenly;
+  height: 2em;
+  .upload-btn, .clear-btn {
+    font-size: .5em;
+  }
+
+  .play-btn {
+    position: relative;
+    top: -2em;
+    width: 4em;
+    overflow: visible;
+    background: none;
     border: none;
-    border-radius: 50px;
-    position: absolute;
+    cursor: pointer;
   }
-
-  .upload-btn {
-    display: none;
-  }
-
-.canvas {
-
-}
-
-.play-btn {
-  width: 4em;
-  background: none;
-  border: none;
-  cursor: pointer;
 }
