@@ -88,8 +88,8 @@ const ShapeEdit = props => {
     return (
         <>
         <div className="tool-header">
-            <Button onClick={handleSubmit}>Save Shape</Button>
-            <Button onClick={handleDelete}>Delete Shape</Button>
+            <button onClick={handleSubmit}>Save Shape</button>
+            <button onClick={handleDelete}>Delete Shape</button>
         </div>
         <div className="tool" >
             <div className="toolbox1">

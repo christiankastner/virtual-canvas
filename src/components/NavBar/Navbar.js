@@ -17,15 +17,15 @@ const Navbar = props => {
             return (
                 <>
                     <li>
+                        <NavLink exact to="/user" >  
+                            Profile
+                        </NavLink>
+                    </li>
+                    <li>
                         <NavLink exact to="/" >
                             <button onClick={handleLogout}>
                                 Log out
                             </button>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink exact to="/user" >  
-                            Profile
                         </NavLink>
                     </li>
                 </>
