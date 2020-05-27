@@ -7,10 +7,10 @@ import { Slider } from "@material-ui/core"
 const PaintEdit = props => {
 
     const [stroke, setStroke] = useState({
-        red: 0,
-        green: 0,
-        blue: 0,
-        weight: 1
+        red: props.myBrush.red,
+        green: props.myBrush.green,
+        blue: props.myBrush.blue,
+        weight: props.myBrush.weight
     })
 
     const handleChange = (color,v) => {
@@ -20,13 +20,15 @@ const PaintEdit = props => {
         })
     }
 
-    const handleSave = () => {
+    const handleSave = (e) => {
+        e.preventDefault()
         props.dispatch({type: "BRUSH_EDIT", brush: stroke})
     }
 
     return (
         <div className="paint-controls">
-            <form>
+            <form onSubmit={handleSave}>
+                <button type="submit">Save Brush</button>
                 <h3>Stroke Weight</h3>
                 <Slider 
                     name="strokeWeight"
@@ -41,12 +43,6 @@ const PaintEdit = props => {
             </form>
         </div>
     )
-}
-
-const mapStateToProps = state => {
-    return {
-        myBrush: state.myBrush
-    }
 }
 
 export default connect()(PaintEdit)

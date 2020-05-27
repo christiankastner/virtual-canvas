@@ -5,7 +5,12 @@ const initialState = {
     myBursts: [], 
     canvasShapes: [], 
     myShapes: [],
-    myBrush: {},
+    myBrush: {
+        red: 0,
+        green: 0,
+        blue: 0,
+        weight: 1
+    },
     selected: 'paint',
     loadedSong: '',
     admin: ''
@@ -141,6 +146,11 @@ export default function canvasReducer(state = initialState, action) {
                 ...state,
                 selected: action.animation
             }
+        case "BRUSH_EDIT":
+            return {
+                ...state,
+                myBrush: action.brush
+            }    
         case "REMOVE_CANVAS":
             return {
                 ...state,

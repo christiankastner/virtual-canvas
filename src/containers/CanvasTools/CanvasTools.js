@@ -18,7 +18,7 @@ const CanvasTools = (props) => {
                     </div>
                 )
             case "paint":
-                return <PaintEdit />
+                return <PaintEdit myBrush={props.myBrush}/>
             case "settings":
                 return (
                     <div className='tools-container' >
@@ -86,6 +86,7 @@ const mapStateToProps = state => {
         user_id: state.user_id,
         canvas_id: state.canvas.id,
         myShapes: state.myShapes,
+        myBrush: state.myBrush,
         selected: state.selected,
         admin: state.admin
     }
