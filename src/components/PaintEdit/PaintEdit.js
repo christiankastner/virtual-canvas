@@ -1,42 +1,16 @@
 import React, { useState } from 'react'
 import "./PaintEdit.scss"
 import { connect } from "react-redux"
-import { Slider } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles'
-
-const RedSlider = withStyles({
-    root: {
-        color: 'red'
-    },
-    thumb: {
-        color: 'red'
-    }
-})(Slider);
-
-const GreenSlider = withStyles({
-    root: {
-        color: 'green'
-    },
-    thumb: {
-        color: 'green'
-    }
-})(Slider)
-
-const BlueSlider = withStyles({
-    root: {
-        color: 'blue'
-    },
-    thumb: {
-        color: 'blue'
-    }
-})(Slider)
+import ColorPicker from "../ColorPicker/ColorPicker"
+import { Slider } from "@material-ui/core"
 
 const PaintEdit = props => {
 
     const [stroke, setStroke] = useState({
         red: 0,
         green: 0,
-        blue: 0
+        blue: 0,
+        weight: 1
     })
 
     const handleChange = (color,v) => {
@@ -46,31 +20,24 @@ const PaintEdit = props => {
         })
     }
 
+    const handleSave = () => {
+        props.dispatch({type: "BRUSH_EDIT", brush: stroke})
+    }
+
     return (
         <div className="paint-controls">
             <form>
+                <h3>Stroke Weight</h3>
+                <Slider 
+                    name="strokeWeight"
+                    label="strokeWeight"
+                    min={0}
+                    max={10}
+                    value={stroke.weight}
+                    valueLabelDisplay='auto'
+                    onChange={(e,v) => handleChange("weight", v)} />
                 <h3>Stroke Color</h3>
-                <RedSlider 
-                    value={stroke.red}
-                    min={0}
-                    max={255}
-                    lable="Red" 
-                    valueLabelDisplay='auto'
-                    onChange={(e,v) => handleChange("red", v)} />
-                <GreenSlider 
-                    value={stroke.green}
-                    min={0}
-                    max={255}
-                    valueLabelDisplay='auto'
-                    label="Green" 
-                    onChange={(e,v) => handleChange("green", v)} />
-                <BlueSlider 
-                    value={stroke.blue}
-                    min={0}
-                    max={255}
-                    valueLabelDisplay='auto'
-                    label="Blue" 
-                    onChange={(e,v) => handleChange("blue", v)} />
+                <ColorPicker red={stroke.red} blue={stroke.blue} green={stroke.green} handleChange={handleChange}/>
             </form>
         </div>
     )
