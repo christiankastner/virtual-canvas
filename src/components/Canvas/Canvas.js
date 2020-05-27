@@ -43,6 +43,10 @@ class Canvas extends React.Component {
 
             extraCanvas.clear();
 
+            this.uploadBtn = p.createFileInput(p.uploaded)
+
+            this.uploadBtn.addClass("p5-upload")
+
             this.canvasChannel = this.cable.subscriptions.create({
                 channel: `PicturesChannel`, 
                 id: this.props.paramsId
@@ -56,10 +60,10 @@ class Canvas extends React.Component {
                     if ('type' in data) {
                         this.props.dispatch(data)
                     } else if ('draw' in data) {
-                        p.newDrawing(data.draw.x, data.draw.y)
-                    } else {
-                        // this.handleRecievedBurst(data)
-                    } 
+                        const {xOne, yOne, xTwo, yTwo} = data.draw
+                        console.log(data.draw)
+                        p.newDrawing(xOne, yOne,xTwo,yTwo)
+                    }
             }})
             analyzer = new p5.Amplitude();
             fft = new p5.FFT();
@@ -71,11 +75,12 @@ class Canvas extends React.Component {
             extraCanvas.clear()
         }
 
-        p.newDrawing = (x,y) => {
-            extraCanvas.noStroke()
-            extraCanvas.fill(250)
-            extraCanvas.ellipse(x, y, 5,5);
+        p.newDrawing = (xOne,yOne,xTwo,yTwo) => {
+            // console.log(xOne,yOne,xTwo,yTwo)
+            extraCanvas.stroke(0)
+            extraCanvas.line(xOne, yOne, xTwo, yTwo);
         }
+
         p.windowResized = () => {
             if (this.myRef.current) {
                 p.resizeCanvas(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4); 
@@ -102,12 +107,14 @@ class Canvas extends React.Component {
 
         p.mouseDragged = () => {
             if (this.props.selected === "paint") {
-                p.newDrawing(p.mouseX, p.mouseY)
+                p.newDrawing(p.pmouseX,p.pmouseY,p.mouseX,p.mouseY)
                 this.canvasChannel.send({
                     canvas_id: this.props.paramsId,
                     draw: {
-                        x: p.mouseX,
-                        y: p.mouseY
+                        xOne: p.pmouseX,
+                        yOne: p.pmouseY,
+                        xTwo: p.mouseX,
+                        yTwo: p.mouseY
                     }
                 })
             }
@@ -138,6 +145,7 @@ class Canvas extends React.Component {
         }
       
         p.draw = () => {
+            console.log(this.uploadBtn)
             const { background, mid_mapping_1, mid_mapping_2, treble_mapping_1, treble_mapping_2, bass_mapping_1, bass_mapping_2} = this.props.canvas
     
             p.background(`rgb(${background})`);
@@ -169,7 +177,9 @@ class Canvas extends React.Component {
                     <div className="controls">
                         <button className="upload-btn btn-primary" onClick={this.myP5.uploaded} >Upload a Song</button>
                         <button className="play-btn" onClick={this.myP5.toggleAudio} ><Play /></button>
-                        <button className="clear-btn btn-secondary" onClick={this.myP5.clearDrawing}>Clear Drawing</button>
+                        <button className="clear-btn btn-secondary" onClick={this.myP5.clearDrawing}>
+                            Clear Drawing
+                        </button>
                     </div>
                 )
         } else {

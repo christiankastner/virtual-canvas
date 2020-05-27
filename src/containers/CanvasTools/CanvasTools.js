@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { api } from '../../services/api'
-import PaintEdit from '../../components/presentational/PaintEdit'
-import ShapeEdit from '../../components/presentational/ShapeEdit'
-import CanvasSettings from '../../components/presentational/CanvasSettings'
+import PaintEdit from '../../components/PaintEdit/PaintEdit'
+import ShapeEdit from '../../components/ShapeEdit/ShapeEdit'
+import CanvasSettings from '../../components/CanvasSettings/CanvasSettings'
 import "./CanvasTools.scss"
 
 const CanvasTools = (props) => {

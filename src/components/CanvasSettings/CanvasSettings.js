@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import "./CanvasSettings.scss";
 import { connect } from 'react-redux'
 import Slider from '@material-ui/core/Slider'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
 import { api } from '../../services/api';
 import { withStyles } from '@material-ui/core/styles'
@@ -64,7 +64,7 @@ const CanvasSettings = props => {
     return (
         <>
             <div className="canvas-settings">
-                <Button onClick={handleSaveCanvas}>Save Canvas</Button>
+                <button onClick={handleSaveCanvas}>Save Canvas</button>
                 <h3>Background Color</h3>
                 <RedSlider 
                     value={background[0]}

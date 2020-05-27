@@ -55,8 +55,8 @@ const Navbar = props => {
                 <rect y="30" width="100" height="20" fill="white"></rect>
                 <rect y="60" width="100" height="20" fill="white"></rect>
             </svg>
-                <div className="nav-links">
-                    <ul className={open ? "" : "closed"}>
+                <div className={open ? "nav-links" : "nav-links closed"}>
+                    <ul>
                         <li>
                             <NavLink exact to="/" >
                                 Home
