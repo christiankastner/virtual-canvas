@@ -47,17 +47,22 @@ const SongsContainer = props => {
 
     return (
         <div className="song-container">
-            <ul>
-                {songs.map(song => {
-                    return (
-                        <li key={song.key}>
-                            <span>{song.songName}</span>
-                            <button onClick={loadSong(song.url)}>Play</button>
-                            {props.admin == props.userId ? <button onClick={deleteSong(song)}>Delete</button> : ""}
-                        </li>
-                    )
-                })}
-            </ul>
+            <div className="left play">
+                
+            </div>
+            <div className="right" >
+                <ul>
+                    {songs.map(song => {
+                        return (
+                            <li key={song.key}>
+                                <span>{song.songName}</span>
+                                <button onClick={loadSong(song.url)}>Play</button>
+                                {props.admin == props.userId ? <button onClick={deleteSong(song)}>Delete</button> : ""}
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
         </div>
     )
 }

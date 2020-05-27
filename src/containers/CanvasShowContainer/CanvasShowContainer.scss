@@ -1,30 +1,42 @@
+@import "../../constants/colors.scss";
 
 .canvas-container {
-    display: grid;
     padding: 1em;
-    grid-template-areas: 
-        "tools canvas canvas"
-        "tools canvas canvas"
-        "tools songs songs";
-    grid-template-rows: 1fr 1fr .5fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: .75em;
-
     .tools {
-        grid-area: tools;
-        background-color: white;
+        background-color: $main-lighter;
     }
 
     .songs {
-        grid-area: songs;
-        background: grey;
+        background: $main-lighter;
     }
-
-    .canvas {
-        grid-area: canvas;
-    }
-
     .curved {
         border-radius: .25em;
+        box-shadow: 0px 10px 10px rbga(0,0,0,.3);
+    }
+}
+
+@media (min-width: 700px) {
+    .canvas-container {
+        display: grid;
+        grid-template-areas: 
+            "tools canvas canvas"
+            "tools canvas canvas"
+            "tools songs songs";
+        grid-template-rows: 1fr 1fr .5fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: .75em;
+    
+        .tools {
+            display: unset;
+            grid-area: tools;
+        }
+    
+        .songs {
+            grid-area: songs;
+        }
+    
+        .canvas {
+            grid-area: canvas;
+        }
     }
 }

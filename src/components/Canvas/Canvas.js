@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import folds from "../../assets/Folds.mp3"
+import {ReactComponent as Play} from "../../assets/play.svg"
 import p5 from 'p5';
 import "./Canvas.scss"
 import "p5/lib/addons/p5.sound";
@@ -31,27 +33,23 @@ class Canvas extends React.Component {
         let extraCanvas;
 
         p.preload = () => {
-            // this.song = p.loadSound(folds)
+            this.song = p.loadSound(folds)
         }
       
         p.setup = () => {
             p.createCanvas(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4);
 
-            extraCanvas = p.createGraphics(this.myRef.current.offsetWidth,3*this.myRef.current.offsetWidth/4);
+            extraCanvas = p.createGraphics(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4);
 
             extraCanvas.clear();
         
-            this.toggleBtn = p.createButton("Play / Pause")
+            // this.toggleBtn = p.createButton("Play / Pause")
         
-            this.uploadBtn = p.createFileInput(p.uploaded)
+            // this.uploadBtn = p.createFileInput(p.uploaded)
 
             // this.clearCanvasBtn = p.createButton("Clear Drawing")
         
-            this.uploadBtn.addClass("upload-btn")
-        
-            this.toggleBtn.addClass("toggle-btn");
-        
-            this.toggleBtn.mousePressed(p.toggleAudio);
+            // this.uploadBtn.addClass("upload-btn")
 
             // this.clearCanvasBtn.mousePressed(extraCanvas.clear)
 
@@ -188,7 +186,11 @@ class Canvas extends React.Component {
 
     render() { 
         return (
-            <div id="canvas" className="canvas" ref={this.myRef}/>
+            <>
+                <div id="canvas" className="canvas" ref={this.myRef}/>
+                {this.myP5 ? 
+                <button className="play-btn" onClick={this.myP5.toggleAudio} className="play-btn"><Play /></button> : "" }
+            </>
         )
     }
 }

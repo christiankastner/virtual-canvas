@@ -4,9 +4,20 @@
     background-color: rgb(25, 64, 131);
     border: none;
     border-radius: 50px;
-    display: none;
+    position: absolute;
   }
 
   .upload-btn {
     display: none;
   }
+
+.canvas {
+
+}
+
+.play-btn {
+  width: 4em;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
