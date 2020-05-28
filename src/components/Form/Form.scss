@@ -1,0 +1,61 @@
+@import "../../constants/colors.scss";
+
+.form {
+    width: 100%;
+
+    button {
+        margin-top: 2em;
+    }
+
+    .field {
+        width: 100%;
+        position: relative;
+        border-bottom: 1px solid $text;
+        margin: 2rem auto 1rem;
+
+        label {
+            font-size: 1.25rem;
+            text-transform: capitalize;
+            transform: translateY();
+            transform-origin: 0%;
+            transition: transform 400ms;
+        }
+    
+        input {
+            position: relative;
+            z-index: 1;
+            outline: none;
+            border: none;
+            overflow: hidden;
+            margin: 0;
+            width: 100%;
+            padding: .25rem 0;
+            background: none;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+    }
+
+    .field::after {
+        content: "";
+        position: relative;
+        display: block;
+        height: 4px;
+        width: 100%;
+        background: $accent-one;
+        transform: scaleX(0);
+        transform-origin: 0%;
+        transition: transform 500ms ease;
+        top: 2px;
+    }
+
+    .field:focus-within {
+        border-color: transparent;
+    }
+
+    .field:focus-within:after {
+        transform: scaleX(1);
+    }
+
+}

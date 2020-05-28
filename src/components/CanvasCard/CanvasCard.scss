@@ -1,0 +1,29 @@
+@import "../../constants/colors.scss";
+.canvas-card {
+  text-align: center;
+  padding: 1em;
+  background-color: $main-color;
+  color: $text;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.2);
+  transition: all 0.3s ease 0s;
+
+    h4 {
+      margin: 1em 0;
+      text-transform: uppercase;
+    }
+    p {
+      font-size: .75em;
+      margin: 1em 0;
+    }
+  }
+
+.canvas-card:hover {
+  box-shadow: 10px 10px 10px rgba(0,0,0,.35);
+}
+
+@media (min-width: 700px) {
+  .canvas-card {
+    text-align: left;
+  }
+}

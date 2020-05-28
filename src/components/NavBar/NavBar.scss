@@ -1,0 +1,81 @@
+@import "../../constants/colors.scss";
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    svg {
+        height: 2em;
+    }
+    button {
+        color: white;
+        background: none;
+        border: none;
+        font-size: 1em;
+        font-family: "Futura", sans-serif;
+        cursor: pointer;
+    }
+    .nav-links {
+        position: absolute;
+        top: 68px;
+        right: 0;
+        text-align: right;
+        background: $main-offset;
+        border-radius: .5em;
+        padding: 1em;
+
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            li {
+                display: inline-block;
+                margin-bottom: 1em;
+                font-weight: 500;
+                text-decoration: none;
+                a {
+                    color: white;
+                    text-decoration: none;
+                }
+                a, button {
+                    transition: all 0.3s ease 0s;
+                }
+                a:hover, button:hover {
+                    color: #133e7c
+                }
+            }
+        }
+    }
+}
+.menu-btn {
+    cursor: pointer;
+    width: 2em;
+}
+.closed {
+    display: none;
+}
+
+
+@media (min-width: 900px) {
+    header {
+
+        .nav-links {
+            position: static;
+            background: none;
+            ul {
+                display: block;
+                li {
+                    margin-right: 4em;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    .menu-btn {
+        display: none;
+    }
+    .closed {
+        display: unset;
+    }
+}

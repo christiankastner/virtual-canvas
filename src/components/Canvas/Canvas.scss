@@ -1,0 +1,22 @@
+.controls {
+  display: flex;
+  justify-content: space-evenly;
+  height: 2em;
+  .upload-btn, .clear-btn {
+    font-size: .5em;
+  }
+
+  .play-btn {
+    position: relative;
+    top: -2em;
+    width: 4em;
+    overflow: visible;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.p5-upload {
+  display: none;
+}

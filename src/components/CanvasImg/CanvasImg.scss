@@ -1,0 +1,5 @@
+@import "../../constants/colors.scss";
+.canvas-img-container {
+    overflow: hidden;
+    border: solid 1px $accent-one;
+}

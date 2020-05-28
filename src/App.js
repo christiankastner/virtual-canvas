@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
-import CanvasesIndex from "./CanvasesIndex"
-import CanvasShow from './CanvasShow'
+import CanvasesIndex from "./pages/CanvasIndex/CanvasesIndex"
+import CanvasShow from './pages/CanvasShow/CanvasShow'
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
-import LoginModal from './components/LoginModal'
-import Landing from './Landing'
-import About from "./About"
-import UserShow from './UserShow'
-import Navbar from './components/Navbar';
-import './App.scss'
+import Landing from './pages/Landing/Landing'
+import Login from "./pages/Login/Login"
+import About from "./pages/About/About"
+import UserShow from './pages/UserShow/UserShow'
+import Navbar from './components/NavBar/Navbar';
 
 const App = props => {
 
@@ -18,19 +17,16 @@ const App = props => {
   
     return (
         <Router >
-          <LoginModal 
-            modal={modal} 
-            toggleModal={toggleModal}
-          />
           <Navbar
             toggleModal={toggleModal} 
           />
           <Route exact path="/" render={() => {
             return (<>
               <Landing />
-              <About />
             </>)
           }}/>
+          <Route exact path="/login" render={routerProps => <Login {...routerProps} />}/>
+          <Route exact path="/about" render={routerProps => <About {...routerProps} />}/>
           <Route exact path="/user" >
             {props.user_id ? <UserShow /> : <Redirect to="/" />}
           </Route>

@@ -1,0 +1,44 @@
+@import "../../constants/colors.scss";
+.user-show {
+    margin: 2em;
+    height: 100%;
+    .content {
+        background-color: white;
+        width: 100%;
+    }
+}
+
+.subnav {
+    display: flex;
+    justify-content: space-between;
+    background: #002A3E;
+    padding: 0 .5em;
+    margin: none;
+    button {
+        color: $text;
+        background: inherit;
+        border: none;
+        font-family: "Futura" sans-serif;
+        font-size: 1em;
+        padding: 1em;
+        transition: all 0.3s ease 0s;
+    }
+}
+
+@media (min-width: 800px) {
+    .user-show {
+        display: flex;
+    }
+    
+    .subnav {
+        justify-content: unset;
+        flex-direction: column;;
+        width: 300px;
+        button {
+            margin-top: 1em;
+        }
+        button:first-child {
+            margin-top: 3em;
+        }
+    }
+}

@@ -54,15 +54,15 @@ class LoginModal extends React.Component {
     }
     
     loginCallBack = (json) => {
-    if (!json.error) {
-        this.props.toggleModal()
-        localStorage.setItem('id', json.id) 
-        this.props.dispatch({type: "LOGIN", user_id: json.id}) 
-    } else {
-        this.setState({
-            message: json.error
-        })
-    }
+        if (!json.error) {
+            this.props.toggleModal()
+            localStorage.setItem('id', json.id) 
+            this.props.dispatch({type: "LOGIN", user_id: json.id}) 
+        } else {
+            this.setState({
+                message: json.error
+            })
+        }
     }
 
 

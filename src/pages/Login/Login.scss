@@ -1,0 +1,27 @@
+@import "../../constants/colors.scss";
+
+.login-container {
+    display: flex;
+    p {
+        color: red;
+        margin-top: 1em;
+    }
+    .form-container {
+        margin: 2em auto;
+        min-width: 600px;
+        padding: 2em;
+        border-radius: .5em;
+        background: $main-offset;
+        box-shadow: 10px 10px 10px rgba(0,0,0,0.2);
+
+        .toggle {
+            background: none;
+            border: none;
+            color: white;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 1em;
+        }
+    }
+    
+}

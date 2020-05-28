@@ -1,0 +1,23 @@
+.song-container {
+    display: flex;
+
+    .left {
+        height: 100%;
+        border-right: 1px solid white;
+    }
+
+    .right {
+        height: 100%;
+    }
+
+    ul {
+        list-style: none;
+        li {
+            color: white
+        }
+    
+        li:hover {
+            cursor: pointer;
+        }
+    }
+}

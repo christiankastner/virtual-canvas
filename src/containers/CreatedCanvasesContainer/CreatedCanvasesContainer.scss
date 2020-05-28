@@ -1,0 +1,27 @@
+.canvas-table {
+  overflow-y: auto;
+  padding: 2em;
+  width: 100%;
+  
+  h1 {
+    color: black;
+    margin-bottom: 1em;
+  }
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(19rem, .5fr));
+
+      li {
+        margin-right: 1em;
+
+        button {
+          color: white;
+          background-color: rgb(100,20,0);
+          padding: .75em 1em;
+          border-radius: .5em;
+          border: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }

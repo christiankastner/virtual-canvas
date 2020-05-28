@@ -1,0 +1,54 @@
+@import "./constants/colors.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background: $main-color;
+  color: white;
+  font-family: "Futura", sans-serif;
+}
+
+#root {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+}
+
+.btn-primary {
+  cursor: pointer;
+  background: $accent-two;
+  border: none;
+  border-radius: .5em;
+  color: $text;
+  padding: 1em 3em;
+  text-transform: uppercase;
+}
+
+.btn-secondary {
+  cursor: pointer;
+  background: $accent-one;
+  border: none;
+  border-radius: .5em;
+  color: $text;
+  padding: 1em 3em;
+  text-transform: uppercase;
+}
+
+.error {
+  color: red;
+}
+
+.seen {
+  display: none;
+}
