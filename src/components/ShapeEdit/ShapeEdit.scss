@@ -1,0 +1,8 @@
+.tool {
+    ul {
+        width: 100%;
+        display: grid;
+        list-style: none;
+        grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+    }
+}

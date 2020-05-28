@@ -77,7 +77,9 @@ class Canvas extends React.Component {
 
         p.newDrawing = (xOne,yOne,xTwo,yTwo) => {
             // console.log(xOne,yOne,xTwo,yTwo)
-            extraCanvas.stroke(0)
+            const {red, green, blue, weight} = this.props.myBrush
+            extraCanvas.strokeWeight(weight)
+            extraCanvas.stroke(`rgb(${red},${green},${blue})`)
             extraCanvas.line(xOne, yOne, xTwo, yTwo);
         }
 
@@ -175,8 +177,12 @@ class Canvas extends React.Component {
         if (this.myP5) {
             return (
                     <div className="controls">
-                        <button className="upload-btn btn-primary" onClick={this.myP5.uploaded} >Upload a Song</button>
-                        <button className="play-btn" onClick={this.myP5.toggleAudio} ><Play /></button>
+                        <button className="upload-btn btn-primary" onClick={this.myP5.uploaded} >
+                            Upload a Song
+                        </button>
+                        <button className="play-btn" onClick={this.myP5.toggleAudio} >
+                            <Play />
+                        </button>
                         <button className="clear-btn btn-secondary" onClick={this.myP5.clearDrawing}>
                             Clear Drawing
                         </button>
@@ -206,7 +212,7 @@ class Canvas extends React.Component {
         return (
             <>
                 <div id="canvas" className="canvas" ref={this.myRef}/>
-                    {this.renderControls()}
+                {this.renderControls()}
             </>
         )
     }
@@ -219,6 +225,7 @@ const mapStateToProps = state => {
         selected: state.selected,
         loadedSong: state.loadedSong,
         shapes: state.canvasShapes,
+        myBrush: state.myBrush
     }
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./ShapeEdit.scss";
 import { connect } from 'react-redux';
 import { Slider, Button, FormControl, MenuItem, Select, Typography, Divider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles'
@@ -92,7 +93,8 @@ const ShapeEdit = props => {
             <button onClick={handleDelete}>Delete Shape</button>
         </div>
         <div className="tool" >
-            <div className="toolbox1">
+            <ul>
+            <li>
                 <FormControl>
                     <Select 
                         labelId="frequency-select"
@@ -142,8 +144,8 @@ const ShapeEdit = props => {
                     value={shape['stagger_place']}
                     valueLabelDisplay='auto'
                     onChange={(e,v) => handleInputChange("stagger_place", v)} />
-            </div>
-            <div className="toolbox2">
+            </li>
+            <li className="toolbox2">
                         <Typography id="slider" gutterBottom>
                             Fill Color
                         </Typography>
@@ -166,8 +168,8 @@ const ShapeEdit = props => {
                         valueLabelDisplay='auto'
                         onChange={(e,v) => handleColorChange(2, "fill", v)} />
           
-            </div>
-            <div className="toolbox4">
+            </li>
+            <li className="toolbox4">
                         <Typography id="vertical-slider" gutterBottom>
                             Width
                         </Typography>
@@ -228,8 +230,8 @@ const ShapeEdit = props => {
                             valueLabelDisplay='auto'
                             onChange={(e,v) => handleInputChange("spin", v)}
                             />
-            </div>
-            <div className="toolbox3">
+            </li>
+            <li className="toolbox3">
                     <Typography id="slider" gutterBottom>
                             Stroke Color
                         </Typography>
@@ -257,8 +259,8 @@ const ShapeEdit = props => {
                         min={0}
                         max={255}
                         onChange={(e,v) => handleColorChange(2, "stroke", v)} />
-            </div>  
-            
+            </li>  
+            </ul>
         </div>
         <Divider />
         </>
