@@ -18,7 +18,11 @@ const CanvasTools = (props) => {
                     </div>
                 )
             case "paint":
-                return <PaintEdit myBrush={props.myBrush}/>
+                return (
+                    <div className="tools-container">
+                        <PaintEdit myBrush={props.myBrush}/>
+                    </div>
+                    )
             case "settings":
                 return (
                     <div className='tools-container' >

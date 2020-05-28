@@ -7,7 +7,7 @@
     ul {
         display: grid;
         list-style: none;
-        grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         li {
             margin: 1em;
         }
