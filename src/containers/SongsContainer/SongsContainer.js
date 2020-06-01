@@ -25,14 +25,14 @@ const SongsContainer = props => {
         console.log(err)
     }
 
-    const loadSong = (url) => {
+    const loadSong = (url, songName) => {
         return () => {
             let xhr = new XMLHttpRequest();
             xhr.responseType = 'blob';
             xhr.onload = function(event) {
                 let blob = xhr.response;
                 let objURL = URL.createObjectURL(blob)
-                props.dispatch({type: "LOAD_SONG", url: objURL})
+                props.dispatch({type: "LOAD_SONG", url: objURL, name: songName})
             };
             xhr.open('GET', url);
             xhr.send();
@@ -76,7 +76,7 @@ const SongsContainer = props => {
         <div className="song-container">
             <div className="left play">
                 <input className="seen" type="file" ref={inputRef} onChange={handleFileChange} />
-                <button className="btn-primary" onClick={handleFileInput}>Upload Your Favorite Song</button>
+                <button className="upload-btn btn-primary" onClick={handleFileInput}>Upload Your Favorite Song</button>
             </div>
             <div className="right" >
                 <ul>
@@ -84,7 +84,7 @@ const SongsContainer = props => {
                         return (
                             <li key={song.key}>
                                 <span>{song.songName}</span>
-                                <button onClick={loadSong(song.url)}>Play</button>
+                                <button onClick={loadSong(song.url, song.songName)}>Play</button>
                                 {props.admin == props.userId ? <button onClick={deleteSong(song)}>Delete</button> : ""}
                             </li>
                         )

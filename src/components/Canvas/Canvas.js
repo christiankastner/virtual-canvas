@@ -43,10 +43,6 @@ class Canvas extends React.Component {
 
             extraCanvas.clear();
 
-            this.uploadBtn = p.createFileInput(p.uploaded)
-
-            this.uploadBtn.addClass("p5-upload")
-
             this.canvasChannel = this.cable.subscriptions.create({
                 channel: `PicturesChannel`, 
                 id: this.props.paramsId
@@ -89,24 +85,6 @@ class Canvas extends React.Component {
             }
         }
       
-        p.uploaded = file => {
-            console.log(this.uploadBtn)
-            // this.uploadLoading = true;
-
-            // const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
-
-            // musicRef.put(file.file).then(() => {
-            //     const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-            //     storageRef.child(file.file.name).getDownloadURL()
-            //         .then((url) => {
-            //             const databaseRef = firebase.database().ref(`canvas-${this.props.canvas.id}`)
-            //             databaseRef.push({
-            //                 songName: file.name,
-            //                 url: url
-            //                 })
-            //         })
-            //     })
-        }
 
         p.mouseDragged = () => {
             if (this.props.selected === "paint") {
@@ -177,9 +155,7 @@ class Canvas extends React.Component {
         if (this.myP5) {
             return (
                     <div className="controls">
-                        <button className="upload-btn btn-primary" onClick={this.myP5.uploaded} >
-                            Upload a Song
-                        </button>
+                        <h3>{this.props.loadedSong.name || "Folds.mp3"}</h3>
                         <button className="play-btn" onClick={this.myP5.toggleAudio} >
                             <Play />
                         </button>
@@ -195,7 +171,7 @@ class Canvas extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.loadedSong !== this.props.loadedSong) {
-            this.myP5.loadSong(this.props.loadedSong)
+            this.myP5.loadSong(this.props.loadedSong.url)
         }
     }
 

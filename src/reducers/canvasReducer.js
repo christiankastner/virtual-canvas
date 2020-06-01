@@ -45,7 +45,10 @@ export default function canvasReducer(state = initialState, action) {
             URL.revokeObjectURL(state.loadedSong)
             return {
                 ...state,
-                loadedSong: action.url
+                loadedSong: {
+                    name: action.name,
+                    url: action.url
+                }
             }
         case "HTTP_NEW_SHAPE":
             return {
