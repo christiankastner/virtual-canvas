@@ -1,7 +1,14 @@
+.container {
+  height: 100%;
+}
+.canvas {
+  height: 97%
+}
 .controls {
   display: flex;
   justify-content: space-evenly;
   height: 2em;
+  margin-top: .5em;
   .upload-btn, .clear-btn {
     font-size: .5em;
   }

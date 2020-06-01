@@ -13,8 +13,10 @@ const CanvasTools = (props) => {
             case "shapes":
                 return (
                     <div className="tools-container">
-                        <button onClick={() => handleNewAnimation('p5_shape')}>Create New Shape</button>
-                        {props.myShapes ? props.myShapes.map(shape => <ShapeEdit shape={shape} />) : null}
+                        <div className="shape-container">
+                            <button onClick={() => handleNewAnimation('p5_shape')}>Create New Shape</button>
+                            {props.myShapes ? props.myShapes.map(shape => <ShapeEdit shape={shape} />) : null}
+                        </div>
                     </div>
                 )
             case "paint":
@@ -25,8 +27,8 @@ const CanvasTools = (props) => {
                     )
             case "settings":
                 return (
-                    <div className='tools-container' >
-                        <CanvasSettings />
+                    <div className='tools-container' >    
+                            <CanvasSettings />
                     </div> 
                 )
             default:

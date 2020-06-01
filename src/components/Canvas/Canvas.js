@@ -37,9 +37,9 @@ class Canvas extends React.Component {
         }
       
         p.setup = () => {
-            p.createCanvas(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4);
+            p.createCanvas(this.myRef.current.offsetWidth, this.myRef.current.offsetHeight);
 
-            extraCanvas = p.createGraphics(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4);
+            extraCanvas = p.createGraphics(this.myRef.current.offsetWidth, this.myRef.current.offsetHeight);
 
             extraCanvas.clear();
 
@@ -85,7 +85,7 @@ class Canvas extends React.Component {
 
         p.windowResized = () => {
             if (this.myRef.current) {
-                p.resizeCanvas(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4); 
+                p.resizeCanvas(this.myRef.current.offsetWidth, this.myRef.current.offsetHeight); 
             }
         }
       
@@ -210,10 +210,10 @@ class Canvas extends React.Component {
 
     render() { 
         return (
-            <>
+            <div className="container">
                 <div id="canvas" className="canvas" ref={this.myRef}/>
                 {this.renderControls()}
-            </>
+            </div>
         )
     }
 }

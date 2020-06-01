@@ -1,21 +1,36 @@
 .shape {
+    .dropdown-btn {
+        background: none;
+        border: none;
+    }
+
+    .rotate {
+        svg {
+            transform: rotate(90deg);
+        }
+    }
+    svg {
+        width: .75em;
+    }
     span {
         text-transform: capitalize;
     }
     .tool {
+        width: 100%;
+        max-width: 300px;
         ul {
-            width: 100%;
             display: flex;
             list-style: none;
             flex-direction: column;
-            // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             li {
                 margin-bottom: 1em;
             }
-            .toolbox4 {
+            .toolbox {
                 display: flex;
-                justify-content: space-evenly;
-                height: 150px;
+                flex-direction: row;
+                div {
+                    width: 100%;
+                }
             }
         }
     }
