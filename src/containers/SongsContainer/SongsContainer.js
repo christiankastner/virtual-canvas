@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { connect } from 'react-redux'
 import firebase from '../../constants/firebase'
 import './SongsContainer.scss'
+import {ReactComponent as Play} from "../../assets/play.svg"
 
 const SongsContainer = props => {
     const [songs, setSongs] = useState([])
@@ -74,7 +75,7 @@ const SongsContainer = props => {
 
     return (
         <div className="song-container">
-            <div className="left play">
+            <div className="left">
                 <input className="seen" type="file" ref={inputRef} onChange={handleFileChange} />
                 <button className="upload-btn btn-primary" onClick={handleFileInput}>Upload Your Favorite Song</button>
             </div>
@@ -83,8 +84,7 @@ const SongsContainer = props => {
                     {songs.map(song => {
                         return (
                             <li key={song.key}>
-                                <span>{song.songName}</span>
-                                <button onClick={loadSong(song.url, song.songName)}>Play</button>
+                                <button className="load-btn" onClick={loadSong(song.url,song.songName)}><Play /> <span>{song.songName}</span></button>
                                 {props.admin == props.userId ? <button onClick={deleteSong(song)}>Delete</button> : ""}
                             </li>
                         )

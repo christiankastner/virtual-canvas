@@ -1,27 +1,46 @@
+@import "../../constants/colors.scss";
 .song-container {
     display: flex;
-
+    height: 100%;
     .left {
-        height: 100%;
+
+        width: 25%;
         border-right: 1px solid white;
+        padding: 1em;
+        margin: 1em 0;
+        button {
+            margin-top: 1em;
+        }
     }
 
     .right {
-        height: 100%;
+        width: 75%;
+        padding: 1em;
+        overflow-y: auto;
     }
 
     ul {
         list-style: none;
         li {
-            color: white
-        }
-    
-        li:hover {
-            cursor: pointer;
+            color: white;
+            border-bottom: solid 1px $text-offset;
+            padding-bottom: .2em;
+            display: flex;
+            justify-content: space-between;
+            svg {
+                width: 1em;
+            }
         }
     }
 }
 
 .upload-btn {
     font-size: .5em;
+}
+
+.load-btn {
+    background: none;
+    border: none;
+    color: $text;
+    cursor: pointer;
 }
