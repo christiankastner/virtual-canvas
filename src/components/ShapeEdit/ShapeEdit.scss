@@ -1,8 +1,22 @@
-.tool {
-    ul {
-        width: 100%;
-        display: grid;
-        list-style: none;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+.shape {
+    span {
+        text-transform: capitalize;
+    }
+    .tool {
+        ul {
+            width: 100%;
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+            // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            li {
+                margin-bottom: 1em;
+            }
+            .toolbox4 {
+                display: flex;
+                justify-content: space-evenly;
+                height: 150px;
+            }
+        }
     }
 }

@@ -49,6 +49,7 @@ const ShapeEdit = props => {
         fill: [...props.shape.fill.split(',').map(num => parseInt(num))],
         stroke: [...props.shape.stroke.split(',').map(num => parseInt(num))]
     })
+    const [open, setOpen] = useState(false)
 
     const handleSubmit = () => {
         api.p5.editP5(props.shape.id, {
@@ -86,8 +87,14 @@ const ShapeEdit = props => {
         })
     }
 
+    const handleOpenShape = () => {
+        setOpen(!open)
+    }
+
     return (
-        <>
+        <div className="shape" key={shape.id}>
+        <button onClick={handleOpenShape}>Shape <span>{shape.shape}</span></button>
+        <div className={open ? "dropdown" : "dropdown seen"}>
         <div className="tool-header">
             <button onClick={handleSubmit}>Save Shape</button>
             <button onClick={handleDelete}>Delete Shape</button>
@@ -262,8 +269,9 @@ const ShapeEdit = props => {
             </li>  
             </ul>
         </div>
+        </div>
         <Divider />
-        </>
+        </div>
     )
 }
 

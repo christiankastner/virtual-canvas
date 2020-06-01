@@ -14,7 +14,6 @@ class CanvasesContainer extends React.Component {
             canvases: [],
             newCanvas: {
                 seen: false,
-                title: "",
                 user_id: this.props.user_id
             }
         }
@@ -33,9 +32,9 @@ class CanvasesContainer extends React.Component {
         })
     }
 
-    handleSubmit = () => {
+    handleSubmit = (data) => {
         if (this.props.user_id) {
-            api.canvas.newCanvas(this.state.newCanvas)
+            api.canvas.newCanvas({...this.state.newCanvas, title: data.title})
                 .then(resp => resp.json())
                 .then(json => {
                     this.props.handleNewCanvas(json)

@@ -3,7 +3,8 @@
 .canvas-container {
     padding: 1em;
     .tools {
-        background-color: $main-lighter;
+        background-color: $text;
+        color: black;
     }
 
     .songs {
