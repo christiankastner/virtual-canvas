@@ -64,7 +64,7 @@ const CanvasSettings = props => {
     return (
         <>
             <div className="canvas-settings">
-                <button onClick={handleSaveCanvas}>Save Canvas</button>
+                <button className="save-btn" onClick={handleSaveCanvas}>Save Changes</button>
                 <h3>Background Color</h3>
                 <RedSlider 
                     value={background[0]}

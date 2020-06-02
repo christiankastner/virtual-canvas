@@ -28,8 +28,8 @@ const PaintEdit = props => {
     return (
         <div className="paint-controls">
             <form onSubmit={handleSave}>
-                <button type="submit">Save Brush</button>
-                <h3>Stroke Weight</h3>
+                <button className="save-btn" type="submit">Save Changes</button>
+                <h4>Stroke Weight</h4>
                 <Slider 
                     name="strokeWeight"
                     label="strokeWeight"
@@ -38,7 +38,7 @@ const PaintEdit = props => {
                     value={stroke.weight}
                     valueLabelDisplay='auto'
                     onChange={(e,v) => handleChange("weight", v)} />
-                <h3>Stroke Color</h3>
+                <h4>Stroke Color</h4>
                 <ColorPicker red={stroke.red} blue={stroke.blue} green={stroke.green} handleChange={handleChange}/>
             </form>
         </div>

@@ -89,7 +89,7 @@ class Canvas extends React.Component {
       
 
         p.mouseDragged = () => {
-            if (this.props.selected === "paint") {
+            if (extraCanvas) {
                 p.newDrawing(p.pmouseX,p.pmouseY,p.mouseX,p.mouseY)
                 this.canvasChannel.send({
                     canvas_id: this.props.paramsId,

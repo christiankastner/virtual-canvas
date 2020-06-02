@@ -1,15 +1,41 @@
+@import "../../constants/colors.scss";
 .tools-selector {
   display: flex;
   justify-content: space-evenly;
   position: relative;
+  // background: #616161;
+  border-radius: .2em;
+  margin: 0 auto;
 
   button {
     border: none;
+    background: none;
+    color: black;
     padding: .5em 1em;
+    font-size: 1em;
+    border-radius: .25em;
+    transition: color 300ms ease-in-out;
+    font-weight: bold;
+    cursor: pointer;
+    svg {
+      font-size: 1em;
+    }
   }
 }
 .tools-container {
   height: 90%;
   overflow-y: auto;
   padding: 1em;
+}
+
+.new-shape {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  margin-bottom: 1em;
+  font-weight: bold;
+  svg {
+    font-size: 1em;
+  }
 }

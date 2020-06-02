@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import firebase from '../../constants/firebase'
 import './SongsContainer.scss'
 import {ReactComponent as Play} from "../../assets/play.svg"
+import Folds from "../../assets/Folds.mp3"
 
 const SongsContainer = props => {
     const [songs, setSongs] = useState([])
@@ -81,12 +82,17 @@ const SongsContainer = props => {
             </div>
             <div className="right" >
                 <ul>
+                    <li key={"folds"}>
+                        <button className="load-btn" onClick={() => props.dispatch({type: "LOAD_SONG", url: Folds, name: "Folds.mp3"})}><Play /> <span>Folds.mp3</span></button>
+                    </li>
                     {songs.map(song => {
                         return (
+                            <>
                             <li key={song.key}>
                                 <button className="load-btn" onClick={loadSong(song.url,song.songName)}><Play /> <span>{song.songName}</span></button>
-                                {props.admin == props.userId ? <button onClick={deleteSong(song)}>Delete</button> : ""}
+                                {props.admin == props.userId ? <button className="delete-btn" onClick={deleteSong(song)}>Delete</button> : ""}
                             </li>
+                            </>
                         )
                     })}
                 </ul>

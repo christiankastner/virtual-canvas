@@ -62,11 +62,11 @@ const Navbar = props => {
                                 Home
                             </NavLink>
                         </li>
-                        <li>
+                        {/* <li>
                             <NavLink exact to="/about" >  
                                 About
                             </NavLink>
-                        </li>
+                        </li> */}
                         <li>
                             <NavLink exact to="/canvases" >
                                 Canvases

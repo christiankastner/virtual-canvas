@@ -5,6 +5,10 @@ import PaintEdit from '../../components/PaintEdit/PaintEdit'
 import ShapeEdit from '../../components/ShapeEdit/ShapeEdit'
 import CanvasSettings from '../../components/CanvasSettings/CanvasSettings'
 import "./CanvasTools.scss"
+import BrushIcon from '@material-ui/icons/Brush';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AllOutIcon from '@material-ui/icons/AllOut';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const CanvasTools = (props) => {
 
@@ -14,7 +18,7 @@ const CanvasTools = (props) => {
                 return (
                     <div className="tools-container">
                         <div className="shape-container">
-                            <button onClick={() => handleNewAnimation('p5_shape')}>Create New Shape</button>
+                            <button className="new-shape" onClick={() => handleNewAnimation('p5_shape')}><AddCircleIcon /> Create New Shape</button>
                             {props.myShapes ? props.myShapes.map(shape => <ShapeEdit shape={shape} />) : null}
                         </div>
                     </div>
@@ -52,7 +56,7 @@ const CanvasTools = (props) => {
         if (props.user_id) {
             return (
                 <button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "shapes"})}>
-                    Shapes
+                    <AllOutIcon /> Shapes
                 </button>
             )
         } else {
@@ -64,7 +68,7 @@ const CanvasTools = (props) => {
         if (props.user_id == props.admin) {
             return (
                 <button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "settings"})}>
-                    Settings
+                    <SettingsIcon /> Settings
                 </button>
             )
         } else {
@@ -76,7 +80,7 @@ const CanvasTools = (props) => {
         <>
             <div className="tools-selector">
                 <button onClick={() => props.dispatch({type: 'SELECT_ANIMATION', animation: "paint"})}>
-                    Paint
+                    <BrushIcon /> Paint
                 </button> 
                 {renderShapeButton()}
                 {renderSettingButton()}

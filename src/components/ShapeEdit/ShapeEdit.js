@@ -5,6 +5,7 @@ import { Slider, Button, FormControl, MenuItem, Select, Typography, Divider } fr
 import { withStyles } from '@material-ui/core/styles'
 import { api } from '../../services/api';
 import {ReactComponent as Arrow} from "../../assets/dropdown.svg"
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 const RedSlider = withStyles({
     root: {
@@ -94,28 +95,15 @@ const ShapeEdit = props => {
 
     return (
         <div className="shape" key={shape.id}>
-        <button className={open ? "rotate dropdown-btn" : "dropdown-btn"} onClick={handleOpenShape}><Arrow/ > Shape: <span>{shape.shape}</span></button>
+        <button className="dropdown-btn" onClick={handleOpenShape}><Arrow className={open ? "rotate" : ""} /> Shape: <span>{shape.shape}</span></button>
         <div className={open ? "dropdown" : "dropdown seen"}>
         <div className="tool-header">
-            <button onClick={handleSubmit}>Save Shape</button>
-            <button onClick={handleDelete}>Delete Shape</button>
+            <button className="save-btn" onClick={handleSubmit}>Save Changes</button>
+            <button className="delete-btn" onClick={handleDelete}><DeleteForeverIcon /></button>
         </div>
         <div className="tool" >
             <ul>
-            <li>
-                <FormControl>
-                    <Select 
-                        labelId="frequency-select"
-                        id="frequency"
-                        name="frequency"
-                        defaultValue={""}
-                        value={shape.frequency} 
-                        onChange={(e,v) => handleInputChange("frequency", e.target.value)}>
-                        <MenuItem value="treble" >Treble</MenuItem>
-                        <MenuItem value="mid" >Mid</MenuItem>
-                        <MenuItem value="bass" >Bass</MenuItem>
-                    </Select>
-                </FormControl>
+            <li style={{display: "flex", "justify-content": "space-between"}}>
                 <FormControl>
                     <Select 
                         labelId="shape-select"
@@ -128,6 +116,19 @@ const ShapeEdit = props => {
                         <MenuItem value="ellipse" >Ellipse</MenuItem>
                         <MenuItem value="triangle" >Triangle</MenuItem>
                         <MenuItem value="line" >Line</MenuItem>
+                    </Select>
+                </FormControl>
+                <FormControl>
+                    <Select 
+                        labelId="frequency-select"
+                        id="frequency"
+                        name="frequency"
+                        defaultValue={""}
+                        value={shape.frequency} 
+                        onChange={(e,v) => handleInputChange("frequency", e.target.value)}>
+                        <MenuItem value="treble" >Treble</MenuItem>
+                        <MenuItem value="mid" >Mid</MenuItem>
+                        <MenuItem value="bass" >Bass</MenuItem>
                     </Select>
                 </FormControl>
             </li>
