@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 import folds from "../../assets/Folds.mp3"
 import {ReactComponent as Play} from "../../assets/play.svg"
+import {ReactComponent as Pause} from "../../assets/pause.svg"
 import p5 from 'p5';
 import "./Canvas.scss"
 import "p5/lib/addons/p5.sound";
 import P5ReactAdapter from '../../constants/P5ReactAdapter'
 import { API_WS_ROOT } from '../../constants/index'
-import firebase from '../../constants/firebase'
 const actioncable = require("actioncable")
 
 class Canvas extends React.Component {
@@ -15,7 +15,8 @@ class Canvas extends React.Component {
         super(props);
         this.myRef = React.createRef();
         this.state = {
-            connected: false
+            connected: false,
+            playing: false
         }
     }
 
@@ -37,15 +38,11 @@ class Canvas extends React.Component {
         }
       
         p.setup = () => {
-            p.createCanvas(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4);
+            p.createCanvas(this.myRef.current.offsetWidth, this.myRef.current.offsetHeight);
 
-            extraCanvas = p.createGraphics(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4);
+            extraCanvas = p.createGraphics(this.myRef.current.offsetWidth, this.myRef.current.offsetHeight);
 
             extraCanvas.clear();
-
-            this.uploadBtn = p.createFileInput(p.uploaded)
-
-            this.uploadBtn.addClass("p5-upload")
 
             this.canvasChannel = this.cable.subscriptions.create({
                 channel: `PicturesChannel`, 
@@ -76,39 +73,23 @@ class Canvas extends React.Component {
         }
 
         p.newDrawing = (xOne,yOne,xTwo,yTwo) => {
-            // console.log(xOne,yOne,xTwo,yTwo)
-            const {red, green, blue, weight} = this.props.myBrush
-            extraCanvas.strokeWeight(weight)
-            extraCanvas.stroke(`rgb(${red},${green},${blue})`)
-            extraCanvas.line(xOne, yOne, xTwo, yTwo);
+            if (this.props.myBrush) {
+                const {red, green, blue, weight} = this.props.myBrush
+                extraCanvas.strokeWeight(weight)
+                extraCanvas.stroke(`rgb(${red},${green},${blue})`)
+                extraCanvas.line(xOne, yOne, xTwo, yTwo);
+            }
         }
 
         p.windowResized = () => {
             if (this.myRef.current) {
-                p.resizeCanvas(this.myRef.current.offsetWidth, 3*this.myRef.current.offsetWidth/4); 
+                p.resizeCanvas(this.myRef.current.offsetWidth, this.myRef.current.offsetHeight); 
             }
         }
       
-        p.uploaded = file => {
-            this.uploadLoading = true;
-
-            const musicRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}/${file.file.name}`)
-
-            musicRef.put(file.file).then(() => {
-                const storageRef = firebase.storage().ref(`/music/canvas-${this.props.canvas.id}`)
-                storageRef.child(file.file.name).getDownloadURL()
-                    .then((url) => {
-                        const databaseRef = firebase.database().ref(`canvas-${this.props.canvas.id}`)
-                        databaseRef.push({
-                            songName: file.name,
-                            url: url
-                            })
-                    })
-                })
-        }
 
         p.mouseDragged = () => {
-            if (this.props.selected === "paint") {
+            if (extraCanvas) {
                 p.newDrawing(p.pmouseX,p.pmouseY,p.mouseX,p.mouseY)
                 this.canvasChannel.send({
                     canvas_id: this.props.paramsId,
@@ -136,18 +117,22 @@ class Canvas extends React.Component {
             this.song = file
 
             this.song.play() 
+            this.setState({playing: true})
         }
       
         p.toggleAudio = () => {
             if (this.song.isPlaying()) {
-                if (this.song) this.song.pause();
+                if (this.song) {
+                    this.song.pause();
+                    this.setState({playing: false})
+                }
             } else {
-            this.song.play();
+                this.song.play();
+                this.setState({playing: true})
             }
         }
       
         p.draw = () => {
-            console.log(this.uploadBtn)
             const { background, mid_mapping_1, mid_mapping_2, treble_mapping_1, treble_mapping_2, bass_mapping_1, bass_mapping_2} = this.props.canvas
     
             p.background(`rgb(${background})`);
@@ -177,11 +162,10 @@ class Canvas extends React.Component {
         if (this.myP5) {
             return (
                     <div className="controls">
-                        <button className="upload-btn btn-primary" onClick={this.myP5.uploaded} >
-                            Upload a Song
-                        </button>
+                        <h3>{this.props.loadedSong.name || "Folds.mp3"}</h3>
                         <button className="play-btn" onClick={this.myP5.toggleAudio} >
-                            <Play />
+                            <Play className={this.state.playing ? "seen" : ""}/>
+                            <Pause className={this.state.playing ? "" : "seen"} />
                         </button>
                         <button className="clear-btn btn-secondary" onClick={this.myP5.clearDrawing}>
                             Clear Drawing
@@ -195,7 +179,7 @@ class Canvas extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.loadedSong !== this.props.loadedSong) {
-            this.myP5.loadSong(this.props.loadedSong)
+            this.myP5.loadSong(this.props.loadedSong.url)
         }
     }
 
@@ -210,10 +194,10 @@ class Canvas extends React.Component {
 
     render() { 
         return (
-            <>
+            <div className="container">
                 <div id="canvas" className="canvas" ref={this.myRef}/>
                 {this.renderControls()}
-            </>
+            </div>
         )
     }
 }

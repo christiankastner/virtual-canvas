@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Slider, Button, FormControl, MenuItem, Select, Typography, Divider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles'
 import { api } from '../../services/api';
+import {ReactComponent as Arrow} from "../../assets/dropdown.svg"
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 const RedSlider = withStyles({
     root: {
@@ -49,6 +51,7 @@ const ShapeEdit = props => {
         fill: [...props.shape.fill.split(',').map(num => parseInt(num))],
         stroke: [...props.shape.stroke.split(',').map(num => parseInt(num))]
     })
+    const [open, setOpen] = useState(false)
 
     const handleSubmit = () => {
         api.p5.editP5(props.shape.id, {
@@ -86,28 +89,21 @@ const ShapeEdit = props => {
         })
     }
 
+    const handleOpenShape = () => {
+        setOpen(!open)
+    }
+
     return (
-        <>
+        <div className="shape" key={shape.id}>
+        <button className="dropdown-btn" onClick={handleOpenShape}><Arrow className={open ? "rotate" : ""} /> Shape: <span>{shape.shape}</span></button>
+        <div className={open ? "dropdown" : "dropdown seen"}>
         <div className="tool-header">
-            <button onClick={handleSubmit}>Save Shape</button>
-            <button onClick={handleDelete}>Delete Shape</button>
+            <button className="save-btn" onClick={handleSubmit}>Save Changes</button>
+            <button className="delete-btn" onClick={handleDelete}><DeleteForeverIcon /></button>
         </div>
         <div className="tool" >
             <ul>
-            <li>
-                <FormControl>
-                    <Select 
-                        labelId="frequency-select"
-                        id="frequency"
-                        name="frequency"
-                        defaultValue={""}
-                        value={shape.frequency} 
-                        onChange={(e,v) => handleInputChange("frequency", e.target.value)}>
-                        <MenuItem value="treble" >Treble</MenuItem>
-                        <MenuItem value="mid" >Mid</MenuItem>
-                        <MenuItem value="bass" >Bass</MenuItem>
-                    </Select>
-                </FormControl>
+            <li style={{display: "flex", "justify-content": "space-between"}}>
                 <FormControl>
                     <Select 
                         labelId="shape-select"
@@ -122,30 +118,21 @@ const ShapeEdit = props => {
                         <MenuItem value="line" >Line</MenuItem>
                     </Select>
                 </FormControl>
-                <Typography id="vertical-slider" gutterBottom>
-                    Stagger Radius 
-                </Typography>
-                <Slider 
-                    name="stagger_radius"
-                    label="stagger_radius"
-                    min={-20}
-                    max={20}
-                    value={shape["stagger_radius"]}
-                    valueLabelDisplay='auto'
-                    onChange={(e,v) => handleInputChange("stagger_radius", v)} />
-                <Typography id="vertical-slider" gutterBottom>
-                    Stagger Place
-                </Typography>
-                <Slider 
-                    name="stagger_place"
-                    label="stagger_place"
-                    min={-20}
-                    max={20}
-                    value={shape['stagger_place']}
-                    valueLabelDisplay='auto'
-                    onChange={(e,v) => handleInputChange("stagger_place", v)} />
+                <FormControl>
+                    <Select 
+                        labelId="frequency-select"
+                        id="frequency"
+                        name="frequency"
+                        defaultValue={""}
+                        value={shape.frequency} 
+                        onChange={(e,v) => handleInputChange("frequency", e.target.value)}>
+                        <MenuItem value="treble" >Treble</MenuItem>
+                        <MenuItem value="mid" >Mid</MenuItem>
+                        <MenuItem value="bass" >Bass</MenuItem>
+                    </Select>
+                </FormControl>
             </li>
-            <li className="toolbox2">
+            <li >
                         <Typography id="slider" gutterBottom>
                             Fill Color
                         </Typography>
@@ -169,8 +156,9 @@ const ShapeEdit = props => {
                         onChange={(e,v) => handleColorChange(2, "fill", v)} />
           
             </li>
-            <li className="toolbox4">
-                        <Typography id="vertical-slider" gutterBottom>
+            <li className="toolbox">
+                <div>
+                        <Typography id="slider" gutterBottom>
                             Width
                         </Typography>
                         <Slider 
@@ -178,11 +166,10 @@ const ShapeEdit = props => {
                             label="Width"
                             min={0}
                             max={50}
-                            orientation="vertical"
                             value={shape.width}
                             valueLabelDisplay='auto'
                             onChange={(e,v) => handleInputChange("width", v)} />
-                        <Typography id="vertical-slider" gutterBottom>
+                        <Typography id="slider" gutterBottom>
                             Height
                         </Typography>
                         <Slider 
@@ -190,11 +177,10 @@ const ShapeEdit = props => {
                             label="height"
                             min={0}
                             max={50}
-                            orientation="vertical"
                             value={shape.height}
                             valueLabelDisplay='auto'
                             onChange={(e,v) => handleInputChange("height", v)} />
-                        <Typography id="vertical-slider" gutterBottom>
+                        <Typography id="slider" gutterBottom>
                             Amount
                         </Typography>
                         <Slider 
@@ -202,36 +188,34 @@ const ShapeEdit = props => {
                             label="Amount"
                             min={0}
                             max={20}
-                            orientation="vertical"
                             value={shape.amount}
                             valueLabelDisplay='auto'
                             onChange={(e,v) => handleInputChange("amount", v)}
                             />
-                        <Typography id="vertical-slider" gutterBottom>
+                        <Typography id="slider" gutterBottom>
                             Orbit
                         </Typography>
                         <Slider
                             name="orbit"
                             label="Orbit"
                             min={-100}
-                            orientation="vertical"
                             value={shape.orbit}
                             valueLabelDisplay='auto'
                             onChange={(e,v) => handleInputChange("orbit", v)} />
-                        <Typography id="vertical-slider" gutterBottom>
+                        <Typography id="slider" gutterBottom>
                             Spin
                         </Typography>
                         <Slider
                             name="spin"
                             label="Spin"
                             min={-100}
-                            orientation="vertical"
                             value={shape.spin}
                             valueLabelDisplay='auto'
                             onChange={(e,v) => handleInputChange("spin", v)}
                             />
+                </div>
             </li>
-            <li className="toolbox3">
+            <li>
                     <Typography id="slider" gutterBottom>
                             Stroke Color
                         </Typography>
@@ -260,10 +244,35 @@ const ShapeEdit = props => {
                         max={255}
                         onChange={(e,v) => handleColorChange(2, "stroke", v)} />
             </li>  
+            <li>
+            <Typography id="slider" gutterBottom>
+                    Stagger Radius 
+                </Typography>
+                <Slider 
+                    name="stagger_radius"
+                    label="stagger_radius"
+                    min={-20}
+                    max={20}
+                    value={shape["stagger_radius"]}
+                    valueLabelDisplay='auto'
+                    onChange={(e,v) => handleInputChange("stagger_radius", v)} />
+                <Typography id="vertical-slider" gutterBottom>
+                    Stagger Place
+                </Typography>
+                <Slider 
+                    name="stagger_place"
+                    label="stagger_place"
+                    min={-20}
+                    max={20}
+                    value={shape['stagger_place']}
+                    valueLabelDisplay='auto'
+                    onChange={(e,v) => handleInputChange("stagger_place", v)} />
+            </li>
             </ul>
         </div>
+        </div>
         <Divider />
-        </>
+        </div>
     )
 }
 

@@ -45,6 +45,25 @@ ul {
   text-transform: uppercase;
 }
 
+.save-btn, .delete-btn {
+  cursor: pointer;
+  margin-bottom: 1em;
+  border: none;
+  padding: .5em;
+  border-radius: .2em;
+  font-weight: bold;
+  color: white;
+}
+
+.save-btn {
+  background: #2EAA51;
+}
+
+.delete-btn {
+  background: #BC3333;
+}
+
+
 .error {
   color: red;
 }

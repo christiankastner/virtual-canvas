@@ -1,11 +1,17 @@
+.container {
+  height: 100%;
+}
+.canvas {
+  height: 97%
+}
 .controls {
   display: flex;
   justify-content: space-evenly;
   height: 2em;
-  .upload-btn, .clear-btn {
+  margin-top: .5em;
+  .clear-btn {
     font-size: .5em;
   }
-
   .play-btn {
     position: relative;
     top: -2em;
@@ -15,8 +21,4 @@
     border: none;
     cursor: pointer;
   }
-}
-
-.p5-upload {
-  display: none;
 }

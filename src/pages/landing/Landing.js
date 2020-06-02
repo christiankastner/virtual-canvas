@@ -14,7 +14,7 @@ const Landing = () => {
                     <p>
                         A space for friends to jump onto online canvases, share music, draw, and animate shapes
                     </p>
-                    <NavLink exact to="/about">
+                    <NavLink exact to="/canvases">
                         <button className="btn-primary">Get Started</button>
                     </NavLink>
                 </div>

@@ -1,23 +1,55 @@
+@import "../../constants/colors.scss";
 .song-container {
     display: flex;
-
+    height: 100%;
     .left {
-        height: 100%;
-        border-right: 1px solid white;
+
+        width: 30%;
+        border-right: 1px solid rgba(255, 255, 255, .5);
+        padding: 1em;
+        margin: 1em 0;
+        text-align: center;
+        button {
+            margin: 1em;
+        }
     }
 
     .right {
-        height: 100%;
+        width: 70%;
+        padding: 1em;
     }
 
     ul {
         list-style: none;
+        height: 100px;
+        overflow-y: auto;
         li {
-            color: white
-        }
-    
-        li:hover {
-            cursor: pointer;
+            color: white;
+            border-bottom: solid 1px rgba(255, 255, 255, .5);
+            padding-bottom: .2em;
+            display: flex;
+            justify-content: space-between;
+            .load-btn {
+                background: none;
+                border: none;
+                color: $text;
+                cursor: pointer;
+            }
+            .delete-btn {
+                background: red;
+                color: white;
+                border: none;
+                padding: .25em .75em;
+                border-radius: .25em;
+            }
+            svg {
+                width: 1em;
+            }
         }
     }
 }
+
+.upload-btn {
+    font-size: .5em;
+}
+

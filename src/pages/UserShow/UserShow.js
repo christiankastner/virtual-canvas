@@ -15,12 +15,14 @@ class UserShow extends React.Component {
     }
 
     handleRemoveCanvas = (id) => {
-        this.setState({
-            user: {
-                ...this.state.user,
-                pictures: this.state.user.pictures.filter((canvas) => canvas.id !== id)
-            }
-        })
+        api.canvas.deleteCanvas(id).then(json => {
+            this.setState({
+                user: {
+                    ...this.state.user,
+                    pictures: this.state.user.pictures.filter((canvas) => canvas.id !== id)
+                }
+            })
+        }).catch(console.log)
     }
 
     handleSelect = (selected) => {

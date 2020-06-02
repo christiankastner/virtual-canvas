@@ -26,7 +26,7 @@ const App = props => {
             </>)
           }}/>
           <Route exact path="/login" render={routerProps => <Login {...routerProps} />}/>
-          <Route exact path="/about" render={routerProps => <About {...routerProps} />}/>
+          {/* <Route exact path="/about" render={routerProps => <About {...routerProps} />}/> */}
           <Route exact path="/user" >
             {props.user_id ? <UserShow /> : <Redirect to="/" />}
           </Route>

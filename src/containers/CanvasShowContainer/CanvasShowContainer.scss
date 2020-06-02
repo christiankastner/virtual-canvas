@@ -3,12 +3,15 @@
 .canvas-container {
     padding: 1em;
     .tools {
-        background-color: $main-lighter;
+        background-color: $text;
+        color: black;
+        height: 100%;
     }
 
     .songs {
         background: $main-lighter;
     }
+
     .curved {
         border-radius: .25em;
         box-shadow: 0px 10px 10px rbga(0,0,0,.3);
@@ -25,9 +28,9 @@
         grid-template-rows: 1fr 1fr .5fr;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: .75em;
+        height: 90%;
     
         .tools {
-            display: unset;
             grid-area: tools;
         }
     

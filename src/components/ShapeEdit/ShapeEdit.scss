@@ -1,8 +1,50 @@
-.tool {
-    ul {
-        width: 100%;
-        display: grid;
-        list-style: none;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+.shape {
+    .tool-header {
+        display: flex;
+        justify-content: space-between;
+        button {
+            padding: .2em .5em;
+        }
     }
+
+    .dropdown-btn {
+        background: none;
+        border: none;
+        padding: .5em 0;
+        cursor: pointer;
+        margin: 1em 0;
+    }
+
+    svg {
+        width: .75em;
+        transition: transform 300ms ease-in-out;
+    }
+
+    .rotate {
+        transform: rotate(90deg);
+    }
+
+    span {
+        text-transform: capitalize;
+    }
+
+    .tool {
+        width: 100%;
+        ul {
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+            li {
+                margin-bottom: 1em;
+            }
+            .toolbox {
+                display: flex;
+                flex-direction: row;
+                div {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
 }

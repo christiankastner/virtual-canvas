@@ -1,5 +1,4 @@
 import React from 'react'
-import { Header, Modal , Form, Divider, Icon} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { api } from '../services/api'
 
