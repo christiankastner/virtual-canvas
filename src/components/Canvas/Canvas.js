@@ -54,11 +54,10 @@ class Canvas extends React.Component {
                 },
                 disconnected: () => this.toggleConnection(),
                 received: data => {
-                    if ('type' in data) {
+                    if (data.hasOwnProperty('type')) {
                         this.props.dispatch(data)
-                    } else if ('draw' in data) {
+                    } else if (data.hasOwnProperty('draw')) {
                         const {xOne, yOne, xTwo, yTwo} = data.draw
-                        console.log(data.draw)
                         p.newDrawing(xOne, yOne,xTwo,yTwo)
                     }
             }})
@@ -73,7 +72,7 @@ class Canvas extends React.Component {
         }
 
         p.newDrawing = (xOne,yOne,xTwo,yTwo) => {
-            if (this.props.myBrush) {
+            if (extraCanvas) {
                 const {red, green, blue, weight} = this.props.myBrush
                 extraCanvas.strokeWeight(weight)
                 extraCanvas.stroke(`rgb(${red},${green},${blue})`)
@@ -90,7 +89,6 @@ class Canvas extends React.Component {
 
         p.mouseDragged = () => {
             if (extraCanvas) {
-                p.newDrawing(p.pmouseX,p.pmouseY,p.mouseX,p.mouseY)
                 this.canvasChannel.send({
                     canvas_id: this.props.paramsId,
                     draw: {

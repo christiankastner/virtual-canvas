@@ -17,12 +17,12 @@ const Navbar = props => {
             return (
                 <>
                     <li>
-                        <NavLink exact to="/user" >  
+                        <NavLink onClick={handleMenuClick} exact to="/user" >  
                             Profile
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink exact to="/" >
+                        <NavLink onClick={handleMenuClick} exact to="/" >
                             <button onClick={handleLogout}>
                                 Log out
                             </button>
@@ -33,7 +33,7 @@ const Navbar = props => {
         } else {
             return (
                 <li>
-                    <NavLink exact to="/login" >
+                    <NavLink onClick={handleMenuClick} exact to="/login" >
                         Log In
                     </NavLink>
                 </li>
@@ -55,26 +55,26 @@ const Navbar = props => {
                 <rect y="30" width="100" height="20" fill="white"></rect>
                 <rect y="60" width="100" height="20" fill="white"></rect>
             </svg>
-                <div className={open ? "nav-links" : "nav-links closed"}>
-                    <ul>
-                        <li>
-                            <NavLink exact to="/" >
-                                Home
-                            </NavLink>
-                        </li>
-                        {/* <li>
-                            <NavLink exact to="/about" >  
-                                About
-                            </NavLink>
-                        </li> */}
-                        <li>
-                            <NavLink exact to="/canvases" >
-                                Canvases
-                            </NavLink>
-                        </li>
-                        {conditionalUserLink()}
-                    </ul>
-                </div>
+                    <div className={open ? "nav-links" : "nav-links closed"}>
+                        <ul>
+                            <li>
+                                <NavLink onClick={handleMenuClick} exact to="/" >
+                                    Home
+                                </NavLink>
+                            </li>
+                            {/* <li>
+                                <NavLink exact to="/about" >  
+                                    About
+                                </NavLink>
+                            </li> */}
+                            <li>
+                                <NavLink onClick={handleMenuClick} exact to="/canvases" >
+                                    Canvases
+                                </NavLink>
+                            </li>
+                            {conditionalUserLink()}
+                        </ul>
+                    </div>
             </nav>
         </header>
     )

@@ -30,6 +30,7 @@
 
     .tool {
         width: 100%;
+        animation: fadeIn 300ms ease-in-out;
         ul {
             display: flex;
             list-style: none;

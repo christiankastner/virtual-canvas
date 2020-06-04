@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import firebase from '../../constants/firebase'
 import './SongsContainer.scss'
 import {ReactComponent as Play} from "../../assets/play.svg"
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Folds from "../../assets/Folds.mp3"
 
 const SongsContainer = props => {
@@ -58,7 +59,6 @@ const SongsContainer = props => {
 
         const file = files[files.length - 1]
 
-        console.log(file)
         const musicRef = firebase.storage().ref(`/music/canvas-${props.canvasId}/${file.name}`)
 
         musicRef.put(file).then(() => {
@@ -90,7 +90,7 @@ const SongsContainer = props => {
                             <>
                             <li key={song.key}>
                                 <button className="load-btn" onClick={loadSong(song.url,song.songName)}><Play /> <span>{song.songName}</span></button>
-                                {props.admin == props.userId ? <button className="delete-btn" onClick={deleteSong(song)}>Delete</button> : ""}
+                                {props.admin == props.userId ? <button className="delete-song" onClick={deleteSong(song)}><DeleteForeverIcon/></button> : ""}
                             </li>
                             </>
                         )

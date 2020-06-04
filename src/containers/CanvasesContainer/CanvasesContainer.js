@@ -5,6 +5,7 @@ import { api } from '../../services/api';
 import DisplayCanvases from '../DisplayCanvases/DisplayCanvases';
 import "./CanvasesContainer.scss";
 import Form from '../../components/Form/Form';
+import { CSSTransition } from 'react-transition-group';
 
 class CanvasesContainer extends React.Component {
     constructor(props) {
@@ -78,8 +79,8 @@ class CanvasesContainer extends React.Component {
                     <span className="error">{this.props.user_id ? "" : "Must Log in before creating a canvas"}</span>
                     <Form inputs={[{name:"title"}]} submitText="Create" handleSubmit={this.handleSubmit} />
                 </div>
-                {this.state.loading ? <CircularProgress style={{margin: "0 auto"}}/> : ""}
-                <DisplayCanvases canvases={this.state.canvases} />
+                {this.state.loading && <div className="loader"><CircularProgress /></div>}
+                {this.state.canvases.length > 0 && <DisplayCanvases canvases={this.state.canvases} />}
             </div>
         )
     }

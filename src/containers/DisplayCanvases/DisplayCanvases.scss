@@ -1,10 +1,12 @@
 @import "../../constants/colors.scss";
+@import "../../constants/transitions.scss";
 
 .canvas-list {
     overflow: auto;
     background: $main-offset;
     padding: 1em;
     ul {
+        animation: fadeIn 500ms ease-in-out;
         display: grid;
         list-style: none;
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -13,3 +15,4 @@
         }
     }
 }
+

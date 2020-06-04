@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./ShapeEdit.scss";
 import { connect } from 'react-redux';
-import { Slider, Button, FormControl, MenuItem, Select, Typography, Divider } from '@material-ui/core';
+import { Slider, InputLabel, FormControl, MenuItem, Select, Typography, Divider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles'
 import { api } from '../../services/api';
 import {ReactComponent as Arrow} from "../../assets/dropdown.svg"
@@ -105,9 +105,10 @@ const ShapeEdit = props => {
             <ul>
             <li style={{display: "flex", "justify-content": "space-between"}}>
                 <FormControl>
+                    <InputLabel id="shape-select">Shape</InputLabel>
                     <Select 
                         labelId="shape-select"
-                        id="shape"
+                        id="shape-select"
                         name="shape"
                         defaultValue={""}
                         value={shape.shape} 
@@ -119,6 +120,7 @@ const ShapeEdit = props => {
                     </Select>
                 </FormControl>
                 <FormControl>
+                    <InputLabel id="frequency-select">Frequency</InputLabel>
                     <Select 
                         labelId="frequency-select"
                         id="frequency"

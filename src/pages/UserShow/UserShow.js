@@ -10,7 +10,7 @@ class UserShow extends React.Component {
         super(props)
         this.state = {
             user: {},
-            selected: "canvases"
+            selected: "account"
         }
     }
 

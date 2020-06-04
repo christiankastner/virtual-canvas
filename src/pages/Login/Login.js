@@ -10,7 +10,6 @@ const Login = (props) => {
     const [error, setError] = useState("")
 
     const handleSubmit = (data) => {
-        console.log(data)
         if (signup == true) {
             api.user.userCreate(data)
             .then(resp => resp.json())
@@ -23,7 +22,6 @@ const Login = (props) => {
     }
 
     const loginCallBack = (json) => {
-        console.log(json)
         if (!json.error) {
             localStorage.setItem('id', json.id) 
             props.dispatch({type: "LOGIN", user_id: json.id}) 

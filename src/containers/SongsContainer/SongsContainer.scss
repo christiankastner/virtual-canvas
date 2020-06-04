@@ -34,16 +34,16 @@
                 border: none;
                 color: $text;
                 cursor: pointer;
+                svg {
+                    width: 1em;
+                }
             }
-            .delete-btn {
-                background: red;
-                color: white;
+            .delete-song {
+                background-color: $main-lighter;
                 border: none;
-                padding: .25em .75em;
-                border-radius: .25em;
-            }
-            svg {
-                width: 1em;
+                color: white;
+                cursor: pointer;
+                font-size: .5em;
             }
         }
     }

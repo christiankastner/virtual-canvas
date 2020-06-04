@@ -18,5 +18,13 @@
     #form {
         width: 50%;
         margin-bottom: 2em;
+        animation: fadeIn 300ms ease-in-out;
+    }
+    .loader {
+        background: $main-offset;
+        padding-top: 6em;
+        width: 100%;
+        height: 800px;
+        text-align: center;
     }
 }
