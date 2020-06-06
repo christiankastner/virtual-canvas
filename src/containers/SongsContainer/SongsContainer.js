@@ -55,30 +55,33 @@ const SongsContainer = props => {
 
     const handleFileChange = (event) => {
         event.persist()
+        
         const {files} = event.target
 
         const file = files[files.length - 1]
 
-        const musicRef = firebase.storage().ref(`/music/canvas-${props.canvasId}/${file.name}`)
-
-        musicRef.put(file).then(() => {
-            const storageRef = firebase.storage().ref(`/music/canvas-${props.canvasId}`)
-            storageRef.child(file.name).getDownloadURL()
-                .then((url) => {
-                    const databaseRef = firebase.database().ref(`canvas-${props.canvasId}`)
-                    databaseRef.push({
-                        songName: file.name,
-                        url: url
-                        })
+        if (/audio/.test(file.type)) {
+            const musicRef = firebase.storage().ref(`/music/canvas-${props.canvasId}/${file.name}`)
+        
+            musicRef.put(file).then(() => {
+                const storageRef = firebase.storage().ref(`/music/canvas-${props.canvasId}`)
+                storageRef.child(file.name).getDownloadURL()
+                    .then((url) => {
+                        const databaseRef = firebase.database().ref(`canvas-${props.canvasId}`)
+                        databaseRef.push({
+                            songName: file.name,
+                            url: url
+                            })
+                    })
                 })
-            })
+        }
     }
-
+    
     return (
         <div className="song-container">
             <div className="left">
-                <input className="seen" type="file" ref={inputRef} onChange={handleFileChange} />
-                <button className="upload-btn btn-primary" onClick={handleFileInput}>Upload Your Favorite Song</button>
+                <input className="seen" accept="mp3" type="file" ref={inputRef} onChange={handleFileChange} />
+                {props.userId && <button className="upload-btn btn-primary" onClick={handleFileInput}>Upload Your Favorite Song</button>}
             </div>
             <div className="right" >
                 <ul>
